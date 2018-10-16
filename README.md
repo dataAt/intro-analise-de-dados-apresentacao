@@ -5,4 +5,5 @@ Apresentações criadas utilizando o framework `Sharingan` com o template do [Wi
 ## Links das apresentações
 
 - Apresentação de Python: https://eager-agnesi-2903fc.netlify.com/intro_python
+- Apresentação de R: https://determined-ramanujan-fbf637.netlify.com
 
