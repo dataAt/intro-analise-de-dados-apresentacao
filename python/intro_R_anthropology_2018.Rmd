@@ -1,0 +1,533 @@
+---
+title: "Fazendo análise de dados"
+subtitle: "Utilizando Python, Pandas e plotnine"
+author: "<br>Daniele Zaramello<br>Felipe Carvalho<br>Felipe Menino<br>Lucas Augusto<br>Weslei Luiz"
+date: "<br><br>16 e 17 de outubro de 2018"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["assets/shinobi.css", "assets/ninpo.css", "assets/ninjutsu.css"]
+    seal: true
+    self_contained: false
+    nature:
+      ratio: "16:9"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+exclude: true
+<style type="text/css">
+code.r{
+  font-size: 16px;
+}
+pre {
+  font-size: 16px !important;
+}
+</style>
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+---
+class: bg-main1
+
+# Agenda
+
+--
+### Introdução a linguagem Python `r emo::ji("heavy_check_mark")`
+
+--
+### Comandos básicos da linguagem `r emo::ji("heavy_check_mark")`
+
+--
+### Estruturas de controle `r emo::ji("heavy_check_mark")`
+
+--
+### Estrutura de repetição `r emo::ji("heavy_check_mark")`
+
+--
+### Pandas `r emo::ji("heavy_check_mark")`
+
+--
+### Plotnine `r emo::ji("heavy_check_mark")`
+
+---
+class: bg-main1
+
+# Introdução a Python
+
+<br>
+
+### Python é uma linguagem multiparadigma, com uma sintaxe muito .yellow[simples] que permite ao programador focar no problema e deixar de lado questões da linguagem. Esta é uma linguagem amplamente utilizada em diversos áreas, por conta principalmente das milhares de .yellow[bibliotecas] que a linguagem possui, todas elas distribuidas pela comunidade incrível que a linguagem possui `r emo::ji("heart")`
+
+---
+class: middle bg-main1
+
+# Comandos básicos da linguagem
+
+---
+class: bg-main1
+
+# Comandos básicos da linguagem
+
+### Declarações e manipulações de variáveis
+
+<br><br>
+
+```{python}
+inteiro = 123
+
+flutoante = 1.1234
+
+booleano = True
+
+lista = [1, 2, 3, 4, 5]
+
+dicionario = {'chave': 'valor'}
+
+string = 'Um texto legal'
+```
+
+<br>
+
+### E a manipulação é tão simples quanto as declarações.
+
+```{python}
+dicionario['chave'] # 'valor'
+
+lista[0:3] # [1, 2, 3]
+
+flutoante += 1 # 1.1234
+```
+
+---
+class: bg-main1
+
+# Estruturas de controle de decisão
+
+### As estruturas de controle de decisão, facilitam o controle do fluxo que nosso código está tomando, assim, representam parte importante para a utilização da linguagem.
+
+--
+#### if
+
+```{python}
+if (2 > 1):
+  print('Dois é maior que um!')
+```
+
+--
+#### else
+
+```{python}
+if (2 < 1):
+  print('Dois é menor que um')
+else:
+  print('Dois é maior que um')
+``` 
+
+--
+#### elif
+
+```{python}
+if (1 > 1):
+  print('Um é maior que um')
+elif(1 > 0.5):
+  print('Um é maior que meio')
+```
+
+---
+class: bg-main1
+
+# Estrutura de repetição
+
+### Essas são estruturas que permitem a criaçaõ de loops, havendo facilmente repetição de um certo bloco de código diversas vezes, e ainda, permite .yellow[iterações] em estruturas de dados como as .yellow[listas]
+
+--
+#### while
+
+```{python}
+i = 0
+while i < 5:
+  print(i)
+  i += 1
+```
+
+-- 
+#### for
+
+```{python}
+# Iterando sobre uma lista
+for i in [1, 2, 3]:
+  print(i)
+``` 
+
+---
+layout: false
+class: bg-main1
+
+# Pandas `r emo::ji("panda_face")`
+
+.blockquote.font_large[
+Pandas é uma biblioteca open source, licenciada pelo BSD, que fornece estruturas de dados de alto desempenho e fáceis de usar e ferramentas de análise de dados para a linguagem de programação Python.
+]
+
+<br>
+
+--
+#### Para importar a biblioteca utilize
+
+```{python}
+import pandas as pd
+```
+
+---
+class: middle bg-main1
+
+# Estruturas de dados básicas do Pandas
+
+### O Pandas trabalha utilizando duas estruturas de dados básicas, as .yellow[Series] e os .yellow[DataFrames]
+
+---
+class: middle bg-main1
+
+# Series
+
+### Estruturas unidimensionais;
+### Trabalham apenas com linhas;
+### Utilizam índices nas linhas.
+
+---
+class: bg-main1
+
+# Series - Utilização
+
+--
+### Criando uma Series simples
+
+```{python}
+series = pd.Series([1, 2]); print(series)
+```
+
+--
+### Criando com índice
+```{python}
+series = pd.Series([1, 2], [9, 'ultimo']); print(series)
+```
+
+--
+### Recuperando dados
+```{python}
+print(series[9])
+
+print(series['ultimo'])
+```
+
+---
+class: bg-main1
+
+# Series - Utilização
+
+<br><br><br>
+
+--
+### Vendo a unidimensionalidade
+
+```{python}
+series = pd.Series([[1, 2, 3], [4, 5, 6]]); print(series)
+```
+
+---
+class: middle bg-main1
+
+# DataFrames
+
+### Estruturas multidimensionais;
+### Trabalham com linhas e colunas.
+### Pode-se utilizar índices nas linhas ou através das colunas.
+
+---
+class: bg-main1
+
+# DataFrame - Utilização
+
+<br><br>
+
+--
+### Criando um DataFrame simples
+
+```{python}
+df = pd.DataFrame([1, 2, 3, 4]); print(df)
+```
+
+--
+### Criando com índice
+
+```{python}
+df = pd.DataFrame([1, 2, 3, 4], [9, 10, 11, 'ultimao']); print(df)
+```
+
+---
+class: bg-main1
+
+# DataFrame - Utilização
+
+--
+### Recuperando dados
+
+```{python}
+print(df[0]) 
+print(df[0]['ultimao'])
+```
+
+--
+### Entendendo a diferença entre o .yellow[Series] e o .yellow[DataFrame].
+
+```{python}
+df = pd.DataFrame([[1, 2, 3], [4, 5, 6]]); print(df)
+```
+
+---
+class: middle bg-main1
+
+# Manipulação básicas de dados com Pandas
+
+### Uma parte muito importante é a .yellow[seleção] e .yellow[filtro] dos dados, com elas basicamente faremos a manipulação dos dados.
+
+---
+class: bg-main1
+
+# Manipulação básicas de dados com Pandas
+
+### Loc e iloc
+
+Vamos começar fazendo a busca utilizando os índices (index) e as colunas (No caso dos DataFrames). Para isto, vamos utilizar os métodos .loc e .iloc. 
+
+<br>
+
+![loc_iloc](slide_img/loc_iloc.png)
+
+Para exemplificar o uso destes métodos, vamos utilizar o seguinte .yellow[DataFrame]
+
+```{python}
+df = pd.DataFrame({
+  'nome': ['Joana', 'Maria', 'Josefa'],
+  'idade': [15, 18, 21],
+  'nota': [8, 9, 10]
+}, index = [7, 8, 9])
+```
+
+---
+class: bg-main1
+
+# Manipulação básicas de dados com Pandas
+
+### Loc e iloc
+
+```{python}
+print(df.loc[9, 'nome'])
+
+print(df.loc[9, ['nome', 'idade']])
+```
+
+```{python}
+print(df.iloc[2]['nome'])
+
+print(df.iloc[2][['nome', 'idade']])
+```
+
+---
+class: bg-main1
+
+# Indexação booleana
+
+### Dentro do .yellow[DataFrame] e das .yellow[Series], é possível passar uma expressão booleana, para realizar uma filtragem dos dados.
+
+<br><br>
+
+```{python}
+df = pd.DataFrame({'coluna': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]})
+
+print(df[df['coluna'] >= 5])
+```
+
+---
+class: bg-main1
+
+# Agrupamento e agregação
+
+<br><br><br>
+
+### Muitas vezes queremos agrupar nossos dados, seja para facilitar a manipulação, o entendimento das relações dos dados, ou mesmo para aplicar funções sobre cada um dos grupos e obter informações a partir disto. Para isto utilizamos os agrupamentos e agregações.
+
+---
+class: bg-main1
+
+# Agrupamento e agregação
+
+<br><br><br>
+
+### As .yellow[agregações] apresentam diversas definição, a utiliza aqui será "São operações aplicadas sobre os dados que resultam em um conjunto de valores, ou mesmo um valor escalar."
+
+<br>
+
+### Entenda que, o retorno pode mudar de acordo com a estrutura de dados onde se aplica a .yellow[agregação], no caso .yellow[Series] será retornado apenas um valor ao utilizar agregações, e no caso dos .yellow[DataFrames] um valor para cada coluna ou linha, dependendo da definição feita durante o processo.
+
+---
+class: middle bg-main1
+
+# Algumas operações de agregação
+
+### sum() -> Realiza somatório;
+### min() -> Busca o valor mínimo;
+### max() -> Busca o valor máximo;
+### count() -> Realiza a contagem de elementos.
+
+---
+class: bg-main1
+
+# Exemplos
+
+--
+###Agregando series
+
+```{python}
+s = pd.Series([1, 2, 3])
+df = pd.DataFrame([[1, 2, 3,], [4, 5, 6]])
+
+# Agregando Series
+print(s.sum())
+```
+
+--
+### Agregando DataFrames
+
+```{python}
+# Agredando DataFrame
+print(df.sum())
+```
+
+---
+class: bg-main1
+
+# Agrupamentos
+
+--
+### Agrupando dados
+
+```{python}
+df = pd.DataFrame({
+  'nome': ['Tel1', 'Tel2', 'Tel3'],
+  'tipo': ['antigo', 'novo', 'novo']
+})
+agrupado = df.groupby('tipo')
+
+print(df)
+```
+
+--
+### DataFrame Agrupado
+
+```{python}
+print(agrupado)
+```
+
+--
+### Recuperando grupos
+
+```{python}
+print(agrupado.groups)
+```
+
+---
+class: middle bg-main1
+
+# Agrupando e agregando
+
+--
+## Representação 
+![hadley](slide_img/03.08-split-apply-combine.png)
+
+---
+class: middle bg-main1
+
+# Agrupando e agregando
+
+### O processo de .yellow[dividir] é o agrupamento, onde está sendo realizado a junção dos dados que possuem alguma característica em comum, definida no momento do agrupamento pelo usuário. A .yellow[aplicação] é justamente onde pode-se aplicar as agregações, filtros ou transformações, e por fim o .yellow[combinar], que representa a junção dos resultados da operação realizada na aplicação, em uma únida tabela.
+
+---
+class: bg-main1
+
+# Agrupando e agregando - Exemplo
+
+--
+## DataFrame de exemplo
+```{python}
+df = pd.DataFrame({
+  'nome': ['felipe', 'joão', 'maria', 'ana'],
+  'idade': [19, 19, 20, 20],
+  'dinheiro': [100, 100, 150, 150]
+})
+```
+
+--
+## Agrupando pela idade e realizando a contagem
+```{python}
+# Esta é a etapa de divir, da definição do Hedley
+agrupado = df.groupby('idade')
+# Aplicando uma agregação
+## Esta é a etapa de aplicação e junçaõ, definida pelo Hedley
+print(agrupado.count())
+```
+
+---
+class: middle bg-main1
+
+# Agrupando e agregando - Exemplo
+
+--
+### Agregando somente o atributo `dinheiro` de cada grupo
+```{python}
+print(agrupado['dinheiro'].sum())
+```
+
+---
+class: middle bg-main1
+
+# Leitura dos dados
+
+--
+### Sim! `r emo::ji("astonished")`
+
+--
+### O Pandas ainda facilita o processo de leitura e escrita de dados 
+
+---
+class: bg-main1
+
+# Leitura dos dados - Exemplos
+
+--
+## Vamos fazer um exemplo de leitura de dados no formato CSV.
+```{python}
+df = pd.read_csv('data/titanic.csv', sep = ',')
+```
+
+<br>
+
+--
+## Veja como foi simples importar os dados. 
+```{python}
+print(df.head(3))
+
+print(df.tail(3))
+```
+
+---
+class: middle bg-main1
+
+# Leitura dos dados - Exemplos
+
+--
+## Salvando os dados
+``` {python}
+df.to_csv('./dados_salvos.csv')
+```
