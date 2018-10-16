@@ -1,0 +1,7 @@
+"","aluno_id","aluno_sexo","aluno_curso","aluno_media","aluno_avaliacao"
+"1",1,"Masculino","Historia",2.1,"Ruim"
+"2",2,"Feminino","Historia",3.5,"Ruim"
+"3",3,"Masculino","Matemática",4,"Excelente"
+"4",4,"Feminino","Estatística",1,"Ruim"
+"5",5,"Masculino","Matemática",NA,"Nenhum"
+"6",6,"Feminino","Estatística",4.9,"Excelente"

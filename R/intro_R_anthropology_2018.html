@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fazendo análise de dados</title>
+    <meta charset="utf-8">
+    <meta name="author" content=" Daniele Zaramello Felipe Carvalho Felipe Menino Lucas Augusto Weslei Luiz" />
+    <link rel="stylesheet" href="assets/shinobi.css" type="text/css" />
+    <link rel="stylesheet" href="assets/ninpo.css" type="text/css" />
+    <link rel="stylesheet" href="assets/ninjutsu.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Fazendo análise de dados
+## Utilizando R, Dplyr e ggplot2
+### <br>Daniele Zaramello<br>Felipe Carvalho<br>Felipe Menino<br>Lucas Augusto<br>Weslei Luiz
+### <br><br>16 e 17 de outubro de 2018
+
+---
+
+exclude: true
+&lt;style type="text/css"&gt;
+code.r{
+  font-size: 16px;
+}
+pre {
+  font-size: 16px !important;
+}
+&lt;/style&gt;
+
+
+---
+class: bg-main1
+
+# Agenda
+
+--
+### Introdução a linguagem R 🖥
+
+--
+### Comandos básicos da linguagem 
+
+--
+### Estruturas de controle 
+
+--
+### Estrutura de repetição 
+
+--
+### Dplyr 
+
+--
+### ggplot2 
+
+---
+class: bg-main1
+
+# Introduçao ao R 
+
+&lt;br&gt;
+
+### **R** é uma linguagem de programação de alto nível com ambiente voltado para visualização e análise de dados. Em essência foi inspirada na linguagem de programação **S**. Foi iniciamente escrito por **R**oss Ihaka and **R**obert Gentleman no departamente de estatística da universidade de Auckland na Nova Zelândia ❤️
+
+---
+class: middle bg-main1
+
+# Introdução a linguagem R
+
+---
+class: bg-main1
+
+# Comandos básicos da linguagem
+
+### Atribuimos valor usando `&lt;-` apontada para a variável
+
+&lt;br&gt;&lt;br&gt;
+
+
+```r
+inteiro &lt;- 321L
+
+numerico &lt;- 123
+
+complexo &lt;- 321i
+
+booleano &lt;- TRUE
+
+caractere &lt;- "Bem-vindos"
+```
+
+&lt;br&gt;
+
+### Podemos acessar os valores desta forma.
+
+
+```r
+print(numerico)
+```
+
+```
+## [1] 123
+```
+
+```r
+caractere
+```
+
+```
+## [1] "Bem-vindos"
+```
+
+---
+class: bg-main1
+
+# Tipos de dados estruturados
+
+&lt;br&gt;&lt;br&gt;
+
+### Podemos declarar  vetor usando `c()` e  lista usando `list()` 
+
+&lt;br&gt;
+
+
+```r
+vetor &lt;- c(1, 3, 5)
+
+lista &lt;- list(1, 2.3, c("tres", FALSE))
+```
+
+
+```r
+vetor
+```
+
+```
+## [1] 1 3 5
+```
+
+--
+
+
+```r
+lista
+```
+
+```
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 2.3
+## 
+## [[3]]
+## [1] "tres"  "FALSE"
+```
+
+---
+class:bg-main1 
+
+# Ué, então, qual é a diferença?
+
+&lt;br&gt;&lt;br&gt;
+
+## Vetores são atômicos, ou seja, só aceitam um tipo
+&lt;br&gt;
+--
+
+
+```r
+vetor_diferente &lt;- c(1, 2.5, TRUE, "ola")
+vetor_diferente
+```
+
+```
+## [1] "1"    "2.5"  "TRUE" "ola"
+```
+
+--
+## Lista não são atômicas, ou seja, aceitam diversos tipos
+--
+
+
+```r
+lista_diferente &lt;- list(1, TRUE, "ola")
+lista_diferente
+```
+
+```
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] TRUE
+## 
+## [[3]]
+## [1] "ola"
+```
+---
+class: bg-main1
+
+# Nada é verdade, tudo é permitido? 
+
+&lt;br&gt;&lt;br&gt;
+## Não é bem assim, na verdade, tudo em R é vetor. Como assim?
+
+--
+
+
+```r
+lista &lt;- list(1, 2, list("ola", FALSE))
+lista
+```
+
+```
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [[3]][[1]]
+## [1] "ola"
+## 
+## [[3]][[2]]
+## [1] FALSE
+```
+--
+## Será vetor?
+
+```r
+is.vector(lista[[3]][[2]])
+```
+
+```
+## [1] TRUE
+```
+---
+class: bg-main1
+
+# WAIT, WHAT!?
+
+&lt;br&gt;&lt;br&gt;
+
+## O **R**, possui uma conversão de tipos, sendo assim, garantindo que todo vetor seja atômico.
+
+&lt;br&gt;
+
+![](./slide_img/tipos.png)
+
+---
+class: bg-main1
+
+# Conversão na prática dos tipos
+&lt;br&gt;
+### Os tipos mais fortes são:
+
+- `character`
+- `complex`
+- `numeric`
+- `logical`
+
+&lt;br&gt;&lt;br&gt;
+
+
+```r
+vetor &lt;- c(FALSE, "tipo", 5)
+vetor
+```
+
+```
+## [1] "FALSE" "tipo"  "5"
+```
+--
+
+
+```r
+class(vetor)
+```
+
+```
+## [1] "character"
+```
+&lt;br&gt;
+
+### Pense em vetores!
+---
+class: bg-main1
+
+# Dataframe
+&lt;br&gt;
+## Tipo especial de lista, onde cada coluna é um vetor de apenas um tipo e todas as colunas têm o mesmo número de registros. É o tipo mais utilizado para se trabalhar com dados. - [Limpeza de dados em R](https://cdr.ibpad.com.br/introducao.html#o-que-e-r-e-por-que-devo-aprende-lo)
+
+&lt;br&gt;
+
+## Podemos criar um dataframe usando `data.frame()`
+
+
+```r
+  meu_df &lt;- data.frame(nome=c("Ana", "Joana"), 
+                       idade=c(12, 13), 
+                       cargo=c("Cientista", "Analista"))
+  meu_df
+```
+
+```
+##    nome idade     cargo
+## 1   Ana    12 Cientista
+## 2 Joana    13  Analista
+```
+---
+class: bg-main1
+
+# Dataframe
+&lt;br&gt;
+
+## Podemos acessar nosso dataframe, deste modo:
+&lt;br&gt;
+
+
+```r
+  meu_df$nome
+```
+
+```
+## [1] Ana   Joana
+## Levels: Ana Joana
+```
+&lt;br&gt;
+--
+
+## Podemos verificar o nome das nossas colunas
+&lt;br&gt;
+
+```r
+  colnames(meu_df)
+```
+
+```
+## [1] "nome"  "idade" "cargo"
+```
+---
+class: bg-main1
+
+# Estruta de decisão
+
+&lt;br&gt; 
+
+## O `if` do **R** é bem parecido com o do **Java**
+
+&lt;br&gt;
+
+```r
+  if(1 &lt; 0){ 
+    print("1 menor que 0")
+  } else if(0 &gt; 1){
+    print("0 é maior que 1")
+  } else {
+    print("1 é maior que 0")
+  }
+```
+
+```
+## [1] "1 é maior que 0"
+```
+
+--
+## Dica de ouro
+
+
+```r
+  ifelse(42 &gt; TRUE, "Verdade universal",
+         "tudo mentira")
+```
+
+```
+## [1] "Verdade universal"
+```
+---
+class: bg-main1
+# Estruta de repetição
+
+&lt;br&gt;
+
+## Por outro lado, o `for` do **R** parece com a sintaxe do **Python**
+
+&lt;br&gt;
+
+
+```r
+  meu_vetor &lt;- c(1, 2, 3)
+  for(i in meu_vetor){
+    print(i)
+  }
+```
+
+```
+## [1] 1
+## [1] 2
+## [1] 3
+```
+---
+class: middle bg-main1
+
+# Manipulação de dados em **R**
+
+---
+class: bg-main1
+# Tidyverse
+&lt;br&gt;
+### Tidyverse é o kit de ferramentas de todo ciêntista de dados em **R**. Mas. por quê?
+
+
+```r
+knitr::include_graphics("./slide_img/tidy_workflow.png")
+```
+
+&lt;img src="./slide_img/tidy_workflow.png" width="700" height="400" /&gt;
+---
+
+class: bg-main1
+# Leitura de dados
+
+## Primeiro vamos ler um conjunto de dados
+
+
+```r
+  escola &lt;- read.csv2(file = "./escola.csv",
+                      sep=",")
+  head(escola, 3)
+```
+
+```
+##   X aluno_id aluno_sexo aluno_curso aluno_media aluno_avaliacao
+## 1 1        1  Masculino    Historia         2.1            Ruim
+## 2 2        2   Feminino    Historia         3.5            Ruim
+## 3 3        3  Masculino  Matemática           4       Excelente
+```
+## Ver algumas estatísticas
+
+```r
+  summary(escola)
+```
+
+```
+##        X           aluno_id        aluno_sexo      aluno_curso aluno_media
+##  Min.   :1.00   Min.   :1.00   Feminino :3    Estatística:2    1   :1     
+##  1st Qu.:2.25   1st Qu.:2.25   Masculino:3    Historia   :2    2.1 :1     
+##  Median :3.50   Median :3.50                  Matemática :2    3.5 :1     
+##  Mean   :3.50   Mean   :3.50                                   4   :1     
+##  3rd Qu.:4.75   3rd Qu.:4.75                                   4.9 :1     
+##  Max.   :6.00   Max.   :6.00                                   NA's:1     
+##   aluno_avaliacao
+##  Excelente:2     
+##  Nenhum   :1     
+##  Ruim     :3     
+##                  
+##                  
+## 
+```
+---
+class: bg-main1
+# Manipulação de dados
+&lt;br&gt;
+### Para manipular nossos dataframe, vamos usar o pacote `dplyr`, seus métodos básicos:
+
+![](./slide_img/dplyr_verbs.jpg)
+
+---
+class: bg-main1
+
+# Seleção e Filtro
+&lt;br&gt;
+## Para facilitar a seleção de colunas e tirar `$`, vamos usar o `select()`
+
+
+```r
+   suppressMessages(library(dplyr))
+
+  selecao &lt;- select(escola, aluno_id, aluno_curso, aluno_sexo)
+  head(selecao, 3)
+```
+
+```
+##   aluno_id aluno_curso aluno_sexo
+## 1        1    Historia  Masculino
+## 2        2    Historia   Feminino
+## 3        3  Matemática  Masculino
+```
+
+--
+
+## Para filtrar por um valor específico, usamos `filter()`
+
+```r
+  filtro &lt;- filter(selecao, aluno_sexo == "Feminino")
+  filtro
+```
+
+```
+##   aluno_id aluno_curso aluno_sexo
+## 1        2    Historia   Feminino
+## 2        4 Estatística   Feminino
+## 3        6 Estatística   Feminino
+```
+
+---
+class: bg-main1
+
+# Agrupamento e mutação
+&lt;br&gt;
+## Para criar grupos usamos a função `group_by()`
+
+
+```r
+  agrupamento &lt;- group_by(escola, aluno_curso)
+  agrupamento
+```
+
+```
+## # A tibble: 6 x 6
+## # Groups:   aluno_curso [3]
+##       X aluno_id aluno_sexo aluno_curso aluno_media aluno_avaliacao
+##   &lt;int&gt;    &lt;int&gt; &lt;fct&gt;      &lt;fct&gt;       &lt;fct&gt;       &lt;fct&gt;          
+## 1     1        1 Masculino  Historia    2.1         Ruim           
+## 2     2        2 Feminino   Historia    3.5         Ruim           
+## 3     3        3 Masculino  Matemática  4           Excelente      
+## 4     4        4 Feminino   Estatística 1           Ruim           
+## 5     5        5 Masculino  Matemática  &lt;NA&gt;        Nenhum         
+## 6     6        6 Feminino   Estatística 4.9         Excelente
+```
+
+--
+
+## Para mudar o tipo de alguma coluna `mutate()`
+
+
+```r
+  agrupamento &lt;- mutate(agrupamento, aluno_media = as.double(aluno_media))
+  typeof(agrupamento$aluno_media)
+```
+
+```
+## [1] "double"
+```
+
+---
+class: bg-main1
+
+# Agregação
+&lt;br&gt;
+## Para criarmos uma agregação do nosso agrupamento, usamos `summarise()`
+
+
+```r
+  agregacao &lt;- summarise(agrupamento, media_maior=max(aluno_media, na.rm = TRUE))
+  
+  agregacao
+```
+
+```
+## # A tibble: 3 x 2
+##   aluno_curso media_maior
+##   &lt;fct&gt;             &lt;dbl&gt;
+## 1 Estatística           5
+## 2 Historia              3
+## 3 Matemática            4
+```
+
+--
+
+## Ainda está meio grande, podemos diminuir?
+---
+
+
+class: bg-main1
+
+# Substituindo variáveis velhas
+&lt;br&gt;
+## Podemos substituir nossa variável antiga, dessa forma:
+
+
+```r
+  escola_analise &lt;- group_by(escola, aluno_curso)
+  
+ escola_analise &lt;- mutate(escola_analise, aluno_media = as.double(aluno_media))
+ 
+ escola_analise &lt;-  summarise(agrupamento, media_maior=max(aluno_media, na.rm = TRUE))
+  
+ escola_analise
+```
+
+```
+## # A tibble: 3 x 2
+##   aluno_curso media_maior
+##   &lt;fct&gt;             &lt;dbl&gt;
+## 1 Estatística           5
+## 2 Historia              3
+## 3 Matemática            4
+```
+
+--
+
+## Ficou melhor, mas, da para melhorar ainda mais?
+---
+
+class: bg-main1
+
+# PIPE PIPE PIPE
+### Esse símbolo `%&gt;%` é chamado de **pipe** ou **então**, basicamente, é a pipe utilizada no Linux, mas o que faz?
+&lt;br&gt;
+### A **pipe** passa a resposta da primeira atribuição para o primeiro parâmetro da função seguinte. Sem **pipe**:
+
+
+```r
+  meu_vetor &lt;- c(1, 3, 4, 7, 9)
+  
+  mean(meu_vetor)
+```
+
+```
+## [1] 4.8
+```
+
+--
+
+## Com **pipe**:
+
+
+```r
+    meu_vetor &lt;- c(1, 3, 4, 7, 9) %&gt;%
+  mean()
+  
+  meu_vetor
+```
+
+```
+## [1] 4.8
+```
+
+---
+
+class: bg-main1
+
+# Otimizando nossa análise com `%&gt;%`
+&lt;br&gt;
+## Agora que sabemos usar o **pipe**, podemos escrever nossa análise desse modo:
+
+
+```r
+  escola_analise &lt;- group_by(escola, aluno_curso) %&gt;%
+    mutate(aluno_media = as.double(aluno_media)) %&gt;%
+    summarise(media_maior=max(aluno_media, na.rm = TRUE))
+  
+ escola_analise
+```
+
+```
+## # A tibble: 3 x 2
+##   aluno_curso media_maior
+##   &lt;fct&gt;             &lt;dbl&gt;
+## 1 Estatística           5
+## 2 Historia              3
+## 3 Matemática            4
+```
+
+---
+
+class: middle bg-main1
+
+# Visualização de dados em **R**
+---
+
+class: bg-main1
+
+# ggplot2
+&lt;br&gt;
+## Bom, ggplot é um pacote em R criado por **Hadley Wickham**, a sintaxe se baseia na obra The Grammar of Graphics. O mapeamento dos atributos é chamado de aesthetics. O esqueleto pode ser escrito assim:
+
+
+```r
+   ggplot(data = &lt;DATA&gt;, aes(&lt;MAPPINGS&gt;)) + 
+  &lt;GEOM_FUNCTION&gt;(
+     mapping = aes(&lt;MAPPINGS&gt;),
+     stat = &lt;STAT&gt;, 
+     position = &lt;POSITION&gt;
+  ) +
+  &lt;COORDINATE_FUNCTION&gt; +
+  &lt;FACET_FUNCTION&gt;  
+```
+
+---
+class: bg-main1
+
+# Mapeamento estético
+
+![](./slide_img/aes_ggplot.png)
+
+---
+
+
+class: bg-main1
+
+# Mapeamento estético na prática
+
+## Vamos mapear nosso conjunto de dados **escola_analise**
+
+
+```r
+  library(ggplot2)
+  ggplot(escola_analise, aes(x=media_maior, y=aluno_curso))
+```
+
+![](intro_R_anthropology_2018_files/figure-html/unnamed-chunk-31-1.png)&lt;!-- --&gt;
+
+---
+
+class: bg-main1
+
+# Objetos geométricos
+
+
+```r
+knitr::include_graphics("./slide_img/ggplot01.png")
+```
+
+&lt;img src="./slide_img/ggplot01.png" width="700" height="500" /&gt;
+---
+
+class: bg-main1
+
+# Objetos geométricos na prática
+
+## Vamos adicionar um objeto geométrico no nosso gráfico
+
+
+```r
+  ggplot(escola_analise, aes(x=media_maior, y=aluno_curso))+
+  geom_point()
+```
+
+![](intro_R_anthropology_2018_files/figure-html/unnamed-chunk-33-1.png)&lt;!-- --&gt;
+---
+
+class: middle bg-main1
+
+# Fim
+
+## Falamos mais de visualização de dados no nosso [livro-texto](https://dataat.github.io/introducao-analise-de-dados/introducao-ao-ggplot.html)
+
+---
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
