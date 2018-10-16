@@ -350,7 +350,7 @@ print(df[df['coluna'] >= 5])
 ```
 
 ---
-class: bg-main1
+class: middle bg-main1
 
 # Agrupamento e agregação
 
