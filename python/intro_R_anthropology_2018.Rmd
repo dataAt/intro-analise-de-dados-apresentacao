@@ -531,3 +531,73 @@ class: middle bg-main1
 ``` {python}
 df.to_csv('./dados_salvos.csv')
 ```
+
+---
+class: middle bg-main1
+
+# Visualização dos dados `r emo::ji("bar_chart")`
+
+.blockquote.font_large[
+Para a visualização dos dados, será utilizado a biblioteca .yellow[Plotnine], esta que é uma implementação do famoso pacote de R ggplot2 para Python. Sua escolha foi feita simplesmente pela facilidade no aprendizado.
+]
+
+<br>
+
+--
+#### Para importar a biblioteca utilize
+
+```{python}
+from plotnine import *
+```
+
+---
+class: middle bg-main1
+
+# Aesthetic
+
+---
+class: middle bg-main1
+
+# Geometrias
+
+--
+### geom_point
+
+--
+### geom_bar
+
+--
+### geom_line
+
+---
+class: bg-main1
+
+# Plotnine - Exemplo
+
+--
+### geom_point
+
+```{python}
+from plotnine.data import mtcars
+
+(ggplot(mtcars, aes(x = 'mpg', y = 'disp')) + geom_point())
+``` 
+
+--
+### geom_bar
+
+```{python}
+df = pd.DataFrame({
+  'Carro': ['Corola', 'Range Rover ', 'Kombi'],
+  'Preço': [1500, 50, 9999]
+})
+
+(ggplot(df, aes(x = 'Carro', y = 'Preço')) + geom_bar(stat="identity"))
+``` 
+
+--
+### geom_line
+
+```{python}
+(ggplot(mtcars, aes('wt', 'mpg')) + geom_line())
+```
