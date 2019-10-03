@@ -34,16 +34,13 @@ class: bg-main1
 # Agenda
 
 --
-### Revisão da linguagem R 
+### Revisão da linguagem R `r emo::ji("diamond")` 
 
 --
-### Pacote Tidyverse 
+### Pacote Tidyverse `r emo::ji("wrench")`
 
 --
-### Visualização de dados
-
---
-### Git e Github
+### Visualização de dados `r emo::ji("chart")`
 
 ---
 class: middle bg-main1
@@ -60,6 +57,16 @@ class: bg-main1
 
 ### **R** é uma linguagem de programação de alto nível com ambiente voltado para visualização e análise de dados. Em essência foi inspirada na linguagem de programação **S**. Foi iniciamente escrito por **R**oss Ihaka and **R**obert Gentleman no departamento de estatística da universidade de Auckland na Nova Zelândia. 
 
+ <div class="row">
+  <div class="column">
+    <figure>
+    <img src="./slide_img/robert_gentleman.jpg" alt="Snow" style="float: left;width: 30%; height: 30%;padding: 3px;top:-10px;">
+     </figure>
+  </div>
+  <div class="column">
+    <img src="./slide_img/ross_lhaka.jpeg" alt="Mountains" style="float: right;width: 25%; height: 25%; padding: 3px;top:-10px; margin-right: 200px;">
+  </div>
+</div>
 ---
 
 class: bg-main1
@@ -126,7 +133,7 @@ class:bg-main1
 
 <br><br>
 
-## Vetores são atômicos, ou seja, só aceitam um tipo de classe:
+## Vetores são atômicos, ou seja, só aceitam um tipo:
 <br>
 --
 
@@ -136,7 +143,7 @@ vetor_diferente
 ```
 
 --
-## Listas não são atômicas, ou seja, aceitam diversos tipos de classes:
+## Listas não são atômicas, ou seja, aceitam diversos tipos:
 --
 
 ```{r}
@@ -149,7 +156,7 @@ class: bg-main1
 # Pense em vetores! 
 
 <br><br>
-## Todos os tipos primitivos em R são considerados como vetores:
+## Todos os tipos primitivos em R são considerados vetores:
 
 --
 
@@ -498,17 +505,4 @@ class: bg-main1
 
 ---
 class: middle bg-main1
-# Git e GitHub
-
----
-class: bg-main1
-
-# Git e GitHub
-
-<br>
-
-## **Git**: sistema de controle de versões e o **GitHub**: é uma plataforma de hospedagem de código-fonte com controle de versão usando o Git.
-
-<br>
-
-## .yellow[Hands-on] `r emo::ji("hand")`
+# Obrigado!

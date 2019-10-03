@@ -1,0 +1,188 @@
+---
+title: "Pesquisa Reprodutível"
+subtitle: "<br> [Material de apoio](https://github.com/dataAt/introducao-analise-de-dados)"
+author: "<br>Felipe Carvalho<br>Felipe Menino"
+date: "<br><br>04 de agosto de 2019"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["assets/shinobi.css", "assets/ninpo.css", "assets/ninjutsu.css"]
+    seal: true
+    self_contained: false
+    nature:
+      ratio: "16:9"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+exclude: true
+<style type="text/css">
+code.r{
+  font-size: 16px;
+}
+pre {
+  font-size: 16px !important;
+}
+</style>
+```{r setup, include=FALSE}
+  options(htmltools.dir.version = FALSE)
+```
+
+---
+class: bg-main1
+
+# Agenda
+
+--
+### Pesquisa Reprodutível `r emo::ji("scientist")`
+
+--
+### Jupyter `r emo::ji("search")`
+
+--
+### Git e Github `r emo::ji("personal")`
+
+--
+### Google Colab `r emo::ji("math")`
+
+
+
+---
+class: middle bg-main1
+
+# Pesquisa Reprodutível 
+
+---
+
+class: bg-main1
+
+# Reprodutibilidade 
+
+.blockquote.font_large[
+A reprodutibilidade de uma experiência científica é uma das condições que permitem incluir no processo de progresso do conhecimento científico as observações realizadas durante a experiência. - Wikipedia
+]
+
+<!-- <div style="text-align: center;padding-bottom: 15px;box-sizing: border-box;"> -->
+<!--     <img src="./slide_img/cienciareprodutivel.png" alt="Snow" style="width: 60%;top: -50px; margin: 0 auto;"> -->
+<!--   </div> -->
+ 
+ 
+<div class="row">
+  <div class="column">
+    <img src="./slide_img/img1.png" alt="Snow" style="float: left;">
+  </div>
+  <div class="column">
+    <img src="./slide_img/img2.png" alt="Mountains" style="float: right;">
+  </div>
+</div> 
+
+ 
+---
+class: middle bg-main1
+
+# Jupyter Notebook
+
+---
+class: bg-main1
+
+# Jupyter Notebook
+
+--
+### Reprodutibilidade `r emo::ji("heavy_check_mark")`
+
+--
+### Documentos Interativos `r emo::ji("heavy_check_mark")`
+
+--
+### Apresentações bonitas e amigáveis! `r emo::ji("heavy_check_mark")`
+
+--
+### Template do [Adriano](https://github.com/AdrianoPereira/project-cap394/blob/master/src/EDA.ipynb) `r emo::ji("clipboard")`
+
+--
+### .yellow[Hands-on] `r emo::ji("hand")`
+
+---
+class: middle bg-main1
+# Git e GitHub
+
+---
+class: bg-main1
+
+# Git e GitHub
+
+<br>
+## **Git** $\neq$ **Github**
+
+--
+<br>
+
+## **Git**: sistema de controle de versões e o **GitHub**: é uma plataforma de hospedagem de código-fonte com controle de versão usando o Git.
+
+<br>
+
+---
+class: middle bg-main1
+# .yellow[Hands-on] `r emo::ji("hand")`
+
+---
+
+class: middle bg-main1
+# Comandos básicos
+
+--
+### Inicializa um repositório existente como um Git repositório
+```{bash, eval=FALSE}
+git init
+```
+
+--
+### Adição dos arquivos para realizar o controle de versão
+
+```{bash, eval=FALSE}
+git add .
+```
+
+--
+### Registra os arquivos adicionados no histórico de versões
+
+```{bash, eval=FALSE}
+git commit -m"[alguma mensagem]"
+```
+
+--
+### Adiciona uma URL como um alias
+
+```{bash, eval=FALSE}
+  git remote add [alias] [url]
+```
+
+--
+### Envia o commit local para o repositório remoto 
+
+```{bash, eval=FALSE}
+git push [alias][branch]
+```
+
+---
+class: middle bg-main1
+
+# Google Colab
+
+---
+class: bg-main1
+
+# Google Colab
+
+<br>
+
+## É um ambiente de Jupyter Notebook gratuito e colaborativo que não requer configuração e é executado inteiramente na nuvem.
+
+<br>
+
+## .yellow[Hands-on] `r emo::ji("hand")`
+
+---
+class: middle bg-main1
+
+# Obrigado!

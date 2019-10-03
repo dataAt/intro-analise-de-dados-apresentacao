@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Introdução à analise de dados</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=" Felipe Carvalho Felipe Menino" />
+    <link rel="stylesheet" href="assets/shinobi.css" type="text/css" />
+    <link rel="stylesheet" href="assets/ninpo.css" type="text/css" />
+    <link rel="stylesheet" href="assets/ninjutsu.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introdução à analise de dados
+## <br> <a href="https://github.com/dataAt/introducao-analise-de-dados">Material de apoio</a>
+### <br>Felipe Carvalho<br>Felipe Menino
+### <br><br>04 de agosto de 2019
+
+---
+
+exclude: true
+&lt;style type="text/css"&gt;
+code.r{
+  font-size: 16px;
+}
+pre {
+  font-size: 16px !important;
+}
+&lt;/style&gt;
+
+
+---
+class: bg-main1
+
+# Agenda
+
+--
+### Revisão da linguagem R 💠 
+
+--
+### Pacote Tidyverse 🔧
+
+--
+### Visualização de dados 💹
+
+---
+class: middle bg-main1
+
+# Revisão da linguagem R
+
+---
+
+class: bg-main1
+
+# História do R 
+
+&lt;br&gt;
+
+### **R** é uma linguagem de programação de alto nível com ambiente voltado para visualização e análise de dados. Em essência foi inspirada na linguagem de programação **S**. Foi iniciamente escrito por **R**oss Ihaka and **R**obert Gentleman no departamento de estatística da universidade de Auckland na Nova Zelândia. 
+
+ &lt;div class="row"&gt;
+  &lt;div class="column"&gt;
+    &lt;figure&gt;
+    &lt;img src="./slide_img/robert_gentleman.jpg" alt="Snow" style="float: left;width: 30%; height: 30%;padding: 3px;top:-10px;"&gt;
+     &lt;/figure&gt;
+  &lt;/div&gt;
+  &lt;div class="column"&gt;
+    &lt;img src="./slide_img/ross_lhaka.jpeg" alt="Mountains" style="float: right;width: 25%; height: 25%; padding: 3px;top:-10px; margin-right: 200px;"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+---
+
+class: bg-main1
+
+# Comandos básicos 
+
+### Atribuimos valor usando `&lt;-` apontada para a variável
+
+&lt;br&gt;&lt;br&gt;
+
+
+```r
+inteiro &lt;- 321L
+
+numerico &lt;- 123
+
+complexo &lt;- 321i
+
+booleano &lt;- TRUE ## ou FALSE
+
+caractere &lt;- "Bem-vindos"
+```
+
+&lt;br&gt;
+
+### Acessando os valores:
+
+
+```r
+print(numerico)
+```
+
+```
+## [1] 123
+```
+
+```r
+caractere
+```
+
+```
+## [1] "Bem-vindos"
+```
+
+---
+class: bg-main1
+
+# Tipos de dados estruturados
+
+&lt;br&gt;&lt;br&gt;
+
+### Podemos declarar um vetor usando `c()` e uma lista usando `list()` 
+
+&lt;br&gt;
+
+
+```r
+vetor &lt;- c(1, 3, 5)
+
+lista &lt;- list(1, 2.3, c("tres", FALSE))
+```
+
+
+```r
+vetor
+```
+
+```
+## [1] 1 3 5
+```
+
+--
+
+
+```r
+lista
+```
+
+```
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 2.3
+## 
+## [[3]]
+## [1] "tres"  "FALSE"
+```
+
+---
+class:bg-main1 
+
+# Qual é a diferença?
+
+&lt;br&gt;&lt;br&gt;
+
+## Vetores são atômicos, ou seja, só aceitam um tipo:
+&lt;br&gt;
+--
+
+
+```r
+vetor_diferente &lt;- c(1, 2.5, TRUE, "ola")
+vetor_diferente
+```
+
+```
+## [1] "1"    "2.5"  "TRUE" "ola"
+```
+
+--
+## Listas não são atômicas, ou seja, aceitam diversos tipos:
+--
+
+
+```r
+lista_diferente &lt;- list(1, TRUE, "ola")
+lista_diferente
+```
+
+```
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] TRUE
+## 
+## [[3]]
+## [1] "ola"
+```
+---
+class: bg-main1
+
+# Pense em vetores! 
+
+&lt;br&gt;&lt;br&gt;
+## Todos os tipos primitivos em R são considerados vetores:
+
+--
+
+
+```r
+lista &lt;- list(1, 2, list("ola", FALSE))
+lista
+```
+
+```
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [[3]][[1]]
+## [1] "ola"
+## 
+## [[3]][[2]]
+## [1] FALSE
+```
+--
+## Será vetor?
+
+```r
+is.vector(lista[[3]][[2]])
+```
+
+```
+## [1] TRUE
+```
+---
+class: bg-main1
+
+# Hierarquia de tipos primitivos
+
+&lt;br&gt;&lt;br&gt;
+
+## O **R** possui uma conversão de tipos, sendo assim, garantindo que todo vetor seja atômico.
+
+&lt;br&gt;
+
+![](./slide_img/tipos.png)
+
+---
+class: bg-main1
+
+# Hierarquia de tipos primitivos
+&lt;br&gt;
+### Os tipos mais fortes são:
+
+- `character`
+- `complex`
+- `numeric`
+- `logical`
+
+&lt;br&gt;&lt;br&gt;
+
+### Conversão:
+
+
+```r
+vetor &lt;- c(FALSE, "tipo", 5)
+vetor
+```
+
+```
+## [1] "FALSE" "tipo"  "5"
+```
+--
+
+
+```r
+class(vetor)
+```
+
+```
+## [1] "character"
+```
+
+### Pense em vetores!
+---
+class: bg-main1
+
+# Dataframe
+&lt;br&gt;
+## Tipo especial de lista, onde cada coluna é um vetor de apenas um tipo e todas as colunas têm o mesmo número de registros. É o tipo mais utilizado para se trabalhar com dados. - [Limpeza de dados em R](https://cdr.ibpad.com.br/introducao.html#o-que-e-r-e-por-que-devo-aprende-lo)
+
+&lt;br&gt;
+
+## Podemos criar um dataframe usando `data.frame()`
+
+
+```r
+  meu_df &lt;- data.frame(
+    nome=c("Ana", "Joana"), 
+    idade=c(23, 24),
+    cargo=c("Cientista", "Analista")
+    )
+  
+  meu_df
+```
+
+```
+##    nome idade     cargo
+## 1   Ana    23 Cientista
+## 2 Joana    24  Analista
+```
+---
+class: bg-main1
+
+# Dataframe
+&lt;br&gt;
+
+## Acessando os atributos: 
+&lt;br&gt;
+
+
+```r
+  meu_df$nome
+```
+
+```
+## [1] Ana   Joana
+## Levels: Ana Joana
+```
+&lt;br&gt;
+--
+
+## Verificando o nome de todos os atributos
+&lt;br&gt;
+
+```r
+  colnames(meu_df)
+```
+
+```
+## [1] "nome"  "idade" "cargo"
+```
+---
+class: bg-main1
+
+# Estruta de decisão
+
+&lt;br&gt; 
+
+## O `if` do **R** é bem parecido com o do **Java**
+
+&lt;br&gt;
+
+```r
+  valor_a &lt;- 21
+  valor_b &lt;- 42
+  
+  if(valor_a &lt; valor_b){ 
+    print("Valor A menor do que o valor B")
+  } else if(valor_a == valor_b){
+    print("Valor A é igual ao valor B")
+  } else {
+    print("Valor A é maior do que o valor B")
+  }
+```
+
+```
+## [1] "Valor A menor do que o valor B"
+```
+
+--
+## Dica de ouro
+
+
+```r
+  ifelse(42 &gt; TRUE, "Verdade universal",
+         "tudo mentira")
+```
+
+```
+## [1] "Verdade universal"
+```
+---
+class: bg-main1
+# Estruta de repetição
+
+&lt;br&gt;
+
+## Por outro lado, o `for` do **R** parece com a sintaxe do **Python**
+
+&lt;br&gt;
+
+
+```r
+  meu_vetor &lt;- c(1, 2, 3)
+  for(i in meu_vetor){
+    print(i)
+  }
+```
+
+```
+## [1] 1
+## [1] 2
+## [1] 3
+```
+---
+class: middle bg-main1
+
+# Pacote `Tidyverse`
+
+---
+class: bg-main1
+# Tidyverse
+&lt;br&gt;
+### Conjunto de pacotes em **R** para ciência de dados.
+
+
+ &lt;div class="row"&gt;
+  &lt;div class="column"&gt;
+    &lt;img src="./slide_img/tidy_workflow.png" alt="Snow" style="float: left;width: 45%;padding: 5px;"&gt;
+  &lt;/div&gt;
+  &lt;div class="column"&gt;
+    &lt;img src="./slide_img/data-science-process.png" alt="Mountains" style="float: right;width: 45%;padding: 5px;"&gt;
+  &lt;/div&gt;
+&lt;/div&gt; 
+
+
+---
+
+class: bg-main1
+# Leitura e escrita de dados - `readr`
+
+## Primeiro vamos ler um conjunto de dados
+
+
+```r
+  library(readr)
+  # Leitura
+  star_wars &lt;- readr::read_csv(file = "../R/starwars.csv")
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   name = col_character(),
+##   height = col_double(),
+##   mass = col_double(),
+##   hair_color = col_character(),
+##   skin_color = col_character(),
+##   eye_color = col_character(),
+##   birth_year = col_double(),
+##   gender = col_character(),
+##   homeworld = col_character(),
+##   species = col_character()
+## )
+```
+
+```r
+  head(star_wars, 3)
+```
+
+```
+## # A tibble: 3 x 10
+##   name  height  mass hair_color skin_color eye_color birth_year gender
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+## 1 Luke…    172    77 blond      fair       blue              19 male  
+## 2 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112 &lt;NA&gt;  
+## 3 R2-D2     96    32 &lt;NA&gt;       white, bl… red               33 &lt;NA&gt;  
+## # … with 2 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;
+```
+---
+
+class: bg-main1
+# Para escrever
+&lt;br&gt;
+
+```r
+  # escrita 
+  readr::write_csv(star_wars, "/home/felipe/")
+```
+
+---
+class: bg-main1
+# Manipulação de dados - `dplyr`
+&lt;br&gt;
+### Para manipular nosso dataframe, vamos usar o pacote `dplyr`. Métodos básicos:
+
+![](./slide_img/dplyr_verbs.jpg)
+
+---
+class: bg-main1
+
+# Seleção e Filtro
+&lt;br&gt;
+## Para facilitar a seleção dos atributos e tirar `$`, vamos usar o `select()`:
+
+
+```r
+   suppressMessages(library(dplyr))
+
+  selecao &lt;- dplyr::select(star_wars, name, hair_color)
+  
+  head(selecao, 3)
+```
+
+```
+## # A tibble: 3 x 2
+##   name           hair_color
+##   &lt;chr&gt;          &lt;chr&gt;     
+## 1 Luke Skywalker blond     
+## 2 C-3PO          &lt;NA&gt;      
+## 3 R2-D2          &lt;NA&gt;
+```
+
+---
+
+class: bg-main1
+# Para filtrar por um valor específico, usamos `filter()`
+
+```r
+  filtro &lt;- dplyr::filter(star_wars, species == "Droid" &amp;
+                                  skin_color == "gold")
+  filtro
+```
+
+```
+## # A tibble: 1 x 10
+##   name  height  mass hair_color skin_color eye_color birth_year gender
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+## 1 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112 &lt;NA&gt;  
+## # … with 2 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;
+```
+
+---
+class: bg-main1
+
+# Agrupamento e agregação - `group_by()` e `summarise()`
+&lt;br&gt;
+## Para criar grupos usamos a função `group_by()`
+
+
+```r
+  agrupamento &lt;- dplyr::group_by(star_wars, species)
+  
+  head(agrupamento, 3)
+```
+
+```
+## # A tibble: 3 x 10
+## # Groups:   species [2]
+##   name  height  mass hair_color skin_color eye_color birth_year gender
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+## 1 Luke…    172    77 blond      fair       blue              19 male  
+## 2 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112 &lt;NA&gt;  
+## 3 R2-D2     96    32 &lt;NA&gt;       white, bl… red               33 &lt;NA&gt;  
+## # … with 2 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;
+```
+
+---
+class: bg-main1
+
+# Para criarmos uma agregação do nosso agrupamento, usamos `summarise()`:
+
+```r
+   media_grupo &lt;- dplyr::summarise(agrupamento, 
+                                   media = mean(height, na.rm = TRUE))
+   
+  head(media_grupo, 3)
+```
+
+```
+## # A tibble: 3 x 2
+##   species  media
+##   &lt;chr&gt;    &lt;dbl&gt;
+## 1 &lt;NA&gt;       160
+## 2 Aleena      79
+## 3 Besalisk   198
+```
+
+---
+class: bg-main1
+
+# Transformação de atributos  - `mutate()`
+&lt;br&gt;
+## Para criar/transformar novos atributos, usa-se `mutate()`:
+
+
+```r
+  # conversão de cm para metros
+  star_wars &lt;- dplyr::mutate(star_wars, height = height/100)
+  
+  head(star_wars, 3)
+```
+
+```
+## # A tibble: 3 x 10
+##   name  height  mass hair_color skin_color eye_color birth_year gender
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+## 1 Luke…   1.72    77 blond      fair       blue              19 male  
+## 2 C-3PO   1.67    75 &lt;NA&gt;       gold       yellow           112 &lt;NA&gt;  
+## 3 R2-D2   0.96    32 &lt;NA&gt;       white, bl… red               33 &lt;NA&gt;  
+## # … with 2 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;
+```
+
+---
+class: bg-main1
+## Facilitando a vida com o operador `pipe`(`%&gt;%`)
+--
+
+&lt;br&gt;
+## O **pipe** passa a resposta da primeira atribuição para o primeiro parâmetro da função seguinte:
+
+
+```r
+  media_grupo &lt;- star_wars %&gt;% dplyr::group_by(species) %&gt;%
+  dplyr::summarise(media = mean(height, na.rm = TRUE)) %&gt;%
+  dplyr::arrange(desc(media))
+
+  head(media_grupo, 3)
+```
+
+```
+## # A tibble: 3 x 2
+##   species  media
+##   &lt;chr&gt;    &lt;dbl&gt;
+## 1 Quermian  2.64
+## 2 Wookiee   2.31
+## 3 Kaminoan  2.21
+```
+
+---
+
+class: middle bg-main1
+
+# Visualização de dados em **R**
+---
+
+class: bg-main1
+
+# ggplot2
+&lt;br&gt;
+## Bom, `ggplot2` é um pacote R criado por **Hadley Wickham**, a sintaxe se baseia na obra The Grammar of Graphics. O mapeamento dos atributos é chamado de aesthetics. O esqueleto pode ser escrito assim:
+
+
+```r
+   ggplot(data = &lt;DATA&gt;, aes(&lt;MAPPINGS&gt;)) + 
+  &lt;GEOM_FUNCTION&gt;(
+     mapping = aes(&lt;MAPPINGS&gt;),
+     stat = &lt;STAT&gt;, 
+     position = &lt;POSITION&gt;
+  ) +
+  &lt;COORDINATE_FUNCTION&gt; +
+  &lt;FACET_FUNCTION&gt;  
+```
+
+---
+class: bg-main1
+
+# Mapeamento estético
+
+![](./slide_img/aes_ggplot.png)
+
+---
+
+
+class: bg-main1
+
+# Mapeamento estético na prática
+
+## Vamos mapear nosso conjunto de dados **escola_analise**
+
+
+```r
+  library(ggplot2)
+  grafico &lt;- ggplot(media_grupo, aes(x= reorder(species, -media) , y=media))
+```
+
+---
+
+class: bg-main1
+
+# Objetos geométricos
+
+&lt;img src="./slide_img/ggplot01.png" width="700" height="500" /&gt;
+---
+
+class: bg-main1
+
+# Objetos geométricos na prática
+
+
+```r
+  grafico + geom_col()  + coord_flip() + labs(x = "Média",
+                                              y = "Espécies")
+```
+
+&lt;img src="apresentacao_data_files/figure-html/unnamed-chunk-29-1.png" width="700" height="500" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: middle bg-main1
+# Obrigado!
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
