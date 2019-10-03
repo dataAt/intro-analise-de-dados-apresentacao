@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Introdução à analise de dados</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=" Felipe Carvalho Felipe Menino" />
+    <link rel="stylesheet" href="assets/shinobi.css" type="text/css" />
+    <link rel="stylesheet" href="assets/ninpo.css" type="text/css" />
+    <link rel="stylesheet" href="assets/ninjutsu.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introdução à analise de dados
+## <br> <a href="https://github.com/dataAt/introducao-analise-de-dados">Material de apoio</a>
+### <br>Felipe Carvalho<br>Felipe Menino
+### <br><br>04 de outubro de 2019
+
+---
+
+exclude: true
+&lt;style type="text/css"&gt;
+code.r{
+  font-size: 16px;
+}
+pre {
+  font-size: 16px !important;
+}
+&lt;/style&gt;
+
+---
+class: bg-main1
+
+# Agenda
+
+--
+### Pandas ✔️
+
+--
+### Plotnine ✔️
+
+--
+### Jupyter Notebook ✔️
+
+--
+### Google Colab✔️
+
+---
+class: bg-main1
+
+# Pandas 🐼
+
+.blockquote.font_large[
+Pandas é uma biblioteca open source, licenciada pelo BSD, que fornece estruturas de dados de alto desempenho e fáceis de usar e ferramentas de análise de dados para a linguagem de programação Python.
+]
+
+&lt;br&gt;
+
+--
+#### Para importar a biblioteca utilize
+
+
+```python
+import pandas as pd
+```
+
+---
+class: middle bg-main1
+
+# Estruturas de dados básicas do Pandas
+
+### O Pandas trabalha utilizando duas estruturas de dados básicas, as .yellow[Series] e os .yellow[DataFrames]
+
+---
+class: middle bg-main1
+
+# Series
+
+### Estruturas unidimensionais;
+### Trabalham apenas com linhas;
+### Utilizam índices nas linhas.
+
+---
+class: bg-main1
+
+# Series - Utilização
+
+--
+### Criando uma Series simples
+
+
+```python
+series = pd.Series([1, 2]); print(series)
+```
+
+```
+## 0    1
+## 1    2
+## dtype: int64
+```
+
+--
+### Criando com índice
+
+```python
+series = pd.Series([1, 2], [9, 'ultimo']); print(series)
+```
+
+```
+## 9         1
+## ultimo    2
+## dtype: int64
+```
+
+--
+### Recuperando dados
+
+```python
+print(series[9])
+```
+
+```
+## 1
+```
+
+```python
+print(series['ultimo'])
+```
+
+```
+## 2
+```
+
+---
+class: bg-main1
+
+# Series - Utilização
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+--
+### Vendo a unidimensionalidade
+
+
+```python
+series = pd.Series([[1, 2, 3], [4, 5, 6]]); print(series)
+```
+
+```
+## 0    [1, 2, 3]
+## 1    [4, 5, 6]
+## dtype: object
+```
+
+---
+class: middle bg-main1
+
+# DataFrames
+
+### Estruturas multidimensionais;
+### Trabalham com linhas e colunas.
+### Pode-se utilizar índices nas linhas ou através das colunas.
+
+---
+class: bg-main1
+
+# DataFrame - Utilização
+
+&lt;br&gt;&lt;br&gt;
+
+--
+### Criando um DataFrame simples
+
+
+```python
+df = pd.DataFrame([1, 2, 3, 4]); print(df)
+```
+
+```
+##    0
+## 0  1
+## 1  2
+## 2  3
+## 3  4
+```
+
+--
+### Criando com índice
+
+
+```python
+df = pd.DataFrame([1, 2, 3, 4], [9, 10, 11, 'ultimao']); print(df)
+```
+
+```
+##          0
+## 9        1
+## 10       2
+## 11       3
+## ultimao  4
+```
+
+---
+class: bg-main1
+
+# DataFrame - Utilização
+
+--
+### Recuperando dados
+
+
+```python
+print(df[0]) 
+```
+
+```
+## 9          1
+## 10         2
+## 11         3
+## ultimao    4
+## Name: 0, dtype: int64
+```
+
+```python
+print(df[0]['ultimao'])
+```
+
+```
+## 4
+```
+
+--
+### Entendendo a diferença entre o .yellow[Series] e o .yellow[DataFrame].
+
+
+```python
+df = pd.DataFrame([[1, 2, 3], [4, 5, 6]]); print(df)
+```
+
+```
+##    0  1  2
+## 0  1  2  3
+## 1  4  5  6
+```
+
+---
+class: middle bg-main1
+
+# Manipulação básicas de dados com Pandas
+
+### Uma parte muito importante é a .yellow[seleção] e .yellow[filtro] dos dados, com elas basicamente faremos a manipulação dos dados.
+
+---
+class: bg-main1
+
+# Manipulação básicas de dados com Pandas
+
+### Loc e iloc
+
+Vamos começar fazendo a busca utilizando os índices (index) e as colunas (No caso dos DataFrames). Para isto, vamos utilizar os métodos .loc e .iloc. 
+
+&lt;br&gt;
+
+![loc_iloc](slide_img/loc_iloc.png)
+
+Para exemplificar o uso destes métodos, vamos utilizar o seguinte .yellow[DataFrame]
+
+
+```python
+df = pd.DataFrame({
+  'nome': ['Joana', 'Maria', 'Josefa'],
+  'idade': [15, 18, 21],
+  'nota': [8, 9, 10]
+}, index = [7, 8, 9])
+```
+
+---
+class: bg-main1
+
+# Manipulação básicas de dados com Pandas
+
+### Loc e iloc
+
+
+```python
+print(df.loc[9, 'nome'])
+```
+
+```
+## Josefa
+```
+
+```python
+print(df.loc[9, ['nome', 'idade']])
+```
+
+```
+## nome     Josefa
+## idade        21
+## Name: 9, dtype: object
+```
+
+
+```python
+print(df.iloc[2]['nome'])
+```
+
+```
+## Josefa
+```
+
+```python
+print(df.iloc[2][['nome', 'idade']])
+```
+
+```
+## nome     Josefa
+## idade        21
+## Name: 9, dtype: object
+```
+
+---
+class: bg-main1
+
+# Indexação booleana
+
+### Dentro do .yellow[DataFrame] e das .yellow[Series] é possível passar uma expressão booleana para realizar a filtragem dos dados.
+
+&lt;br&gt;&lt;br&gt;
+
+
+```python
+df = pd.DataFrame({'coluna': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]})
+
+print(df[df['coluna'] &gt;= 5])
+```
+
+```
+##    coluna
+## 4       5
+## 5       6
+## 6       7
+## 7       8
+## 8       9
+## 9      10
+```
+
+---
+class: middle bg-main1
+
+# Agrupamento e agregação
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+### Muitas vezes queremos agrupar nossos dados, seja para facilitar a manipulação, o entendimento das relações dos dados ou para aplicar funções sobre cada um dos grupos e obter informações a partir disto. Para isto utilizamos os agrupamentos e agregações.
+
+---
+class: bg-main1
+
+# Agrupamento e agregação
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+### As .yellow[agregações] apresentam diversas definições, a utiliza aqui será "Operações aplicadas sobre os dados que resultam em um conjunto de valores ou mesmo um valor escalar".
+
+&lt;br&gt;
+
+### Entenda que, o retorno pode mudar de acordo com a estrutura de dados onde se aplica a .yellow[agregação], no caso .yellow[Series] será retornado apenas um valor ao utilizar agregações, e no caso dos .yellow[DataFrames] um valor para cada coluna ou linha, dependendo da definição feita durante o processo.
+
+---
+class: middle bg-main1
+
+# Algumas operações de agregação
+
+### sum() -&gt; Realiza somatório;
+### min() -&gt; Busca o valor mínimo;
+### max() -&gt; Busca o valor máximo;
+### count() -&gt; Realiza a contagem de elementos.
+
+---
+class: bg-main1
+
+# Exemplos
+
+--
+### Agregando series
+
+
+```python
+s = pd.Series([1, 2, 3])
+df = pd.DataFrame([[1, 2, 3,], [4, 5, 6]])
+
+# Agregando Series
+print(s.sum())
+```
+
+```
+## 6
+```
+
+--
+### Agregando DataFrames
+
+
+```python
+# Agredando DataFrame
+print(df.sum())
+```
+
+```
+## 0    5
+## 1    7
+## 2    9
+## dtype: int64
+```
+
+---
+class: bg-main1
+
+# Agrupamentos
+
+--
+### Agrupando dados
+
+
+```python
+df = pd.DataFrame({
+  'nome': ['Tel1', 'Tel2', 'Tel3'],
+  'tipo': ['antigo', 'novo', 'novo']
+})
+agrupado = df.groupby('tipo')
+
+print(df)
+```
+
+```
+##    nome    tipo
+## 0  Tel1  antigo
+## 1  Tel2    novo
+## 2  Tel3    novo
+```
+
+--
+### DataFrame Agrupado
+
+
+```python
+print(agrupado)
+```
+
+```
+## &lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7fe812463d68&gt;
+```
+
+--
+### Recuperando grupos
+
+
+```python
+print(agrupado.groups)
+```
+
+```
+## {'antigo': Int64Index([0], dtype='int64'), 'novo': Int64Index([1, 2], dtype='int64')}
+```
+
+---
+class: middle bg-main1
+
+# Agrupando e agregando
+
+--
+## Representação 
+![hadley](slide_img/03.08-split-apply-combine.png)
+
+---
+class: bg-main1
+
+# Agrupando e agregando - Exemplo
+
+--
+## DataFrame de exemplo
+
+```python
+df = pd.DataFrame({
+  'nome': ['felipe', 'joão', 'maria', 'ana'],
+  'idade': [19, 19, 20, 20],
+  'dinheiro': [100, 100, 150, 150]
+})
+```
+
+--
+## Agrupando pela idade e realizando a contagem
+
+```python
+# Esta é a etapa de divir, da definição do Hedley
+agrupado = df.groupby('idade')
+# Aplicando uma agregação
+## Esta é a etapa de aplicação e junçaõ, definida pelo Hedley
+print(agrupado.count())
+```
+
+```
+##        nome  dinheiro
+## idade                
+## 19        2         2
+## 20        2         2
+```
+---
+class: middle bg-main1
+
+# Leitura dos dados
+
+--
+### Sim! 😲
+
+--
+### O Pandas ainda facilita o processo de leitura e escrita de dados 
+
+---
+class: bg-main1
+
+# Leitura dos dados - Exemplos
+
+--
+## Vamos fazer um exemplo de leitura de dados no formato CSV.
+
+```python
+df = pd.read_csv('data/titanic.csv', sep = ',')
+```
+
+&lt;br&gt;
+
+--
+## Veja como foi simples importar os dados. 
+
+```python
+print(df.head(3))
+```
+
+```
+##    PassengerId  Pclass                              Name  ...    Fare  Cabin  Embarked
+## 0          892       3                  Kelly, Mr. James  ...  7.8292    NaN         Q
+## 1          893       3  Wilkes, Mrs. James (Ellen Needs)  ...  7.0000    NaN         S
+## 2          894       2         Myles, Mr. Thomas Francis  ...  9.6875    NaN         Q
+## 
+## [3 rows x 11 columns]
+```
+
+```python
+print(df.tail(3))
+```
+
+```
+##      PassengerId  Pclass                          Name  ...     Fare  Cabin  Embarked
+## 415         1307       3  Saether, Mr. Simon Sivertsen  ...   7.2500    NaN         S
+## 416         1308       3           Ware, Mr. Frederick  ...   8.0500    NaN         S
+## 417         1309       3      Peter, Master. Michael J  ...  22.3583    NaN         C
+## 
+## [3 rows x 11 columns]
+```
+
+---
+class: middle bg-main1
+
+# Leitura dos dados - Exemplos
+
+--
+## Salvando os dados
+
+```python
+df.to_csv('./dados_salvos.csv')
+```
+
+---
+class: middle bg-main1
+
+# Visualização dos dados 📊
+
+.blockquote.font_large[
+Para a visualização dos dados, será utilizado a biblioteca .yellow[Plotnine], uma implementação em Python do pacote ggplot2 do R.
+]
+
+--
+#### Para importar a biblioteca utilize
+
+
+```python
+from plotnine import *
+```
+
+---
+class: middle bg-main1
+
+# Plotnine - Exemplo
+
+---
+class: middle bg-main1
+
+### geom_point
+
+
+```python
+from plotnine.data import mtcars
+
+(ggplot(mtcars, aes(x = 'mpg', y = 'disp')) + geom_point())
+```
+
+```
+## &lt;ggplot: (-9223363247204609890)&gt;
+```
+
+&lt;img src="intro_R_anthropology_2018_files/figure-html/unnamed-chunk-25-1.png" width="613" /&gt;
+
+---
+class: middle bg-main1
+
+### geom_bar
+
+
+```python
+df = pd.DataFrame({
+  'Carro': ['Corola', 'Range Rover ', 'Kombi'],
+  'Preço': [1500, 50, 9999]
+})
+
+(ggplot(df, aes(x = 'Carro', y = 'Preço')) + geom_bar(stat="identity"))
+```
+
+```
+## &lt;ggplot: (8789669709032)&gt;
+```
+
+&lt;img src="intro_R_anthropology_2018_files/figure-html/unnamed-chunk-26-1.png" width="613" /&gt;
+
+---
+class: middle bg-main1
+
+### geom_line
+
+
+```python
+(ggplot(mtcars, aes('wt', 'mpg')) + geom_line())
+```
+
+```
+## &lt;ggplot: (8789638150099)&gt;
+```
+
+&lt;img src="intro_R_anthropology_2018_files/figure-html/unnamed-chunk-27-1.png" width="613" /&gt;
+
+---
+class: middle bg-main1
+
+# Jupyter Notebook
+
+---
+class: bg-main1
+
+# Jupyter Notebook
+
+--
+### Reprodutibilidade ✔️
+
+--
+### Documentos Interativos ✔️
+
+--
+### Apresentações bonitas e amigáveis! ✔️
+
+--
+### Template do [Adriano](https://github.com/AdrianoPereira/project-cap394/blob/master/src/EDA.ipynb) 📋
+
+---
+class: middle bg-main1
+
+# Google Colab
+
+---
+class: bg-main1
+
+# Google Colab
+
+&lt;br&gt;
+
+## É um ambiente de Jupyter Notebook gratuito e colaborativo que não requer configuração e é executado inteiramente na nuvem.
+
+&lt;br&gt;
+
+## .yellow[Hands-on] ✋
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

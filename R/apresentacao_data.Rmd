@@ -1,8 +1,8 @@
 ---
 title: "Introdução à analise de dados"
-subtitle: "[Material](https://github.com/dataAt/introducao-analise-de-dados)"
+subtitle: "<br> [Material de apoio](https://github.com/dataAt/introducao-analise-de-dados)"
 author: "<br>Felipe Carvalho<br>Felipe Menino"
-date: "<br><br>02 de agosto de 2019"
+date: "<br><br>04 de agosto de 2019"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -40,15 +40,10 @@ class: bg-main1
 ### Pacote Tidyverse 
 
 --
-
-### Jupyter Notebook 
+### Visualização de dados
 
 --
-
-### GitHub e Git
---
-
-### Google Colab
+### Git e Github
 
 ---
 class: middle bg-main1
@@ -499,28 +494,7 @@ class: bg-main1
   grafico + geom_col()  + coord_flip() + labs(x = "Média",
                                               y = "Espécies")
 ```
----
-class: middle bg-main1
 
-# Jupyter Notebook
-
----
-class: bg-main1
-
-# Jupyter Notebook
-
-<br>
-### Reprodutibilidade;
-<br>
-### Documentos Interativos;
-<br>
-### Apresentação bonita e amigável!
-<br>
-### Permite a fácil distribuição dos resultados de análises.
-<br>
-### Template do [Adriano](https://github.com/AdrianoPereira/project-cap394/blob/master/src/EDA.ipynb)
-<br>
-### Dúvidas?
 
 ---
 class: middle bg-main1
@@ -531,33 +505,10 @@ class: bg-main1
 
 # Git e GitHub
 
-
 <br>
-
 
 ## **Git**: sistema de controle de versões e o **GitHub**: é uma plataforma de hospedagem de código-fonte com controle de versão usando o Git.
 
 <br>
 
-## Hands-on
-
----
-class: middle bg-main1
-
-# Google Colab
-
----
-class: bg-main1
-
-# Google Colab
-
-<br>
-
-## É um Ambiente de Jupyter Notebook gratuito e colaborativo que não requer configuração e é executado inteiramente na nuvem.
-
-<br>
-
-## Hands-on
-
----
-
+## .yellow[Hands-on] `r emo::ji("hand")`

@@ -1,0 +1,492 @@
+---
+title: "Introdução à analise de dados"
+subtitle: "<br> [Material de apoio](https://github.com/dataAt/introducao-analise-de-dados)"
+author: "<br>Felipe Carvalho<br>Felipe Menino"
+date: "<br><br>04 de outubro de 2019"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["assets/shinobi.css", "assets/ninpo.css", "assets/ninjutsu.css"]
+    seal: true
+    self_contained: false
+    nature:
+      ratio: "16:9"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+exclude: true
+<style type="text/css">
+code.r{
+  font-size: 16px;
+}
+pre {
+  font-size: 16px !important;
+}
+</style>
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+---
+class: bg-main1
+
+# Agenda
+
+--
+### Pandas `r emo::ji("heavy_check_mark")`
+
+--
+### Plotnine `r emo::ji("heavy_check_mark")`
+
+--
+### Jupyter Notebook `r emo::ji("heavy_check_mark")`
+
+--
+### Google Colab`r emo::ji("heavy_check_mark")`
+
+---
+class: bg-main1
+
+# Pandas `r emo::ji("panda_face")`
+
+.blockquote.font_large[
+Pandas é uma biblioteca open source, licenciada pelo BSD, que fornece estruturas de dados de alto desempenho e fáceis de usar e ferramentas de análise de dados para a linguagem de programação Python.
+]
+
+<br>
+
+--
+#### Para importar a biblioteca utilize
+
+```{python}
+import pandas as pd
+```
+
+---
+class: middle bg-main1
+
+# Estruturas de dados básicas do Pandas
+
+### O Pandas trabalha utilizando duas estruturas de dados básicas, as .yellow[Series] e os .yellow[DataFrames]
+
+---
+class: middle bg-main1
+
+# Series
+
+### Estruturas unidimensionais;
+### Trabalham apenas com linhas;
+### Utilizam índices nas linhas.
+
+---
+class: bg-main1
+
+# Series - Utilização
+
+--
+### Criando uma Series simples
+
+```{python}
+series = pd.Series([1, 2]); print(series)
+```
+
+--
+### Criando com índice
+```{python}
+series = pd.Series([1, 2], [9, 'ultimo']); print(series)
+```
+
+--
+### Recuperando dados
+```{python}
+print(series[9])
+
+print(series['ultimo'])
+```
+
+---
+class: bg-main1
+
+# Series - Utilização
+
+<br><br><br>
+
+--
+### Vendo a unidimensionalidade
+
+```{python}
+series = pd.Series([[1, 2, 3], [4, 5, 6]]); print(series)
+```
+
+---
+class: middle bg-main1
+
+# DataFrames
+
+### Estruturas multidimensionais;
+### Trabalham com linhas e colunas.
+### Pode-se utilizar índices nas linhas ou através das colunas.
+
+---
+class: bg-main1
+
+# DataFrame - Utilização
+
+<br><br>
+
+--
+### Criando um DataFrame simples
+
+```{python}
+df = pd.DataFrame([1, 2, 3, 4]); print(df)
+```
+
+--
+### Criando com índice
+
+```{python}
+df = pd.DataFrame([1, 2, 3, 4], [9, 10, 11, 'ultimao']); print(df)
+```
+
+---
+class: bg-main1
+
+# DataFrame - Utilização
+
+--
+### Recuperando dados
+
+```{python}
+print(df[0]) 
+print(df[0]['ultimao'])
+```
+
+--
+### Entendendo a diferença entre o .yellow[Series] e o .yellow[DataFrame].
+
+```{python}
+df = pd.DataFrame([[1, 2, 3], [4, 5, 6]]); print(df)
+```
+
+---
+class: middle bg-main1
+
+# Manipulação básicas de dados com Pandas
+
+### Uma parte muito importante é a .yellow[seleção] e .yellow[filtro] dos dados, com elas basicamente faremos a manipulação dos dados.
+
+---
+class: bg-main1
+
+# Manipulação básicas de dados com Pandas
+
+### Loc e iloc
+
+Vamos começar fazendo a busca utilizando os índices (index) e as colunas (No caso dos DataFrames). Para isto, vamos utilizar os métodos .loc e .iloc. 
+
+<br>
+
+![loc_iloc](slide_img/loc_iloc.png)
+
+Para exemplificar o uso destes métodos, vamos utilizar o seguinte .yellow[DataFrame]
+
+```{python}
+df = pd.DataFrame({
+  'nome': ['Joana', 'Maria', 'Josefa'],
+  'idade': [15, 18, 21],
+  'nota': [8, 9, 10]
+}, index = [7, 8, 9])
+```
+
+---
+class: bg-main1
+
+# Manipulação básicas de dados com Pandas
+
+### Loc e iloc
+
+```{python}
+print(df.loc[9, 'nome'])
+
+print(df.loc[9, ['nome', 'idade']])
+```
+
+```{python}
+print(df.iloc[2]['nome'])
+
+print(df.iloc[2][['nome', 'idade']])
+```
+
+---
+class: bg-main1
+
+# Indexação booleana
+
+### Dentro do .yellow[DataFrame] e das .yellow[Series] é possível passar uma expressão booleana para realizar a filtragem dos dados.
+
+<br><br>
+
+```{python}
+df = pd.DataFrame({'coluna': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]})
+
+print(df[df['coluna'] >= 5])
+```
+
+---
+class: middle bg-main1
+
+# Agrupamento e agregação
+
+<br><br><br>
+
+### Muitas vezes queremos agrupar nossos dados, seja para facilitar a manipulação, o entendimento das relações dos dados ou para aplicar funções sobre cada um dos grupos e obter informações a partir disto. Para isto utilizamos os agrupamentos e agregações.
+
+---
+class: bg-main1
+
+# Agrupamento e agregação
+
+<br><br><br>
+
+### As .yellow[agregações] apresentam diversas definições, a utiliza aqui será "Operações aplicadas sobre os dados que resultam em um conjunto de valores ou mesmo um valor escalar".
+
+<br>
+
+### Entenda que, o retorno pode mudar de acordo com a estrutura de dados onde se aplica a .yellow[agregação], no caso .yellow[Series] será retornado apenas um valor ao utilizar agregações, e no caso dos .yellow[DataFrames] um valor para cada coluna ou linha, dependendo da definição feita durante o processo.
+
+---
+class: middle bg-main1
+
+# Algumas operações de agregação
+
+### sum() -> Realiza somatório;
+### min() -> Busca o valor mínimo;
+### max() -> Busca o valor máximo;
+### count() -> Realiza a contagem de elementos.
+
+---
+class: bg-main1
+
+# Exemplos
+
+--
+### Agregando series
+
+```{python}
+s = pd.Series([1, 2, 3])
+df = pd.DataFrame([[1, 2, 3,], [4, 5, 6]])
+
+# Agregando Series
+print(s.sum())
+```
+
+--
+### Agregando DataFrames
+
+```{python}
+# Agredando DataFrame
+print(df.sum())
+```
+
+---
+class: bg-main1
+
+# Agrupamentos
+
+--
+### Agrupando dados
+
+```{python}
+df = pd.DataFrame({
+  'nome': ['Tel1', 'Tel2', 'Tel3'],
+  'tipo': ['antigo', 'novo', 'novo']
+})
+agrupado = df.groupby('tipo')
+
+print(df)
+```
+
+--
+### DataFrame Agrupado
+
+```{python}
+print(agrupado)
+```
+
+--
+### Recuperando grupos
+
+```{python}
+print(agrupado.groups)
+```
+
+---
+class: middle bg-main1
+
+# Agrupando e agregando
+
+--
+## Representação 
+![hadley](slide_img/03.08-split-apply-combine.png)
+
+---
+class: bg-main1
+
+# Agrupando e agregando - Exemplo
+
+--
+## DataFrame de exemplo
+```{python}
+df = pd.DataFrame({
+  'nome': ['felipe', 'joão', 'maria', 'ana'],
+  'idade': [19, 19, 20, 20],
+  'dinheiro': [100, 100, 150, 150]
+})
+```
+
+--
+## Agrupando pela idade e realizando a contagem
+```{python}
+# Esta é a etapa de divir, da definição do Hedley
+agrupado = df.groupby('idade')
+# Aplicando uma agregação
+## Esta é a etapa de aplicação e junçaõ, definida pelo Hedley
+print(agrupado.count())
+```
+---
+class: middle bg-main1
+
+# Leitura dos dados
+
+--
+### Sim! `r emo::ji("astonished")`
+
+--
+### O Pandas ainda facilita o processo de leitura e escrita de dados 
+
+---
+class: bg-main1
+
+# Leitura dos dados - Exemplos
+
+--
+## Vamos fazer um exemplo de leitura de dados no formato CSV.
+```{python}
+df = pd.read_csv('data/titanic.csv', sep = ',')
+```
+
+<br>
+
+--
+## Veja como foi simples importar os dados. 
+```{python}
+print(df.head(3))
+
+print(df.tail(3))
+```
+
+---
+class: middle bg-main1
+
+# Leitura dos dados - Exemplos
+
+--
+## Salvando os dados
+``` {python}
+df.to_csv('./dados_salvos.csv')
+```
+
+---
+class: middle bg-main1
+
+# Visualização dos dados `r emo::ji("bar_chart")`
+
+.blockquote.font_large[
+Para a visualização dos dados, será utilizado a biblioteca .yellow[Plotnine], uma implementação em Python do pacote ggplot2 do R.
+]
+
+--
+#### Para importar a biblioteca utilize
+
+```{python}
+from plotnine import *
+```
+
+---
+class: middle bg-main1
+
+# Plotnine - Exemplo
+
+---
+class: middle bg-main1
+
+### geom_point
+
+```{python}
+from plotnine.data import mtcars
+
+(ggplot(mtcars, aes(x = 'mpg', y = 'disp')) + geom_point())
+``` 
+
+---
+class: middle bg-main1
+
+### geom_bar
+
+```{python}
+df = pd.DataFrame({
+  'Carro': ['Corola', 'Range Rover ', 'Kombi'],
+  'Preço': [1500, 50, 9999]
+})
+
+(ggplot(df, aes(x = 'Carro', y = 'Preço')) + geom_bar(stat="identity"))
+``` 
+
+---
+class: middle bg-main1
+
+### geom_line
+
+```{python}
+(ggplot(mtcars, aes('wt', 'mpg')) + geom_line())
+```
+
+---
+class: middle bg-main1
+
+# Jupyter Notebook
+
+---
+class: bg-main1
+
+# Jupyter Notebook
+
+--
+### Reprodutibilidade `r emo::ji("heavy_check_mark")`
+
+--
+### Documentos Interativos `r emo::ji("heavy_check_mark")`
+
+--
+### Apresentações bonitas e amigáveis! `r emo::ji("heavy_check_mark")`
+
+--
+### Template do [Adriano](https://github.com/AdrianoPereira/project-cap394/blob/master/src/EDA.ipynb) `r emo::ji("clipboard")`
+
+---
+class: middle bg-main1
+
+# Google Colab
+
+---
+class: bg-main1
+
+# Google Colab
+
+<br>
+
+## É um ambiente de Jupyter Notebook gratuito e colaborativo que não requer configuração e é executado inteiramente na nuvem.
+
+<br>
+
+## .yellow[Hands-on] `r emo::ji("hand")`

@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fazendo análise de dados</title>
+    <meta charset="utf-8">
+    <meta name="author" content=" Daniele Zaramello Felipe Carvalho Felipe Menino Lucas Augusto Weslei Luiz" />
+    <link rel="stylesheet" href="assets/shinobi.css" type="text/css" />
+    <link rel="stylesheet" href="assets/ninpo.css" type="text/css" />
+    <link rel="stylesheet" href="assets/ninjutsu.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Fazendo análise de dados
+## Utilizando Python, Pandas e plotnine
+### <br>Daniele Zaramello<br>Felipe Carvalho<br>Felipe Menino<br>Lucas Augusto<br>Weslei Luiz
+### <br><br>16 e 17 de outubro de 2018
+
+---
+
+exclude: true
+&lt;style type="text/css"&gt;
+code.r{
+  font-size: 16px;
+}
+pre {
+  font-size: 16px !important;
+}
+&lt;/style&gt;
+
+---
+class: bg-main1
+
+# Agenda
+
+--
+### Introdução a linguagem Python ✔️
+
+--
+### Comandos básicos da linguagem ✔️
+
+--
+### Estruturas de controle ✔️
+
+--
+### Estrutura de repetição ✔️
+
+--
+### Pandas ✔️
+
+--
+### Plotnine ✔️
+
+---
+class: bg-main1
+
+# Introdução a Python
+
+&lt;br&gt;
+
+### Python é uma linguagem multiparadigma, com uma sintaxe muito .yellow[simples] que permite ao programador focar no problema e deixar de lado questões da linguagem. Esta é uma linguagem amplamente utilizada em diversos áreas, por conta principalmente das milhares de .yellow[bibliotecas] que a linguagem possui, todas elas distribuidas pela comunidade incrível que a linguagem possui ❤️
+
+---
+class: middle bg-main1
+
+# Comandos básicos da linguagem
+
+---
+class: bg-main1
+
+# Comandos básicos da linguagem
+
+### Declarações e manipulações de variáveis
+
+&lt;br&gt;&lt;br&gt;
+
+
+```python
+inteiro = 123
+flutoante = 1.1234
+booleano = True
+lista = [1, 2, 3, 4, 5]
+dicionario = {'chave': 'valor'}
+string = 'Um texto legal'
+```
+
+&lt;br&gt;
+
+### E a manipulação é tão simples quanto as declarações.
+
+
+```python
+dicionario['chave'] # 'valor'
+lista[0:3] # [1, 2, 3]
+flutoante += 1 # 1.1234
+```
+
+---
+class: bg-main1
+
+# Estruturas de controle de decisão
+
+### As estruturas de controle de decisão, facilitam o controle do fluxo que nosso código está tomando, assim, representam parte importante para a utilização da linguagem.
+
+--
+#### if
+
+
+```python
+if (2 &gt; 1):
+  print('Dois é maior que um!')
+```
+
+```
+## Dois é maior que um!
+```
+
+--
+#### else
+
+
+```python
+if (2 &lt; 1):
+  print('Dois é menor que um')
+else:
+  print('Dois é maior que um')
+```
+
+```
+## Dois é maior que um
+```
+
+--
+#### elif
+
+
+```python
+if (1 &gt; 1):
+  print('Um é maior que um')
+elif(1 &gt; 0.5):
+  print('Um é maior que meio')
+```
+
+```
+## Um é maior que meio
+```
+
+---
+class: bg-main1
+
+# Estrutura de repetição
+
+### Essas são estruturas que permitem a criaçaõ de loops, havendo facilmente repetição de um certo bloco de código diversas vezes, e ainda, permite .yellow[iterações] em estruturas de dados como as .yellow[listas]
+
+--
+#### while
+
+
+```python
+i = 0
+while i &lt; 5:
+  print(i)
+  i += 1
+```
+
+```
+## 0
+## 1
+## 2
+## 3
+## 4
+```
+
+-- 
+#### for
+
+
+```python
+# Iterando sobre uma lista
+for i in [1, 2, 3]:
+  print(i)
+```
+
+```
+## 1
+## 2
+## 3
+```
+
+---
+layout: false
+class: bg-main1
+
+# Pandas 🐼
+
+.blockquote.font_large[
+Pandas é uma biblioteca open source, licenciada pelo BSD, que fornece estruturas de dados de alto desempenho e fáceis de usar e ferramentas de análise de dados para a linguagem de programação Python.
+]
+
+&lt;br&gt;
+
+--
+#### Para importar a biblioteca utilize
+
+
+```python
+import pandas as pd
+```
+
+---
+class: middle bg-main1
+
+# Estruturas de dados básicas do Pandas
+
+### O Pandas trabalha utilizando duas estruturas de dados básicas, as .yellow[Series] e os .yellow[DataFrames]
+
+---
+class: middle bg-main1
+
+# Series
+
+### Estruturas unidimensionais;
+### Trabalham apenas com linhas;
+### Utilizam índices nas linhas.
+
+---
+class: bg-main1
+
+# Series - Utilização
+
+--
+### Criando uma Series simples
+
+
+```python
+series = pd.Series([1, 2]); print(series)
+```
+
+```
+## 0    1
+## 1    2
+## dtype: int64
+```
+
+--
+### Criando com índice
+
+```python
+series = pd.Series([1, 2], [9, 'ultimo']); print(series)
+```
+
+```
+## 9         1
+## ultimo    2
+## dtype: int64
+```
+
+--
+### Recuperando dados
+
+```python
+print(series[9])
+```
+
+```
+## 1
+```
+
+```python
+print(series['ultimo'])
+```
+
+```
+## 2
+```
+
+---
+class: bg-main1
+
+# Series - Utilização
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+--
+### Vendo a unidimensionalidade
+
+
+```python
+series = pd.Series([[1, 2, 3], [4, 5, 6]]); print(series)
+```
+
+```
+## 0    [1, 2, 3]
+## 1    [4, 5, 6]
+## dtype: object
+```
+
+---
+class: middle bg-main1
+
+# DataFrames
+
+### Estruturas multidimensionais;
+### Trabalham com linhas e colunas.
+### Pode-se utilizar índices nas linhas ou através das colunas.
+
+---
+class: bg-main1
+
+# DataFrame - Utilização
+
+&lt;br&gt;&lt;br&gt;
+
+--
+### Criando um DataFrame simples
+
+
+```python
+df = pd.DataFrame([1, 2, 3, 4]); print(df)
+```
+
+```
+##    0
+## 0  1
+## 1  2
+## 2  3
+## 3  4
+```
+
+--
+### Criando com índice
+
+
+```python
+df = pd.DataFrame([1, 2, 3, 4], [9, 10, 11, 'ultimao']); print(df)
+```
+
+```
+##          0
+## 9        1
+## 10       2
+## 11       3
+## ultimao  4
+```
+
+---
+class: bg-main1
+
+# DataFrame - Utilização
+
+--
+### Recuperando dados
+
+
+```python
+print(df[0]) 
+```
+
+```
+## 9          1
+## 10         2
+## 11         3
+## ultimao    4
+## Name: 0, dtype: int64
+```
+
+```python
+print(df[0]['ultimao'])
+```
+
+```
+## 4
+```
+
+--
+### Entendendo a diferença entre o .yellow[Series] e o .yellow[DataFrame].
+
+
+```python
+df = pd.DataFrame([[1, 2, 3], [4, 5, 6]]); print(df)
+```
+
+```
+##    0  1  2
+## 0  1  2  3
+## 1  4  5  6
+```
+
+---
+class: middle bg-main1
+
+# Manipulação básicas de dados com Pandas
+
+### Uma parte muito importante é a .yellow[seleção] e .yellow[filtro] dos dados, com elas basicamente faremos a manipulação dos dados.
+
+---
+class: bg-main1
+
+# Manipulação básicas de dados com Pandas
+
+### Loc e iloc
+
+Vamos começar fazendo a busca utilizando os índices (index) e as colunas (No caso dos DataFrames). Para isto, vamos utilizar os métodos .loc e .iloc. 
+
+&lt;br&gt;
+
+![loc_iloc](slide_img/loc_iloc.png)
+
+Para exemplificar o uso destes métodos, vamos utilizar o seguinte .yellow[DataFrame]
+
+
+```python
+df = pd.DataFrame({
+  'nome': ['Joana', 'Maria', 'Josefa'],
+  'idade': [15, 18, 21],
+  'nota': [8, 9, 10]
+}, index = [7, 8, 9])
+```
+
+---
+class: bg-main1
+
+# Manipulação básicas de dados com Pandas
+
+### Loc e iloc
+
+
+```python
+print(df.loc[9, 'nome'])
+```
+
+```
+## Josefa
+```
+
+```python
+print(df.loc[9, ['nome', 'idade']])
+```
+
+```
+## nome     Josefa
+## idade        21
+## Name: 9, dtype: object
+```
+
+
+```python
+print(df.iloc[2]['nome'])
+```
+
+```
+## Josefa
+```
+
+```python
+print(df.iloc[2][['nome', 'idade']])
+```
+
+```
+## nome     Josefa
+## idade        21
+## Name: 9, dtype: object
+```
+
+---
+class: bg-main1
+
+# Indexação booleana
+
+### Dentro do .yellow[DataFrame] e das .yellow[Series], é possível passar uma expressão booleana, para realizar uma filtragem dos dados.
+
+&lt;br&gt;&lt;br&gt;
+
+
+```python
+df = pd.DataFrame({'coluna': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]})
+print(df[df['coluna'] &gt;= 5])
+```
+
+```
+##    coluna
+## 4       5
+## 5       6
+## 6       7
+## 7       8
+## 8       9
+## 9      10
+```
+
+---
+class: middle bg-main1
+
+# Agrupamento e agregação
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+### Muitas vezes queremos agrupar nossos dados, seja para facilitar a manipulação, o entendimento das relações dos dados, ou mesmo para aplicar funções sobre cada um dos grupos e obter informações a partir disto. Para isto utilizamos os agrupamentos e agregações.
+
+---
+class: bg-main1
+
+# Agrupamento e agregação
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+### As .yellow[agregações] apresentam diversas definição, a utiliza aqui será "São operações aplicadas sobre os dados que resultam em um conjunto de valores, ou mesmo um valor escalar."
+
+&lt;br&gt;
+
+### Entenda que, o retorno pode mudar de acordo com a estrutura de dados onde se aplica a .yellow[agregação], no caso .yellow[Series] será retornado apenas um valor ao utilizar agregações, e no caso dos .yellow[DataFrames] um valor para cada coluna ou linha, dependendo da definição feita durante o processo.
+
+---
+class: middle bg-main1
+
+# Algumas operações de agregação
+
+### sum() -&gt; Realiza somatório;
+### min() -&gt; Busca o valor mínimo;
+### max() -&gt; Busca o valor máximo;
+### count() -&gt; Realiza a contagem de elementos.
+
+---
+class: bg-main1
+
+# Exemplos
+
+--
+###Agregando series
+
+
+```python
+s = pd.Series([1, 2, 3])
+df = pd.DataFrame([[1, 2, 3,], [4, 5, 6]])
+# Agregando Series
+print(s.sum())
+```
+
+```
+## 6
+```
+
+--
+### Agregando DataFrames
+
+
+```python
+# Agredando DataFrame
+print(df.sum())
+```
+
+```
+## 0    5
+## 1    7
+## 2    9
+## dtype: int64
+```
+
+---
+class: bg-main1
+
+# Agrupamentos
+
+--
+### Agrupando dados
+
+
+```python
+df = pd.DataFrame({
+  'nome': ['Tel1', 'Tel2', 'Tel3'],
+  'tipo': ['antigo', 'novo', 'novo']
+})
+agrupado = df.groupby('tipo')
+print(df)
+```
+
+```
+##    nome    tipo
+## 0  Tel1  antigo
+## 1  Tel2    novo
+## 2  Tel3    novo
+```
+
+--
+### DataFrame Agrupado
+
+
+```python
+print(agrupado)
+```
+
+```
+## &lt;pandas.core.groupby.groupby.DataFrameGroupBy object at 0x7fba26c60150&gt;
+```
+
+--
+### Recuperando grupos
+
+
+```python
+print(agrupado.groups)
+```
+
+```
+## {'novo': Int64Index([1, 2], dtype='int64'), 'antigo': Int64Index([0], dtype='int64')}
+```
+
+---
+class: middle bg-main1
+
+# Agrupando e agregando
+
+--
+## Representação 
+![hadley](slide_img/03.08-split-apply-combine.png)
+
+---
+class: middle bg-main1
+
+# Agrupando e agregando
+
+### O processo de .yellow[dividir] é o agrupamento, onde está sendo realizado a junção dos dados que possuem alguma característica em comum, definida no momento do agrupamento pelo usuário. A .yellow[aplicação] é justamente onde pode-se aplicar as agregações, filtros ou transformações, e por fim o .yellow[combinar], que representa a junção dos resultados da operação realizada na aplicação, em uma únida tabela.
+
+---
+class: bg-main1
+
+# Agrupando e agregando - Exemplo
+
+--
+## DataFrame de exemplo
+
+```python
+df = pd.DataFrame({
+  'nome': ['felipe', 'joão', 'maria', 'ana'],
+  'idade': [19, 19, 20, 20],
+  'dinheiro': [100, 100, 150, 150]
+})
+```
+
+--
+## Agrupando pela idade e realizando a contagem
+
+```python
+# Esta é a etapa de divir, da definição do Hedley
+agrupado = df.groupby('idade')
+# Aplicando uma agregação
+## Esta é a etapa de aplicação e junçaõ, definida pelo Hedley
+print(agrupado.count())
+```
+
+```
+##        dinheiro  nome
+## idade                
+## 19            2     2
+## 20            2     2
+```
+
+---
+class: middle bg-main1
+
+# Agrupando e agregando - Exemplo
+
+--
+### Agregando somente o atributo `dinheiro` de cada grupo
+
+```python
+print(agrupado['dinheiro'].sum())
+```
+
+```
+## idade
+## 19    200
+## 20    300
+## Name: dinheiro, dtype: int64
+```
+
+---
+class: middle bg-main1
+
+# Leitura dos dados
+
+--
+### Sim! 😲
+
+--
+### O Pandas ainda facilita o processo de leitura e escrita de dados 
+
+---
+class: bg-main1
+
+# Leitura dos dados - Exemplos
+
+--
+## Vamos fazer um exemplo de leitura de dados no formato CSV.
+
+```python
+df = pd.read_csv('data/titanic.csv', sep = ',')
+```
+
+&lt;br&gt;
+
+--
+## Veja como foi simples importar os dados. 
+
+```python
+print(df.head(3))
+```
+
+```
+##    PassengerId  Pclass   ...    Cabin Embarked
+## 0          892       3   ...      NaN        Q
+## 1          893       3   ...      NaN        S
+## 2          894       2   ...      NaN        Q
+## 
+## [3 rows x 11 columns]
+```
+
+```python
+print(df.tail(3))
+```
+
+```
+##      PassengerId  Pclass   ...    Cabin Embarked
+## 415         1307       3   ...      NaN        S
+## 416         1308       3   ...      NaN        S
+## 417         1309       3   ...      NaN        C
+## 
+## [3 rows x 11 columns]
+```
+
+---
+class: middle bg-main1
+
+# Leitura dos dados - Exemplos
+
+--
+## Salvando os dados
+
+```python
+df.to_csv('./dados_salvos.csv')
+```
+
+---
+class: middle bg-main1
+
+# Visualização dos dados 📊
+
+.blockquote.font_large[
+Para a visualização dos dados, será utilizado a biblioteca .yellow[Plotnine], esta que é uma implementação do famoso pacote de R ggplot2 para Python. Sua escolha foi feita simplesmente pela facilidade no aprendizado.
+]
+
+&lt;br&gt;
+
+--
+#### Para importar a biblioteca utilize
+
+
+```python
+from plotnine import *
+```
+
+---
+class: middle bg-main1
+
+# Aesthetic
+
+---
+class: middle bg-main1
+
+# Geometrias
+
+--
+### geom_point
+
+--
+### geom_bar
+
+--
+### geom_line
+
+---
+class: bg-main1
+
+# Plotnine - Exemplo
+
+--
+### geom_point
+
+
+```python
+from plotnine.data import mtcars
+(ggplot(mtcars, aes(x = 'mpg', y = 'disp')) + geom_point())
+```
+
+--
+### geom_bar
+
+
+```python
+df = pd.DataFrame({
+  'Carro': ['Corola', 'Range Rover ', 'Kombi'],
+  'Preço': [1500, 50, 9999]
+})
+(ggplot(df, aes(x = 'Carro', y = 'Preço')) + geom_bar(stat="identity"))
+```
+
+--
+### geom_line
+
+
+```python
+(ggplot(mtcars, aes('wt', 'mpg')) + geom_line())
+```
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
