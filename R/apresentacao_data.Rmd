@@ -1,0 +1,563 @@
+---
+title: "Introdução à analise de dados"
+subtitle: "[Material](https://github.com/dataAt/introducao-analise-de-dados)"
+author: "<br>Felipe Carvalho<br>Felipe Menino"
+date: "<br><br>02 de agosto de 2019"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["assets/shinobi.css", "assets/ninpo.css", "assets/ninjutsu.css"]
+    seal: true
+    self_contained: false
+    nature:
+      ratio: "16:9"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+exclude: true
+<style type="text/css">
+code.r{
+  font-size: 16px;
+}
+pre {
+  font-size: 16px !important;
+}
+</style>
+```{r setup, include=FALSE}
+  options(htmltools.dir.version = FALSE)
+```
+
+---
+class: bg-main1
+
+# Agenda
+
+--
+### Revisão da linguagem R 
+
+--
+### Pacote Tidyverse 
+
+--
+
+### Jupyter Notebook 
+
+--
+
+### GitHub e Git
+--
+
+### Google Colab
+
+---
+class: middle bg-main1
+
+# Revisão da linguagem R
+
+---
+
+class: bg-main1
+
+# História do R 
+
+<br>
+
+### **R** é uma linguagem de programação de alto nível com ambiente voltado para visualização e análise de dados. Em essência foi inspirada na linguagem de programação **S**. Foi iniciamente escrito por **R**oss Ihaka and **R**obert Gentleman no departamento de estatística da universidade de Auckland na Nova Zelândia. 
+
+---
+
+class: bg-main1
+
+# Comandos básicos 
+
+### Atribuimos valor usando `<-` apontada para a variável
+
+<br><br>
+
+```{r}
+inteiro <- 321L
+
+numerico <- 123
+
+complexo <- 321i
+
+booleano <- TRUE ## ou FALSE
+
+caractere <- "Bem-vindos"
+```
+
+<br>
+
+### Acessando os valores:
+
+```{r}
+print(numerico)
+
+caractere
+```
+
+---
+class: bg-main1
+
+# Tipos de dados estruturados
+
+<br><br>
+
+### Podemos declarar um vetor usando `c()` e uma lista usando `list()` 
+
+<br>
+
+```{r}
+vetor <- c(1, 3, 5)
+
+lista <- list(1, 2.3, c("tres", FALSE))
+```
+
+```{r}
+vetor
+```
+
+--
+
+```{r}
+lista
+```
+
+---
+class:bg-main1 
+
+# Qual é a diferença?
+
+<br><br>
+
+## Vetores são atômicos, ou seja, só aceitam um tipo de classe:
+<br>
+--
+
+```{r}
+vetor_diferente <- c(1, 2.5, TRUE, "ola")
+vetor_diferente
+```
+
+--
+## Listas não são atômicas, ou seja, aceitam diversos tipos de classes:
+--
+
+```{r}
+lista_diferente <- list(1, TRUE, "ola")
+lista_diferente
+```
+---
+class: bg-main1
+
+# Pense em vetores! 
+
+<br><br>
+## Todos os tipos primitivos em R são considerados como vetores:
+
+--
+
+```{r}
+lista <- list(1, 2, list("ola", FALSE))
+lista
+```
+--
+## Será vetor?
+```{r}
+is.vector(lista[[3]][[2]])
+```
+---
+class: bg-main1
+
+# Hierarquia de tipos primitivos
+
+<br><br>
+
+## O **R** possui uma conversão de tipos, sendo assim, garantindo que todo vetor seja atômico.
+
+<br>
+
+![](./slide_img/tipos.png)
+
+---
+class: bg-main1
+
+# Hierarquia de tipos primitivos
+<br>
+### Os tipos mais fortes são:
+
+- `character`
+- `complex`
+- `numeric`
+- `logical`
+
+<br><br>
+
+### Conversão:
+
+```{r}
+vetor <- c(FALSE, "tipo", 5)
+vetor
+```
+--
+
+```{r}
+class(vetor)
+```
+
+### Pense em vetores!
+---
+class: bg-main1
+
+# Dataframe
+<br>
+## Tipo especial de lista, onde cada coluna é um vetor de apenas um tipo e todas as colunas têm o mesmo número de registros. É o tipo mais utilizado para se trabalhar com dados. - [Limpeza de dados em R](https://cdr.ibpad.com.br/introducao.html#o-que-e-r-e-por-que-devo-aprende-lo)
+
+<br>
+
+## Podemos criar um dataframe usando `data.frame()`
+
+```{r}
+  meu_df <- data.frame(
+    nome=c("Ana", "Joana"), 
+    idade=c(23, 24),
+    cargo=c("Cientista", "Analista")
+    )
+  
+  meu_df
+
+```
+---
+class: bg-main1
+
+# Dataframe
+<br>
+
+## Acessando os atributos: 
+<br>
+
+```{r}
+  meu_df$nome
+```
+<br>
+--
+
+## Verificando o nome de todos os atributos
+<br>
+```{r}
+  colnames(meu_df)
+```
+---
+class: bg-main1
+
+# Estruta de decisão
+
+<br> 
+
+## O `if` do **R** é bem parecido com o do **Java**
+
+<br>
+```{r}
+  valor_a <- 21
+  valor_b <- 42
+  
+  if(valor_a < valor_b){ 
+    print("Valor A menor do que o valor B")
+  } else if(valor_a == valor_b){
+    print("Valor A é igual ao valor B")
+  } else {
+    print("Valor A é maior do que o valor B")
+  }
+```
+
+--
+## Dica de ouro
+
+```{r}
+  ifelse(42 > TRUE, "Verdade universal",
+         "tudo mentira")
+
+```
+---
+class: bg-main1
+# Estruta de repetição
+
+<br>
+
+## Por outro lado, o `for` do **R** parece com a sintaxe do **Python**
+
+<br>
+
+```{r}
+  meu_vetor <- c(1, 2, 3)
+  for(i in meu_vetor){
+    print(i)
+  }
+
+```
+---
+class: middle bg-main1
+
+# Pacote `Tidyverse`
+
+---
+class: bg-main1
+# Tidyverse
+<br>
+### Conjunto de pacotes em **R** para ciência de dados.
+
+
+ <div class="row">
+  <div class="column">
+    <img src="./slide_img/tidy_workflow.png" alt="Snow" style="float: left;width: 45%;padding: 5px;">
+  </div>
+  <div class="column">
+    <img src="./slide_img/data-science-process.png" alt="Mountains" style="float: right;width: 45%;padding: 5px;">
+  </div>
+</div> 
+
+
+---
+
+class: bg-main1
+# Leitura e escrita de dados - `readr`
+
+## Primeiro vamos ler um conjunto de dados
+
+```{r}
+  library(readr)
+  # Leitura
+  star_wars <- readr::read_csv(file = "../R/starwars.csv")
+  
+  head(star_wars, 3)
+
+```
+---
+
+class: bg-main1
+# Para escrever
+<br>
+```{r, eval=F, echo=T}
+  # escrita 
+  readr::write_csv(star_wars, "/home/felipe/")
+
+```
+
+---
+class: bg-main1
+# Manipulação de dados - `dplyr`
+<br>
+### Para manipular nosso dataframe, vamos usar o pacote `dplyr`. Métodos básicos:
+
+![](./slide_img/dplyr_verbs.jpg)
+
+---
+class: bg-main1
+
+# Seleção e Filtro
+<br>
+## Para facilitar a seleção dos atributos e tirar `$`, vamos usar o `select()`:
+
+```{r}
+   suppressMessages(library(dplyr))
+
+  selecao <- dplyr::select(star_wars, name, hair_color)
+  
+  head(selecao, 3)
+```
+
+---
+
+class: bg-main1
+# Para filtrar por um valor específico, usamos `filter()`
+```{r}
+  filtro <- dplyr::filter(star_wars, species == "Droid" &
+                                  skin_color == "gold")
+  filtro
+```
+
+---
+class: bg-main1
+
+# Agrupamento e agregação - `group_by()` e `summarise()`
+<br>
+## Para criar grupos usamos a função `group_by()`
+
+```{r}
+  agrupamento <- dplyr::group_by(star_wars, species)
+  
+  head(agrupamento, 3)
+ 
+```
+
+---
+class: bg-main1
+
+# Para criarmos uma agregação do nosso agrupamento, usamos `summarise()`:
+```{r}
+   media_grupo <- dplyr::summarise(agrupamento, 
+                                   media = mean(height, na.rm = TRUE))
+   
+  head(media_grupo, 3)
+
+```
+
+---
+class: bg-main1
+
+# Transformação de atributos  - `mutate()`
+<br>
+## Para criar/transformar novos atributos, usa-se `mutate()`:
+
+```{r}
+  # conversão de cm para metros
+  star_wars <- dplyr::mutate(star_wars, height = height/100)
+  
+  head(star_wars, 3)
+```
+
+---
+class: bg-main1
+## Facilitando a vida com o operador `pipe`(`%>%`)
+--
+
+<br>
+## O **pipe** passa a resposta da primeira atribuição para o primeiro parâmetro da função seguinte:
+
+```{r}
+  media_grupo <- star_wars %>% dplyr::group_by(species) %>%
+  dplyr::summarise(media = mean(height, na.rm = TRUE)) %>%
+  dplyr::arrange(desc(media))
+
+  head(media_grupo, 3)
+```
+
+---
+
+class: middle bg-main1
+
+# Visualização de dados em **R**
+---
+
+class: bg-main1
+
+# ggplot2
+<br>
+## Bom, `ggplot2` é um pacote R criado por **Hadley Wickham**, a sintaxe se baseia na obra The Grammar of Graphics. O mapeamento dos atributos é chamado de aesthetics. O esqueleto pode ser escrito assim:
+
+```{r, eval=FALSE}
+   ggplot(data = <DATA>, aes(<MAPPINGS>)) + 
+  <GEOM_FUNCTION>(
+     mapping = aes(<MAPPINGS>),
+     stat = <STAT>, 
+     position = <POSITION>
+  ) +
+  <COORDINATE_FUNCTION> +
+  <FACET_FUNCTION>  
+
+```
+
+---
+class: bg-main1
+
+# Mapeamento estético
+
+![](./slide_img/aes_ggplot.png)
+
+---
+
+
+class: bg-main1
+
+# Mapeamento estético na prática
+
+## Vamos mapear nosso conjunto de dados **escola_analise**
+
+```{r}
+  library(ggplot2)
+  grafico <- ggplot(media_grupo, aes(x= reorder(species, -media) , y=media))
+
+```
+
+---
+
+class: bg-main1
+
+# Objetos geométricos
+
+```{r, out.width = "700", out.height="500", echo=F}
+knitr::include_graphics("./slide_img/ggplot01.png")
+```
+---
+
+class: bg-main1
+
+# Objetos geométricos na prática
+
+```{r, out.width = "700", out.height="500", fig.align='center'}
+  grafico + geom_col()  + coord_flip() + labs(x = "Média",
+                                              y = "Espécies")
+```
+---
+class: middle bg-main1
+
+# Jupyter Notebook
+
+---
+class: bg-main1
+
+# Jupyter Notebook
+
+<br>
+### Reprodutibilidade;
+<br>
+### Documentos Interativos;
+<br>
+### Apresentação bonita e amigável!
+<br>
+### Permite a fácil distribuição dos resultados de análises.
+<br>
+### Template do [Adriano](https://github.com/AdrianoPereira/project-cap394/blob/master/src/EDA.ipynb)
+<br>
+### Dúvidas?
+
+---
+class: middle bg-main1
+# Git e GitHub
+
+---
+class: bg-main1
+
+# Git e GitHub
+
+
+<br>
+
+
+## **Git**: sistema de controle de versões e o **GitHub**: é uma plataforma de hospedagem de código-fonte com controle de versão usando o Git.
+
+<br>
+
+## Hands-on
+
+---
+class: middle bg-main1
+
+# Google Colab
+
+---
+class: bg-main1
+
+# Google Colab
+
+<br>
+
+## É um Ambiente de Jupyter Notebook gratuito e colaborativo que não requer configuração e é executado inteiramente na nuvem.
+
+<br>
+
+## Hands-on
+
+---
+
