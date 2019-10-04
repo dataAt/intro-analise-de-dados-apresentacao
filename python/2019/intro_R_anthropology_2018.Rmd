@@ -264,7 +264,7 @@ class: middle bg-main1
 ---
 class: bg-main1
 
-# Exemplos
+# Agregando dados - Exemplos
 
 --
 ### Agregando series
@@ -288,10 +288,7 @@ print(df.sum())
 ---
 class: bg-main1
 
-# Agrupamentos
-
---
-### Agrupando dados
+# Agrupamentos de dados - Exemplos
 
 ```{python}
 df = pd.DataFrame({
@@ -383,14 +380,24 @@ print(df.tail(3))
 ```
 
 ---
-class: middle bg-main1
+class: bg-main1
 
-# Leitura dos dados - Exemplos
+# Salvando os dados - Exemplos
+
+<br><br><br>
 
 --
-## Salvando os dados
+### Escrevendo arquivo CSV
+
 ``` {python}
 df.to_csv('./dados_salvos.csv')
+```
+
+--
+### Escrevendo arquivo JSON
+
+``` {python}
+df.to_json('./dados_salvos.json')
 ```
 
 ---

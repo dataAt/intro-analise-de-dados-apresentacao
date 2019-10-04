@@ -378,7 +378,7 @@ class: middle bg-main1
 ---
 class: bg-main1
 
-# Exemplos
+# Agregando dados - Exemplos
 
 --
 ### Agregando series
@@ -415,10 +415,7 @@ print(df.sum())
 ---
 class: bg-main1
 
-# Agrupamentos
-
---
-### Agrupando dados
+# Agrupamentos de dados - Exemplos
 
 
 ```python
@@ -447,7 +444,7 @@ print(agrupado)
 ```
 
 ```
-## &lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x000000001D6EBF28&gt;
+## &lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x000000001D6E6FD0&gt;
 ```
 
 --
@@ -559,15 +556,26 @@ print(df.tail(3))
 ```
 
 ---
-class: middle bg-main1
+class: bg-main1
 
-# Leitura dos dados - Exemplos
+# Salvando os dados - Exemplos
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 --
-## Salvando os dados
+### Escrevendo arquivo CSV
+
 
 ```python
 df.to_csv('./dados_salvos.csv')
+```
+
+--
+### Escrevendo arquivo JSON
+
+
+```python
+df.to_json('./dados_salvos.json')
 ```
 
 ---
@@ -605,10 +613,10 @@ from plotnine.data import mtcars
 ```
 
 ```
-## &lt;ggplot: (34454869)&gt;
+## &lt;ggplot: (-9223372036820309013)&gt;
 ```
 
-![](intro_R_anthropology_2018_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+![](intro_R_anthropology_2018_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
 
 ---
 class: middle bg-main1
@@ -626,10 +634,10 @@ df = pd.DataFrame({
 ```
 
 ```
-## &lt;ggplot: (-9223372036823905308)&gt;
+## &lt;ggplot: (30866664)&gt;
 ```
 
-![](intro_R_anthropology_2018_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
+![](intro_R_anthropology_2018_files/figure-html/unnamed-chunk-27-1.png)&lt;!-- --&gt;
 
 ---
 class: middle bg-main1
@@ -642,10 +650,10 @@ class: middle bg-main1
 ```
 
 ```
-## &lt;ggplot: (-9223372036819021084)&gt;
+## &lt;ggplot: (35756587)&gt;
 ```
 
-![](intro_R_anthropology_2018_files/figure-html/unnamed-chunk-27-1.png)&lt;!-- --&gt;
+![](intro_R_anthropology_2018_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
 
 ---
 class: middle bg-main1
