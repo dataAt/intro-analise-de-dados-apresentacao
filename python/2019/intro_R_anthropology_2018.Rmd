@@ -41,9 +41,6 @@ class: bg-main1
 --
 ### Jupyter Notebook `r emo::ji("heavy_check_mark")`
 
---
-### Google Colab`r emo::ji("heavy_check_mark")`
-
 ---
 class: bg-main1
 

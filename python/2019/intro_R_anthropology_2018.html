@@ -4,9 +4,9 @@
     <title>Introdução à analise de dados</title>
     <meta charset="utf-8" />
     <meta name="author" content=" Felipe Carvalho Felipe Menino" />
-    <link rel="stylesheet" href="assets/shinobi.css" type="text/css" />
-    <link rel="stylesheet" href="assets/ninpo.css" type="text/css" />
-    <link rel="stylesheet" href="assets/ninjutsu.css" type="text/css" />
+    <link rel="stylesheet" href="assets\shinobi.css" type="text/css" />
+    <link rel="stylesheet" href="assets\ninpo.css" type="text/css" />
+    <link rel="stylesheet" href="assets\ninjutsu.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -42,9 +42,6 @@ class: bg-main1
 
 --
 ### Jupyter Notebook ✔️
-
---
-### Google Colab✔️
 
 ---
 class: bg-main1
@@ -450,7 +447,7 @@ print(agrupado)
 ```
 
 ```
-## &lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7fe812463d68&gt;
+## &lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x000000001D6EBF28&gt;
 ```
 
 --
@@ -608,10 +605,10 @@ from plotnine.data import mtcars
 ```
 
 ```
-## &lt;ggplot: (-9223363247204609890)&gt;
+## &lt;ggplot: (34454869)&gt;
 ```
 
-&lt;img src="intro_R_anthropology_2018_files/figure-html/unnamed-chunk-25-1.png" width="613" /&gt;
+![](intro_R_anthropology_2018_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
 
 ---
 class: middle bg-main1
@@ -629,10 +626,10 @@ df = pd.DataFrame({
 ```
 
 ```
-## &lt;ggplot: (8789669709032)&gt;
+## &lt;ggplot: (-9223372036823905308)&gt;
 ```
 
-&lt;img src="intro_R_anthropology_2018_files/figure-html/unnamed-chunk-26-1.png" width="613" /&gt;
+![](intro_R_anthropology_2018_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
 
 ---
 class: middle bg-main1
@@ -645,50 +642,15 @@ class: middle bg-main1
 ```
 
 ```
-## &lt;ggplot: (8789638150099)&gt;
+## &lt;ggplot: (-9223372036819021084)&gt;
 ```
 
-&lt;img src="intro_R_anthropology_2018_files/figure-html/unnamed-chunk-27-1.png" width="613" /&gt;
+![](intro_R_anthropology_2018_files/figure-html/unnamed-chunk-27-1.png)&lt;!-- --&gt;
 
 ---
 class: middle bg-main1
 
-# Jupyter Notebook
-
----
-class: bg-main1
-
-# Jupyter Notebook
-
---
-### Reprodutibilidade ✔️
-
---
-### Documentos Interativos ✔️
-
---
-### Apresentações bonitas e amigáveis! ✔️
-
---
-### Template do [Adriano](https://github.com/AdrianoPereira/project-cap394/blob/master/src/EDA.ipynb) 📋
-
----
-class: middle bg-main1
-
-# Google Colab
-
----
-class: bg-main1
-
-# Google Colab
-
-&lt;br&gt;
-
-## É um ambiente de Jupyter Notebook gratuito e colaborativo que não requer configuração e é executado inteiramente na nuvem.
-
-&lt;br&gt;
-
-## .yellow[Hands-on] ✋
+# Obrigado!
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -736,7 +698,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {

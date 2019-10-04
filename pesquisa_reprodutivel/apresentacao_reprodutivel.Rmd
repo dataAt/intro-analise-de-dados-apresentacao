@@ -59,6 +59,10 @@ class: bg-main1
 # Reprodutibilidade 
 
 .blockquote.font_large[
+Otimizar etapas do processo científico como a transparência e distribuição dos resultados aumenta a confiabilidade e eficiência da pesquisa científica (Munafò et al, 2017).
+]
+
+.blockquote.font_large[
 A reprodutibilidade de uma experiência científica é uma das condições que permitem incluir no processo de progresso do conhecimento científico as observações realizadas durante a experiência. - Wikipedia
 ]
 
@@ -66,6 +70,7 @@ A reprodutibilidade de uma experiência científica é uma das condições que p
 <!--     <img src="./slide_img/cienciareprodutivel.png" alt="Snow" style="width: 60%;top: -50px; margin: 0 auto;"> -->
 <!--   </div> -->
  
+ <!--
  
 <div class="row">
   <div class="column">
@@ -75,8 +80,8 @@ A reprodutibilidade de uma experiência científica é uma das condições que p
     <img src="./slide_img/img2.png" alt="Mountains" style="float: right;">
   </div>
 </div> 
+-->
 
- 
 ---
 class: middle bg-main1
 

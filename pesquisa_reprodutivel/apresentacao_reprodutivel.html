@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Pesquisa Reprodutível</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=" Felipe Carvalho Felipe Menino" />
+    <link rel="stylesheet" href="assets\shinobi.css" type="text/css" />
+    <link rel="stylesheet" href="assets\ninpo.css" type="text/css" />
+    <link rel="stylesheet" href="assets\ninjutsu.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Pesquisa Reprodutível
+## <br> <a href="https://github.com/dataAt/introducao-analise-de-dados">Material de apoio</a>
+### <br>Felipe Carvalho<br>Felipe Menino
+### <br><br>04 de agosto de 2019
+
+---
+
+exclude: true
+&lt;style type="text/css"&gt;
+code.r{
+  font-size: 16px;
+}
+pre {
+  font-size: 16px !important;
+}
+&lt;/style&gt;
+
+
+---
+class: bg-main1
+
+# Agenda
+
+--
+### Pesquisa Reprodutível 🥼
+
+--
+### Jupyter 🔍
+
+--
+### Git e Github 💻
+
+--
+### Google Colab ➗
+
+
+
+---
+class: middle bg-main1
+
+# Pesquisa Reprodutível 
+
+---
+
+class: bg-main1
+
+# Reprodutibilidade 
+
+.blockquote.font_large[
+Otimizar etapas do processo científico como a transparência e distribuição dos resultados aumenta a confiabilidade e eficiência da pesquisa científica (Munafò et al, 2017).
+]
+
+.blockquote.font_large[
+A reprodutibilidade de uma experiência científica é uma das condições que permitem incluir no processo de progresso do conhecimento científico as observações realizadas durante a experiência. - Wikipedia
+]
+
+&lt;!-- &lt;div style="text-align: center;padding-bottom: 15px;box-sizing: border-box;"&gt; --&gt;
+&lt;!--     &lt;img src="./slide_img/cienciareprodutivel.png" alt="Snow" style="width: 60%;top: -50px; margin: 0 auto;"&gt; --&gt;
+&lt;!--   &lt;/div&gt; --&gt;
+ 
+ &lt;!--
+ 
+&lt;div class="row"&gt;
+  &lt;div class="column"&gt;
+    &lt;img src="./slide_img/img1.png" alt="Snow" style="float: left;"&gt;
+  &lt;/div&gt;
+  &lt;div class="column"&gt;
+    &lt;img src="./slide_img/img2.png" alt="Mountains" style="float: right;"&gt;
+  &lt;/div&gt;
+&lt;/div&gt; 
+--&gt;
+
+---
+class: middle bg-main1
+
+# Jupyter Notebook
+
+---
+class: bg-main1
+
+# Jupyter Notebook
+
+--
+### Reprodutibilidade ✔️
+
+--
+### Documentos Interativos ✔️
+
+--
+### Apresentações bonitas e amigáveis! ✔️
+
+--
+### Template do [Adriano](https://github.com/AdrianoPereira/project-cap394/blob/master/src/EDA.ipynb) 📋
+
+--
+### .yellow[Hands-on] ✋
+
+---
+class: middle bg-main1
+# Git e GitHub
+
+---
+class: bg-main1
+
+# Git e GitHub
+
+&lt;br&gt;
+## **Git** `\(\neq\)` **Github**
+
+--
+&lt;br&gt;
+
+## **Git**: sistema de controle de versões e o **GitHub**: é uma plataforma de hospedagem de código-fonte com controle de versão usando o Git.
+
+&lt;br&gt;
+
+---
+class: middle bg-main1
+# .yellow[Hands-on] ✋
+
+---
+
+class: middle bg-main1
+# Comandos básicos
+
+--
+### Inicializa um repositório existente como um Git repositório
+
+```bash
+git init
+```
+
+--
+### Adição dos arquivos para realizar o controle de versão
+
+
+```bash
+git add .
+```
+
+--
+### Registra os arquivos adicionados no histórico de versões
+
+
+```bash
+git commit -m"[alguma mensagem]"
+```
+
+--
+### Adiciona uma URL como um alias
+
+
+```bash
+  git remote add [alias] [url]
+```
+
+--
+### Envia o commit local para o repositório remoto 
+
+
+```bash
+git push [alias][branch]
+```
+
+---
+class: middle bg-main1
+
+# Google Colab
+
+---
+class: bg-main1
+
+# Google Colab
+
+&lt;br&gt;
+
+## É um ambiente de Jupyter Notebook gratuito e colaborativo que não requer configuração e é executado inteiramente na nuvem.
+
+&lt;br&gt;
+
+## .yellow[Hands-on] ✋
+
+---
+class: middle bg-main1
+
+# Obrigado!
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
