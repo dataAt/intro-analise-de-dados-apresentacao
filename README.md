@@ -13,5 +13,5 @@ Apresentações criadas utilizando o framework `Sharingan` com o template do [Wi
   - [![Netlify Status](https://api.netlify.com/api/v1/badges/60ffc595-ea9c-4297-bee1-f6bf1adbe93b/deploy-status)](https://app.netlify.com/sites/r-ds-2019/deploys) 2019 (INPE): [r-ds-2019.netlify.com](https://r-ds-2019.netlify.com/#1)
   
 - Pesquisa Reprodutível
-  - [![Netlify Status](https://api.netlify.com/api/v1/badges/5d0e55c8-20f6-42e7-8b6b-0823e813e17e/deploy-status)](https://app.netlify.com/sites/pr-2019/deploys) 2019 (INPE): [https://pr-2019.netlify.com](https://pr-2019.netlify.com/#1);
+  - [![Netlify Status](https://api.netlify.com/api/v1/badges/5d0e55c8-20f6-42e7-8b6b-0823e813e17e/deploy-status)](https://app.netlify.com/sites/pr-2019/deploys) 2019 (INPE): [pes-rep-2019.netlify.com](https://pes-rep-2019.netlify.com);
   
