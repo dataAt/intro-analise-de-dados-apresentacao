@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Machine Learning with R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Felipe Carvalho &amp; Felipe Menino" />
+    <meta name="date" content="2020-01-28" />
+    <link href="libs/font-awesome-animation/font-awesome-animation-emi.css" rel="stylesheet" />
+    <script src="libs/fontawesome/js/fontawesome-all.min.js"></script>
+    <link rel="stylesheet" href="scrollable.css" type="text/css" />
+    <link rel="stylesheet" href="mtheme_max.css" type="text/css" />
+    <link rel="stylesheet" href="fonts_mtheme_max.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+class: title-slide   
+&lt;a href="https://github.com/dataAt/intro-analise-de-dados-apresentacao"&gt;&lt;img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"&gt;&lt;/a&gt;
+
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+# .font200[Introdução à análise de dados com Python] 
+
+### Felipe Carvalho &amp; Felipe Menino
+### Janeiro 2020
+
+---
+# Agenda
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+--
+### Introdução a linguagem Python <span>&lt;i class="fas  fa-glass-martini faa-pulse animated-hover "&gt;&lt;/i&gt;</span>
+
+--
+### Pandas <span>&lt;i class="fas  fa-smile faa-pulse animated-hover "&gt;&lt;/i&gt;</span>
+
+---
+### Material
+
+- <span>&lt;i class="fab  fa-github faa-pulse animated-hover "&gt;&lt;/i&gt; GitHub</span>: [https://github.com/dataAt/introducao-analise-de-dados](https://github.com/dataAt/introducao-analise-de-dados)
+
+   - <span>&lt;i class="fab  fa-slideshare faa-pulse animated-hover "&gt;&lt;/i&gt; Slides</span>
+
+   - <span>&lt;i class="fas  fa-code faa-pulse animated-hover "&gt;&lt;/i&gt; Exercícios</span>
+
+   - <span>&lt;i class="fas  fa-database faa-pulse animated-hover "&gt;&lt;/i&gt; Dados</span>
+   
+   - <span>&lt;i class="fab  fa-slideshare faa-pulse animated-hover "&gt;&lt;/i&gt; Material auxíliar</span>
+
+---
+# Introdução a Python
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+.font130[
+Python é uma linguagem multiparadigma, com uma sintaxe muito simples que permite ao programador focar no problema e deixar de lado questões da linguagem.
+]
+
+&lt;br&gt;&lt;br&gt;
+
+---
+class: title-slide
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+# .font170[Comandos básicos da linguagem] 
+
+
+---
+# Comandos básicos da linguagem
+
+.pull-left[
+
+  ### Declarações e manipulações de variáveis
+
+  
+  ```python
+  inteiro = 123
+  flutoante = 1.1234
+  booleano = True
+  lista = [1, 2, 3, 4, 5]
+  dicionario = {'chave': 'valor'}
+  string = 'Um texto legal'
+  ```
+]
+
+.pull-right[
+  ### Manipulação simples!
+
+  
+  ```python
+  dicionario['chave']
+  ## 'valor'
+  lista[0:3] 
+  ## [1, 2, 3]
+  flutoante += 1 
+  # 1.1234
+  ```
+]
+
+---
+# Estrutura de controle de decisão
+
+As estruturas de controle de decisão, facilitam o controle do fluxo que nosso código está tomando, assim, representam parte importante para a utilização da linguagem.
+
+.pull-left[
+### if
+
+
+```python
+if (2 &gt; 1):
+  print("Dois é maior que um!")
+## Dois é maior que um!
+```
+
+### else
+
+
+```python
+if (2 &lt; 1):
+  print('Dois é menor que um')
+else:
+  print('Dois é maior que um')
+## Dois é maior que um
+```
+
+]
+
+.pull-right[
+
+&lt;br&gt;
+
+### elif
+
+
+```python
+if (1 &gt; 1):
+  print('Um é maior que um')
+elif(1 &gt; 0.5):
+  print('Um é maior que meio')
+## Um é maior que meio
+```
+]
+
+---
+# Estrutura de repetição
+
+Essas são estruturas que permitem a criaçaõ de loops, havendo facilmente repetição de um certo bloco de código diversas vezes, e ainda, permite iterações em estruturas de dados como as listas
+
+.pull-left[
+  ### while
+  
+  
+  ```python
+  i = 0
+  while i &lt; 5:
+    print(i)
+    i += 1
+  ## 0
+  ## 1
+  ## 2
+  ## 3
+  ## 4
+  ```
+]
+
+.pull-right[
+  ### for-each
+  .pull-left[
+    
+    ```python
+    for i in [1, 2, 3]:
+      print(i)
+    ## 1
+    ## 2
+    ## 3
+    ```
+  ]
+  .pull-right[
+    
+    ```python
+    for i in range(0, 3):
+      print(i)
+    ## 0
+    ## 1
+    ## 2
+    ```
+  ]
+]
+
+---
+class: title-slide
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+# .center[.font170[Pandas] 🐼]
+
+---
+# Pandas 🐼
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+.font130[
+Pandas é uma biblioteca open source, licenciada pelo BSD, que fornece estruturas de dados de alto desempenho e fáceis de usar e ferramentas de análise de dados para a linguagem de programação Python.
+]
+
+&lt;br&gt;
+
+.bold[Para importar a biblioteca, utilize:]
+
+
+```python
+import pandas as pd
+```
+
+---
+class: title-slide
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+# .font170[Estruturas de dados básicas do Pandas] 
+
+---
+# Estruturas de dados básicas do Pandas
+
+.pull-left[
+  ### Series
+  
+  - Estruturas unidimensionais;
+    - Dados armazenados em linhas
+  - Índice nas linhas;
+  - Suporte a qualquer tipo de dados;
+  - Exemplo de aplicação: Séries Temporais
+] 
+
+.pull-right[
+  &lt;div style = "position:relative; left:160px; top: 60px;"&gt;
+    &lt;img src="images/python/pd_series12.png"&gt;&lt;/img&gt;
+  &lt;/div&gt;
+]
+
+---
+# Estruturas de dados básicas do Pandas
+
+.center[
+.content-box-gray[.bold[Exemplos de utilização das Series]]
+]
+
+.pull-left[
+  ### Criando uma Series simples
+  
+  ```python
+  series = pd.Series([1, 2]) 
+  print(series)
+  ## 0    1
+  ## 1    2
+  ## dtype: int64
+  ```
+  
+  ### Series com índice
+  
+  ```python
+  series = pd.Series([1, 2], [9, 'ultimo'])
+  print(series)
+  ## 9         1
+  ## ultimo    2
+  ## dtype: int64
+  ```
+]
+
+.pull-right[
+  ### Recuperando valores
+
+  A recuperação dos dados é muito parecida com as encontradas em dicionários (chave-valor).
+  
+  
+  ```python
+  print(series[9])
+  ## 1
+  print(series["ultimo"])
+  ## 2
+  ```
+  
+  
+  ```python
+  dicionario = {"Nome": "Maria"}
+  print(dicionario["Nome"])
+  ## Maria
+  ```
+]
+
+---
+# Estruturas de dados básicas do Pandas
+
+.pull-left[
+  ### DataFrames
+  
+  - Estruturas multidimensionais;
+    - Dados armazenados em linhas e colunas.
+  - Índice nas linhas e colunas;
+  - Suporte a qualquer tipo de dados (Um diferente para cada coluna).
+] 
+
+.pull-right[
+  &lt;div style = "position:relative; right:30px; top: -20px;"&gt;
+    &lt;img src="images/python/pd_df13.png"&gt;&lt;/img&gt;
+  &lt;/div&gt;
+]
+
+---
+# Estruturas de dados básicas do Pandas
+
+.center[
+  .content-box-gray[.bold[Exemplos de utilização dos DataFrames]]
+]
+
+.pull-left[
+  #### Criando um DataFrame básico
+  
+  
+  ```python
+  df = pd.DataFrame([[1, 2, 3, 4], [11, 12, 13, 14]])
+  print(df)
+  ##     0   1   2   3
+  ## 0   1   2   3   4
+  ## 1  11  12  13  14
+  ```
+  
+  #### DataFrame com índice
+  
+  ```python
+  df = pd.DataFrame([[1, 2, 3, 4], [11, 12, 13, 14]], 
+                      index = ['um', 'dois'])
+  print(df)
+  ##        0   1   2   3
+  ## um     1   2   3   4
+  ## dois  11  12  13  14
+  ```
+]
+
+.pull-right[
+  #### Índices e colunas
+  
+  
+  ```python
+  df = pd.DataFrame([[1, 2, 3, 4], [11, 12, 13, 14]], 
+                    index = ['um', 'dois'], 
+                    columns = ['a', 'b', 'c', 'd'])
+  print(df)
+  ##        a   b   c   d
+  ## um     1   2   3   4
+  ## dois  11  12  13  14
+  ```
+  
+  #### Recuperando valores
+  
+  .pull-left[
+    
+    ```python
+    print(df['b']['um'])
+    ## 2
+    ```
+  ]
+  
+  .pull-right[
+    
+    ```python
+    print(df['a']['dois'])
+    ## 11
+    ```
+  ]
+]
+
+---
+class: title-slide
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+# .font140[Manipulação básica de dados com Pandas] 
+
+&lt;!-- No slide após este, inserir uma figura mostrando o processo de manipulação dos dados. (Pegando de uma tabela completa e entendendo somente uma parte, filtro e etc...) --&gt;
+
+---
+# Manipulação básica de dados com Pandas
+
+O pandas fornece uma infinidade de métodos para a seleção e filtro dos dados. Sendo todos úteis para o processo de análise de dados com Python
+
+--
+## loc e iloc
+
+Para iniciar, os métodos `loc` e `iloc` podem ser bastante utilizados para tais processos.
+
+&lt;br&gt;&lt;br&gt;
+.center[
+  | DataFrame                                  | Series                  |
+  |--------------------------------------------|-------------------------|
+  | \.loc[Nome da linha,  Nome da coluna]   | \.loc[Posição da linha] |
+  | \.iloc[posição da linha, posição da coluna] | \.iloc[Nome da linha] |
+]
+
+---
+# Manipulação básica de dados com Pandas
+
+.center[
+  .content-box-gray[.bold[Exemplo de utilização do loc e iloc]]
+]
+
+.pull-left[
+  ### DataFrame de exemplo
+  
+  
+  ```python
+  df = pd.DataFrame({
+    'nome': ['Joana', 'Maria', 'Josefa'],
+    'idade': [15, 18, 21],
+    'nota': [8, 9, 10]
+  }, index = [7, 8, 9])
+  ```
+
+  Recuperando a linha de `nome` 9 e a coluna de nome `idade`.
+  
+  
+  ```python
+  print(df.loc[9, 'idade'])
+  ## 21
+  ```
+]
+
+.pull-right[
+  É possível também recuperar mais de uma coluna ao mesmo tempo
+  
+  
+  ```python
+  print(df.loc[9, ['nome', 'idade']])
+  ## nome     Josefa
+  ## idade        21
+  ## Name: 9, dtype: object
+  ```
+  
+  Para recuperar as posições, utilize o `iloc`.
+  
+  
+  ```python
+  print(df.iloc[2][['nome', 'idade']])
+  ## nome     Josefa
+  ## idade        21
+  ## Name: 9, dtype: object
+  ```
+]
+
+---
+# Filtro de dados
+
+.center[
+  .font135[Para muitas partes da análise de dados, realizar filtros e buscas é de extrema importância. No Pandas há diversos métodos que podem ser aplicados.]
+]
+
+.pull-left[
+  #### DataFrame de exemplo
+  
+  
+  ```python
+  df = pd.DataFrame({
+    'nome': ['A1', 'A2', 'A3', 'A4'],
+    'valor': [5, 12, 8, 30]
+  })
+  ```
+  
+  #### filter
+
+  Filtra os dados pelo nome da coluna
+  
+  
+  ```python
+  df.filter(items = ['A1', 'A4'])
+  ## Empty DataFrame
+  ## Columns: []
+  ## Index: [0, 1, 2, 3]
+  ```
+]
+
+.pull-right[
+  Filtrando os dados por uma coluna que contenha no nome a palavra `lo`.
+  
+  
+  ```python
+  df.filter(like='lo', axis = 1)
+  ##    valor
+  ## 0      5
+  ## 1     12
+  ## 2      8
+  ## 3     30
+  ```
+]
+
+---
+# Filtro de dados
+
+.pull-left[
+  #### Indexação booleana
+
+  É possível fazer o filtro de dados com um índice booleano
+
+  
+  ```python
+  df[[False, True, False, True]]
+  ##   nome  valor
+  ## 1   A2     12
+  ## 3   A4     30
+  ```
+  
+  A indexação pode ser feita de forma manual
+  
+  ```python
+  df[df['valor'] &gt; 10]
+  ##   nome  valor
+  ## 1   A2     12
+  ## 3   A4     30
+  ```
+]
+  
+.pull-right[
+  
+  &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+  
+  Criando expressões mais `complexas`
+  
+  ```python
+  df[(df['valor'] &gt;= 5) &amp; (df['valor'] &lt; 12)]
+  ##   nome  valor
+  ## 0   A1      5
+  ## 2   A3      8
+  ```
+]
+
+---
+# Filtro de dados
+
+.center[
+  .content-box-gray[.bold[Dica: Filtragem e substituição (where)]]
+]
+
+&lt;br&gt;
+
+
+```python
+df_2 = df.copy()
+df_2[df_2['valor'] &gt; 10] = -99; print(df_2)
+##   nome  valor
+## 0   A1      5
+## 1  -99    -99
+## 2   A3      8
+## 3  -99    -99
+```
+
+Uma forma mais elegante, trabalhando com o `where`
+
+```python
+df.where(df['valor'] &gt; 10, -99)
+##   nome  valor
+## 0  -99    -99
+## 1   A2     12
+## 2  -99    -99
+## 3   A4     30
+```
+
+---
+# Agrupamento e agregação
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+.font130[
+Agrupar dados ajuda na análise dos dados, é através deste processo que técnicas de análise exploratória de dados e estatística descritiva podem ser feitos. Para tais atividades, utilizam-se os agrupamentos e agregações.
+]
+
+---
+# Agrupamento e agregação
+
+&lt;br&gt;
+.font130[
+As agregações apresentam diversas definição, a utiliza aqui será "São operações aplicadas sobre os dados que resultam em um conjunto de valores, ou mesmo um valor escalar"
+]
+
+&lt;br&gt;
+
+.content-box-gray[.bold[Algumas funções de agregação]] <span>&lt;i class="fas  fa-hand-point-left faa-horizontal animated "&gt;&lt;/i&gt;</span>
+
+- sum();
+- max();
+- min();
+- mean().
+
+---
+# Agrupamento e agregação
+
+.pull-left[
+  ### Agregando `Series`
+
+  
+  ```python
+  s = pd.Series([1, 2, 3])
+  ```
+
+  Calculando o somatório
+  
+  ```python
+  s.sum()
+  ## 6
+  ```
+
+  Valor mínimo
+  
+  ```python
+  s.min()
+  ## 1
+  ```
+
+]
+
+.pull-right[
+  ### Agregando `DataFrames`
+
+  
+  ```python
+  df = pd.DataFrame([[1, 2, 3], [4, 5, 6]])
+  ```
+
+  Calculando o valor médio
+  
+  ```python
+  df.mean()
+  ## 0    2.5
+  ## 1    3.5
+  ## 2    4.5
+  ## dtype: float64
+  ```
+
+  Valor máximo
+  
+  ```python
+  df.max()
+  ## 0    4
+  ## 1    5
+  ## 2    6
+  ## dtype: int64
+  ```
+]
+
+---
+# Agrupamento e agregação
+
+.center[
+  No processo de agrupamento, os dados são agrupados com base em suas características. Para tal finalidade, o Pandas disponibiliza o método `groupby`.
+]
+
+.pull-left[
+  ### Agrupando dados
+  
+  
+  ```python
+  df = pd.DataFrame({
+    'nome': ['Tel1', 'Tel2', 'Tel3'],
+    'tipo': ['antigo', 'novo', 'novo']
+  })
+  
+  agrupado = df.groupby('tipo')
+  ```
+]
+
+.pull-right[
+  Tipo retornado
+  
+  
+  ```python
+  print(agrupado)
+  ## &lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f18f970b090&gt;
+  ```
+  
+  Recuperando os grupos gerados
+  
+  ```python
+  agrupado.groups
+  ## {'antigo': Int64Index([0], dtype='int64'), 'novo': Int64Index([1, 2], dtype='int64')}
+  ```
+]
+
+---
+class: title-slide
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+# .center[.font170[Agrupamento + Agregação = ] <span>&lt;i class="fas  fa-trophy faa-tada animated "&gt;&lt;/i&gt;</span>]
+
+---
+# Agrupamento + Agregação
+
+&lt;br&gt;&lt;br&gt;
+
+.center[
+  ![](images/python/split-apply-combine.png)
+]
+
+---
+# Agrupamento + Agregação
+
+.center[
+  .content-box-gray[.bold[Exemplo de utilização de agrupamento com agregação]]
+]
+
+.pull-left[
+  
+  ```python
+  df = pd.DataFrame({
+    'nome': ['ana', 'maria', 'felipe', 'joão'],
+    'idade': [19, 19, 20, 20],
+    'dinheiro': [150, 150, 100, 100]
+  })
+  ```
+  
+  Agrupando pela `idade` e contando os elementos
+  
+  
+  ```python
+  # Esta é a etapa de divir, da definição do Hedley
+  agrupado = df.groupby('idade')
+  
+  ## Esta é a etapa de aplicação e junçaõ, definida pelo Hedley
+  print(agrupado.count())
+  ##        nome  dinheiro
+  ## idade                
+  ## 19        2         2
+  ## 20        2         2
+  ```
+]
+
+.pull-right[
+  Média de dinheiro por idade
+  
+  
+  ```python
+  agrupado['dinheiro'].mean()
+  ## idade
+  ## 19    150
+  ## 20    100
+  ## Name: dinheiro, dtype: int64
+  ```
+  
+  A idade que recebe mais dinheiro
+  
+  
+  ```python
+  agrupado['dinheiro'].sum()
+  ## idade
+  ## 19    300
+  ## 20    200
+  ## Name: dinheiro, dtype: int64
+  ```
+]
+
+---
+class: title-slide
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+# .center[.font170[Leitura de dados] <span>&lt;i class="fas  fa-book faa-vertical animated "&gt;&lt;/i&gt;</span>]
+
+---
+# Leitura de dados
+
+.center[
+  Com o Pandas é possível não só realizar o processamento dos dados, como também todo seu processo de leitura e escrita. A biblioteca suporta diversos formatos, sendo alguns deles `CSV`, `JSON` e `Excel`.
+]
+
+.pull-left[
+  ### Carregando um dado CSV
+  
+  ```python
+  data = pd.read_csv('data/titanic.csv', sep = ',')
+  ```
+  
+  Os dados carregados convergem para as `Series` e `DataFrames`.
+  
+  
+  ```python
+  type(data)
+  ## &lt;class 'pandas.core.frame.DataFrame'&gt;
+  ```
+]
+
+.pull-right[
+  ### Salvando os dados em CSV
+  
+  
+  ```python
+  data.to_csv('data/resultados.csv')
+  ```
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,5 +1,5 @@
 ---
-title: "Machine Learning with R"
+title: "Introdução à análise de dados com R e Python"
 author: "Felipe Carvalho & Felipe Menino"
 date: "2020-01-28"
 output:
@@ -48,12 +48,11 @@ reticulate::use_python("/home/felipe/anaconda3/bin/python")
 ```
 
 class: title-slide   
-<a href="https://github.com/koalaverse/AnalyticsSummit19"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+<a href="https://github.com/dataAt/intro-analise-de-dados-apresentacao"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
 
 <br><br><br><br>
 # .font200[Introdução à análise de dados com Python] 
-<!-- `r anicon::faa("r-project", animate = 'pulse', speed = 'slow', color = 'steelblue')`] -->
 
 ### Felipe Carvalho & Felipe Menino
 ### Janeiro 2020
@@ -87,7 +86,7 @@ class: title-slide
 
 <br><br><br>
 .font130[
-Python é uma linguagem multiparadigma, com uma sintaxe muito simples que permite ao programador focar no problema e deixar de lado questões da linguagem. Esta é uma linguagem amplamente utilizada em diversos áreas, por conta principalmente das milhares de bibliotecas que a linguagem possui, todas elas distribuidas pela comunidade incrível que a linguagem possui `r anicon::faa("heart", "pulse")`
+Python é uma linguagem multiparadigma, com uma sintaxe muito simples que permite ao programador focar no problema e deixar de lado questões da linguagem.
 ]
 
 <br><br>
@@ -258,7 +257,7 @@ class: title-slide
   print(series)
   ```
   
-  ### Criando com índice
+  ### Series com índice
   ```{python}
   series = pd.Series([1, 2], [9, 'ultimo'])
   print(series)
@@ -307,14 +306,14 @@ class: title-slide
 ]
 
 .pull-left[
-  Criando um DataFrame básico
+  #### Criando um DataFrame básico
   
   ```{python}
   df = pd.DataFrame([[1, 2, 3, 4], [11, 12, 13, 14]])
   print(df)
   ```
   
-  DataFrame com índice
+  #### DataFrame com índice
   ```{python}
   df = pd.DataFrame([[1, 2, 3, 4], [11, 12, 13, 14]], 
                       index = ['um', 'dois'])
@@ -323,7 +322,7 @@ class: title-slide
 ]
 
 .pull-right[
-  Índices e colunas
+  #### Índices e colunas
   
   ```{python}
   df = pd.DataFrame([[1, 2, 3, 4], [11, 12, 13, 14]], 
@@ -332,7 +331,7 @@ class: title-slide
   print(df)
   ```
   
-  Recuperando valores
+  #### Recuperando valores
   
   .pull-left[
     ```{python}
@@ -358,7 +357,7 @@ class: title-slide
 ---
 # Manipulação básica de dados com Pandas
 
-O pandas fornece uma infinidade de métodos para a seleção e filtro dos dados. Alguns podem ser bastante úteis durente o processo de análise de dados com Python.
+O pandas fornece uma infinidade de métodos para a seleção e filtro dos dados. Sendo todos úteis para o processo de análise de dados com Python
 
 --
 ## loc e iloc
@@ -478,7 +477,7 @@ Para iniciar, os métodos `loc` e `iloc` podem ser bastante utilizados para tais
 # Filtro de dados
 
 .center[
-  .content-box-gray[.bold[Dica: Filtragem e substituição]]
+  .content-box-gray[.bold[Dica: Filtragem e substituição (where)]]
 ]
 
 <br>
@@ -498,7 +497,7 @@ df.where(df['valor'] > 10, -99)
 
 <br><br><br>
 .font130[
-Muitas vezes queremos agrupar nossos dados, seja para facilitar a manipulação, o entendimento das relações dos dados, ou mesmo para aplicar funções sobre cada um dos grupos e obter informações a partir disto. Para isto utilizamos os agrupamentos e agregações.
+Agrupar dados ajuda na análise dos dados, é através deste processo que técnicas de análise exploratória de dados e estatística descritiva podem ser feitos. Para tais atividades, utilizam-se os agrupamentos e agregações.
 ]
 
 ---
@@ -511,7 +510,7 @@ As agregações apresentam diversas definição, a utiliza aqui será "São oper
 
 <br>
 
-.content-box-gray[.bold[Algumas funções de agregação]]
+.content-box-gray[.bold[Algumas funções de agregação]] `r anicon::faa("hand-point-left", animate="horizontal")`
 
 - sum();
 - max();
@@ -579,7 +578,7 @@ As agregações apresentam diversas definição, a utiliza aqui será "São oper
 ]
 
 .pull-right[
-  Verificando o tipo de dado retornado
+  Tipo retornado
   
   ```{python}
   print(agrupado)
