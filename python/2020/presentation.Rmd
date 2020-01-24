@@ -62,10 +62,8 @@ class: title-slide
 
 <br><br><br>
 
---
 ### Introdução a linguagem Python `r anicon::faa("glass-martini", animate = "pulse", anitype="hover")`
 
---
 ### Pandas `r anicon::faa("smile", animate = "pulse", anitype="hover")`
 
 ---
@@ -129,7 +127,7 @@ class: title-slide
 ---
 # Estrutura de controle de decisão
 
-As estruturas de controle de decisão, facilitam o controle do fluxo que nosso código está tomando, assim, representam parte importante para a utilização da linguagem.
+As estruturas de controle de decisão facilitam o controle do fluxo que o código está tomando, representando parte importante da linguagem
 
 .pull-left[
 ### if
@@ -167,7 +165,7 @@ elif(1 > 0.5):
 ---
 # Estrutura de repetição
 
-Essas são estruturas que permitem a criaçaõ de loops, havendo facilmente repetição de um certo bloco de código diversas vezes, e ainda, permite iterações em estruturas de dados como as listas
+Essas são estruturas que permitem a criação de laços, havendo facilmente repetição de um certo bloco de código, e ainda, permite iterações em estruturas de dados como as listas
 
 .pull-left[
   ### while
@@ -486,7 +484,7 @@ df_2 = df.copy()
 df_2[df_2['valor'] > 10] = -99; print(df_2)
 ```
 
-Uma forma mais elegante, trabalhando com o `where`
+Uma forma mais elegante, trabalhando com `where`
 ```{python}
 df.where(df['valor'] > 10, -99)
 ```
@@ -655,7 +653,7 @@ class: title-slide
 # Leitura de dados
 
 .center[
-  Com o Pandas é possível não só realizar o processamento dos dados, como também todo o processo de leitura e escrita. A biblioteca suporta diversos formatos, sendo alguns deles `CSV`, `JSON` e `Excel`.
+  Com o Pandas é possível não só realizar o processamento dos dados, mas também a leitura e escrita destes. A biblioteca suporta diversos formatos, sendo alguns deles `CSV`, `JSON` e `Excel`.
 ]
 
 .pull-left[
