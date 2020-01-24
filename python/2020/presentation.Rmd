@@ -61,9 +61,9 @@ class: title-slide
 
 <br><br><br>
 
-### Introdução à linguagem Python `r anicon::faa("glass-martini", animate = "pulse", anitype="hover")`
+- .font120[Introdução à linguagem Python `r anicon::faa("python", animate = "pulse", anitype="hover")`]
 
-### Pandas `r anicon::faa("smile", animate = "pulse", anitype="hover")`
+  - .font120[Pandas `r anicon::faa("smile", animate = "pulse", anitype="hover")`]
 
 ---
 ### Material

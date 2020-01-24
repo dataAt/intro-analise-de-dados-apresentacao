@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Introdução ao R</title>
     <meta charset="utf-8" />
@@ -12,6 +12,8 @@
   </head>
   <body>
     <textarea id="source">
+
+
 
 
 
@@ -687,10 +689,7 @@ class: title-slide
 ##   birth_year = col_double(),
 ##   gender = col_character(),
 ##   homeworld = col_character(),
-##   species = col_character(),
-##   films = col_logical(),
-##   vehicles = col_character(),
-##   starships = col_character()
+##   species = col_character()
 ## )
 ```
 
@@ -736,10 +735,12 @@ Para facilitar a seleção dos atributos e tirar .bold[.blue[$]], vamos usar o .
     dplyr::select(star_wars, name, hair_color)
   
   head(selecao, 3)
-## # A tibble: 1 x 2
+## # A tibble: 3 x 2
 ##   name           hair_color
 ##   &lt;chr&gt;          &lt;chr&gt;     
-## 1 Luke Skywalker blond
+## 1 Luke Skywalker blond     
+## 2 C-3PO          &lt;NA&gt;      
+## 3 R2-D2          &lt;NA&gt;
 ```
 ]
 
@@ -754,11 +755,11 @@ Para filtrar por um valor específico, usamos .bold[.blue[filter()]]:
     dplyr::filter(star_wars, species == "Droid" &amp; skin_color == "gold")
   
   filtro
-## # A tibble: 0 x 13
-## # … with 13 variables: name &lt;chr&gt;, height &lt;dbl&gt;, mass &lt;dbl&gt;, hair_color &lt;chr&gt;,
-## #   skin_color &lt;chr&gt;, eye_color &lt;chr&gt;, birth_year &lt;dbl&gt;, gender &lt;chr&gt;,
-## #   homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;lgl&gt;, vehicles &lt;chr&gt;,
-## #   starships &lt;chr&gt;
+## # A tibble: 1 x 10
+##   name  height  mass hair_color skin_color eye_color birth_year gender homeworld
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    
+## 1 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112 &lt;NA&gt;   Tatooine 
+## # … with 1 more variable: species &lt;chr&gt;
 ```
 ]
 
@@ -774,13 +775,14 @@ Para criar grupos usamos a função .bold[.blue[group_by()]]
     dplyr::group_by(star_wars, species)
   
   head(agrupamento, 3)
-## # A tibble: 1 x 13
-## # Groups:   species [1]
+## # A tibble: 3 x 10
+## # Groups:   species [2]
 ##   name  height  mass hair_color skin_color eye_color birth_year gender homeworld
 ##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    
 ## 1 Luke…    172    77 blond      fair       blue              19 male   Tatooine 
-## # … with 4 more variables: species &lt;chr&gt;, films &lt;lgl&gt;, vehicles &lt;chr&gt;,
-## #   starships &lt;chr&gt;
+## 2 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112 &lt;NA&gt;   Tatooine 
+## 3 R2-D2     96    32 &lt;NA&gt;       white, bl… red               33 &lt;NA&gt;   Naboo    
+## # … with 1 more variable: species &lt;chr&gt;
 ```
 ]
 
@@ -796,10 +798,12 @@ Para criarmos uma agregação do nosso agrupamento, usamos .bold[.blue[summarise
     dplyr::arrange(media_grupo, desc(media))
 
   head(media_grupo_order, 3)
-## # A tibble: 1 x 2
-##   species media
-##   &lt;chr&gt;   &lt;dbl&gt;
-## 1 Human     172
+## # A tibble: 3 x 2
+##   species  media
+##   &lt;chr&gt;    &lt;dbl&gt;
+## 1 Quermian   264
+## 2 Wookiee    231
+## 3 Kaminoan   221
 ```
 ]
 ---
@@ -814,12 +818,13 @@ Para criar/transformar novos atributos, usa-se .bold[.blue[mutate()]]:
   dplyr::mutate(star_wars, height = height/100)
   
   head(star_wars, 3)
-## # A tibble: 1 x 13
+## # A tibble: 3 x 10
 ##   name  height  mass hair_color skin_color eye_color birth_year gender homeworld
 ##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    
 ## 1 Luke…   1.72    77 blond      fair       blue              19 male   Tatooine 
-## # … with 4 more variables: species &lt;chr&gt;, films &lt;lgl&gt;, vehicles &lt;chr&gt;,
-## #   starships &lt;chr&gt;
+## 2 C-3PO   1.67    75 &lt;NA&gt;       gold       yellow           112 &lt;NA&gt;   Tatooine 
+## 3 R2-D2   0.96    32 &lt;NA&gt;       white, bl… red               33 &lt;NA&gt;   Naboo    
+## # … with 1 more variable: species &lt;chr&gt;
 ```
 ---
 
@@ -850,10 +855,12 @@ Para criar/transformar novos atributos, usa-se .bold[.blue[mutate()]]:
 
 
 ```
-## # A tibble: 1 x 2
-##   species media
-##   &lt;chr&gt;   &lt;dbl&gt;
-## 1 Human    1.72
+## # A tibble: 3 x 2
+##   species    media
+##   &lt;chr&gt;      &lt;dbl&gt;
+## 1 Wookiee     2.31
+## 2 Chagrian    1.96
+## 3 Tholothian  1.84
 ```
 
 ---
@@ -879,10 +886,11 @@ O .bold[.blue[pipe]] passa a resposta da primeira atribuição para o primeiro p
 
 ```r
      head(media_grupo, 2)
-## # A tibble: 1 x 2
-##   species media
-##   &lt;chr&gt;   &lt;dbl&gt;
-## 1 Human    1.72
+## # A tibble: 2 x 2
+##   species  media
+##   &lt;chr&gt;    &lt;dbl&gt;
+## 1 Wookiee   2.31
+## 2 Chagrian  1.96
 ```
 
 ---
@@ -1095,23 +1103,10 @@ Qual o ano com a maior média de temperatura registrada?]]
 
 &lt;!-- Fim da parte do R--&gt;
 
-&lt;!-- Inicio da parte de Python--&gt;
-
-
 ---
 
-class: title-slide
-&lt;br&gt;&lt;br&gt;
+&lt;!-- ##### Inicio da parte de visualização ##### --&gt;
 
-.center.font300[Introdução ao Python]
----
-
-&lt;!-- Fim da parte de Python--&gt;
-
-&lt;!-- Inicio da parte de visualização--&gt;
-
-
----
 
 class: title-slide
 
@@ -1122,6 +1117,21 @@ class: title-slide
 # Pacote de visualização - .bold[ggplot2]
 
 ## .bold[.blue[ggplot2]] é um pacote R criado pelo Hadley Wickham, a sintaxe se baseia na obra .bold[The Grammar of Graphics]. O mapeamento dos atributos é chamado de .bold[aesthetics]. O esqueleto pode ser escrito assim:
+
+
+.pull-left[
+
+.center.font100[The Grammar of Graphics]
+
+&lt;img src="./img/2_r_img/ggplot-2.png" width="70%" height="70%" style="display: block; margin: auto;" /&gt;
+
+]
+
+--
+
+.pull-right[
+
+.center.font100[Sintaxe do ggplot2]
 
 
 
@@ -1135,7 +1145,7 @@ class: title-slide
     &lt;FACET_FUNCTION&gt;
 ```
 
-
+]
 
 ---
 # Mapeamento estético
@@ -1151,10 +1161,124 @@ class: title-slide
 
 .center.font60[Fundamentals of Data Visualization - Claus O. Wilke]
 ]
+---
+# Exemplo - Gráfico de dispersão
 
-# Exemplos
+
+.pull-left[
+
+.center.font100[Mapeamento estético]
+
+
+```r
+  library(ggplot2)
+
+  ggplot(iris, aes(x = Petal.Width, y = Petal.Length, color = Species))
+```
+
+&lt;img src="r-apresentacao_files/figure-html/unnamed-chunk-56-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+.pull-right[
+
+.center.font100[Objeto geométrico]
+
+
+```r
+  ggplot(iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) + 
+  geom_point() 
+```
+
+&lt;img src="r-apresentacao_files/figure-html/unnamed-chunk-57-1.png" style="display: block; margin: auto;" /&gt;
+]
 
 ---
+# Exemplo - Gráfico de colunas
+
+.pull-left[
+
+.center.font100[Mapeamento estético e objeto geométrico]
+
+
+```r
+ggplot(data = diamonds) + 
+  stat_count(mapping = aes(x = cut))
+```
+
+&lt;img src="r-apresentacao_files/figure-html/unnamed-chunk-58-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+--
+.pull-right[
+.center.font100[Sistema de coordenadas]
+
+
+```r
+ggplot(data = diamonds) + 
+  stat_count(mapping = aes(x = cut)) + 
+  coord_flip()
+```
+
+&lt;img src="r-apresentacao_files/figure-html/unnamed-chunk-59-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+# Exemplo - Gráfico de coordenadas paralelas
+
+.pull-left[
+
+
+```r
+  iris %&gt;% dplyr::mutate(id = 1:nrow(iris)) %&gt;% 
+    tidyr::gather(atributos, valores, -Species, -id) %&gt;% 
+    ggplot(., aes(x = atributos, y = valores, color = Species, group = id)) + 
+  geom_line(size=0.55) +
+  labs(x       = "Atributos",
+       y       = "Valores", 
+       title   = "Coordenadas Paralelas - Iris",
+       caption = "Fonte: dataAt") + 
+    theme_bw() +
+    theme(plot.title = element_text(hjust= 0.5, margin = margin(b = 7))) 
+```
+
+]
+
+
+.pull-right[
+
+&lt;img src="r-apresentacao_files/figure-html/unnamed-chunk-61-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+---
+# Exemplo - Gráfico de coordenadas paralelas
+
+.pull-left[
+
+```r
+  iris %&gt;% dplyr::mutate(id = 1:nrow(iris)) %&gt;%
+    tidyr::gather(atributos, valores, -Species, -id) %&gt;%
+    ggplot(., aes(x = atributos, y = valores, color = Species, group = id)) + 
+    geom_line(size=0.55) +
+    facet_grid(~Species) + 
+    labs(x     = "Atributos",
+         y     = "Valores", 
+         title = "Coordenadas Paralelas - Iris") +
+    theme_bw() + 
+    theme(plot.title = element_text(hjust= 0.5, margin = margin(b = 7)), axis.text.x = element_text(angle = 90)) 
+```
+
+]
+
+
+.pull-right[
+&lt;img src="r-apresentacao_files/figure-html/unnamed-chunk-63-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
 
 ---
 class: title-slide
@@ -1162,12 +1286,44 @@ class: title-slide
 
 
 
-.center.font300[Obrigado!]
+.center.font300[Extensões do ggplot]
+---
+# Lemon package
+
+
+.pull-left[
+
+```r
+amost_diam %&gt;%
+  ggplot(., aes(x = as.factor(cut), y = price, color = clarity)) + 
+  geom_point(position=position_jitter(width=0.08)) + 
+  coord_flex_cart(bottom=brackets_horisontal(), left=capped_vertical('both')) +
+  theme_light() +
+  theme(panel.border=element_blank(), axis.line = element_line(),
+        plot.title = element_text(hjust= 0.5, margin = margin(b = 7))) + 
+  labs(x     = "Qualidade do corte",
+       y     = "Preço em US",
+       title = "Gráfico de bolhas - Diamonds")
+```
+]
+
+.pull-right[
+&lt;img src="r-apresentacao_files/figure-html/unnamed-chunk-66-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+
+
 ---
 
+class: title-slide
+&lt;br&gt;&lt;br&gt;
 
-&lt;!-- Fim da parte de vis
-ualização--&gt;
+
+
+.center.font300[Obrigado!]
+
+
+&lt;!-- Fim da parte de visualização--&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>
@@ -1215,7 +1371,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {

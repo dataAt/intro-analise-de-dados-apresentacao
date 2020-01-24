@@ -35,6 +35,12 @@ library(ggplot2)
 theme_set(theme_bw())
 ```
 
+```{r, echo=FALSE}
+# Configurando reticulate
+library(reticulate)
+reticulate::use_python("/home/felipe/anaconda3/bin/python")
+```
+
 class: title-slide   
 <a href="https://github.com/dataAt/intro-analise-de-dados-apresentacao" class="github-corner" aria-label="Código no Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fff; color:#151513; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 
@@ -945,23 +951,10 @@ Qual o ano com a maior média de temperatura registrada?]]
 
 <!-- Fim da parte do R-->
 
-<!-- Inicio da parte de Python-->
-
-
 ---
 
-class: title-slide
-<br><br>
+<!-- ##### Inicio da parte de visualização ##### -->
 
-.center.font300[Introdução ao Python]
----
-
-<!-- Fim da parte de Python-->
-
-<!-- Inicio da parte de visualização-->
-
-
----
 
 class: title-slide
 
@@ -974,6 +967,23 @@ class: title-slide
 ## .bold[.blue[ggplot2]] é um pacote R criado pelo Hadley Wickham, a sintaxe se baseia na obra .bold[The Grammar of Graphics]. O mapeamento dos atributos é chamado de .bold[aesthetics]. O esqueleto pode ser escrito assim:
 
 
+.pull-left[
+
+.center.font100[The Grammar of Graphics]
+
+```{r fig612, echo=FALSE, out.height="70%", out.width="70%"}
+knitr::include_graphics("./img/2_r_img/ggplot-2.png")
+```
+
+]
+
+--
+
+.pull-right[
+
+.center.font100[Sintaxe do ggplot2]
+
+
 ```{r, eval=FALSE}
    ggplot(data = <DATA>, aes(<MAPPINGS>)) + 
     <GEOM_FUNCTION>(
@@ -984,7 +994,7 @@ class: title-slide
     <FACET_FUNCTION>
 ```
 
-
+]
 
 ---
 # Mapeamento estético
@@ -1004,10 +1014,132 @@ knitr::include_graphics("./img/2_r_img/ggplot.png")
 
 .center.font60[Fundamentals of Data Visualization - Claus O. Wilke]
 ]
+---
+# Exemplo - Gráfico de dispersão
 
-# Exemplos
+
+.pull-left[
+
+.center.font100[Mapeamento estético]
+
+```{r, fig.height=5, fig.width=7}
+  library(ggplot2)
+
+  ggplot(iris, aes(x = Petal.Width, y = Petal.Length, color = Species))
+```
+]
+
+--
+
+.pull-right[
+
+.center.font100[Objeto geométrico]
+
+```{r, fig.height=5, fig.width=7}
+  ggplot(iris, aes(x = Petal.Width, y = Petal.Length, color = Species)) + 
+  geom_point() 
+```
+]
 
 ---
+# Exemplo - Gráfico de colunas
+
+.pull-left[
+
+.center.font100[Mapeamento estético e objeto geométrico]
+
+```{r, fig.height=5, fig.width=7}
+ggplot(data = diamonds) + 
+  stat_count(mapping = aes(x = cut))
+```
+
+]
+
+--
+.pull-right[
+.center.font100[Sistema de coordenadas]
+
+```{r, fig.height=5, fig.width=7}
+ggplot(data = diamonds) + 
+  stat_count(mapping = aes(x = cut)) + 
+  coord_flip()
+```
+
+]
+
+---
+# Exemplo - Gráfico de coordenadas paralelas
+
+.pull-left[
+
+```{r, fig.height=4, fig.width=7, eval=FALSE}
+  iris %>% dplyr::mutate(id = 1:nrow(iris)) %>% 
+    tidyr::gather(atributos, valores, -Species, -id) %>% 
+    ggplot(., aes(x = atributos, y = valores, color = Species, group = id)) + 
+  geom_line(size=0.55) +
+  labs(x       = "Atributos",
+       y       = "Valores", 
+       title   = "Coordenadas Paralelas - Iris",
+       caption = "Fonte: dataAt") + 
+    theme_bw() +
+    theme(plot.title = element_text(hjust= 0.5, margin = margin(b = 7))) 
+```
+
+]
+
+
+.pull-right[
+
+```{r, fig.height=6, fig.width=8, eval=TRUE, echo=FALSE}
+  iris %>% dplyr::mutate(id = 1:nrow(iris)) %>% 
+    tidyr::gather(atributos, valores, -Species, -id) %>% 
+    ggplot(., aes(x = atributos, y = valores, color = Species, group = id)) + 
+  geom_line(size=0.55) +
+  labs(x       = "Atributos",
+       y       = "Valores", 
+       title   = "Coordenadas Paralelas - Iris",
+       caption = "Fonte: dataAt") + 
+    theme_bw() +
+    theme(plot.title = element_text(hjust= 0.5, margin = margin(b = 7))) 
+```
+
+]
+---
+# Exemplo - Gráfico de coordenadas paralelas
+
+.pull-left[
+```{r, fig.height=6, fig.width=7, eval=FALSE}
+  iris %>% dplyr::mutate(id = 1:nrow(iris)) %>%
+    tidyr::gather(atributos, valores, -Species, -id) %>%
+    ggplot(., aes(x = atributos, y = valores, color = Species, group = id)) + 
+    geom_line(size=0.55) +
+    facet_grid(~Species) + 
+    labs(x     = "Atributos",
+         y     = "Valores", 
+         title = "Coordenadas Paralelas - Iris") +
+    theme_bw() + 
+    theme(plot.title = element_text(hjust= 0.5, margin = margin(b = 7)), axis.text.x = element_text(angle = 90)) 
+```
+
+]
+
+
+.pull-right[
+```{r, fig.height=6, fig.width=8, echo=FALSE, eval=TRUE}
+  iris %>% dplyr::mutate(id = 1:nrow(iris)) %>%
+    tidyr::gather(atributos, valores, -Species, -id) %>%
+    ggplot(., aes(x = atributos, y = valores, color = Species, group = id)) + 
+    geom_line(size=0.55) +
+    facet_grid(~Species) + 
+    labs(x     = "Atributos",
+         y     = "Valores", 
+         title = "Coordenadas Paralelas - Iris") +
+    theme_bw() + 
+    theme(plot.title = element_text(hjust= 0.5, margin = margin(b = 7)), axis.text.x = element_text(angle = 90)) 
+```
+
+]
+
 
 ---
 class: title-slide
@@ -1015,10 +1147,60 @@ class: title-slide
 
 
 
-.center.font300[Obrigado!]
+.center.font300[Extensões do ggplot]
+---
+# Lemon package
+```{r, echo=FALSE}
+  library(lemon)
+  
+  # Definição da semente para garantir reprodutibilidade
+  set.seed(123)
+  
+  # amostragem dos dados
+  amost <- sample(c(1:nrow(diamonds)), nrow(diamonds)*0.1, replace = FALSE)
+  amost_diam <- diamonds[amost,]
+```
+
+.pull-left[
+```{r, fig.height=4, fig.width=7, eval=FALSE}
+amost_diam %>%
+  ggplot(., aes(x = as.factor(cut), y = price, color = clarity)) + 
+  geom_point(position=position_jitter(width=0.08)) + 
+  coord_flex_cart(bottom=brackets_horisontal(), left=capped_vertical('both')) +
+  theme_light() +
+  theme(panel.border=element_blank(), axis.line = element_line(),
+        plot.title = element_text(hjust= 0.5, margin = margin(b = 7))) + 
+  labs(x     = "Qualidade do corte",
+       y     = "Preço em US",
+       title = "Gráfico de bolhas - Diamonds")
+```
+]
+
+.pull-right[
+```{r, fig.height=6, fig.width=7, eval=TRUE, echo=FALSE}
+ amost_diam %>%
+    ggplot(., aes(x = as.factor(cut), y = price, color = clarity)) + 
+    geom_point(position=position_jitter(width=0.08)) + 
+    coord_flex_cart(bottom=brackets_horisontal(), left=capped_vertical('both')) +
+    theme_light() +
+    theme(panel.border=element_blank(), axis.line = element_line(),
+          plot.title = element_text(hjust= 0.5, margin = margin(b = 7))) + 
+    labs(x     = "Qualidade do corte",
+         y     = "Preço em US",
+         title = "Gráfico de bolhas - Diamonds")
+```
+]
+
+
+
 ---
 
+class: title-slide
+<br><br>
 
-<!-- Fim da parte de vis
-ualização-->
 
+
+.center.font300[Obrigado!]
+
+
+<!-- Fim da parte de visualização-->

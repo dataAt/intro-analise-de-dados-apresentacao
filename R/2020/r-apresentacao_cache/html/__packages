@@ -3,3 +3,5 @@ ggplot2
 readr
 dplyr
 magrittr
+lemon
+reticulate
