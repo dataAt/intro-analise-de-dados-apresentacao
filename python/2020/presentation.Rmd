@@ -1,0 +1,682 @@
+---
+title: "Machine Learning with R"
+author: "Felipe Carvalho & Felipe Menino"
+date: "2020-01-28"
+output:
+  xaringan::moon_reader:
+    css: ["scrollable.css", "mtheme_max.css", "fonts_mtheme_max.css"]
+    self_contained: false
+    lib_dir: libs
+    chakra: libs/remark-latest.min.js
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    seal: false  
+---
+
+```{r setup, include=FALSE, cache=FALSE}
+# set working directory to docs folder
+# setwd(here::here("docs"))
+
+# Set global R options
+options(htmltools.dir.version = FALSE, servr.daemon = TRUE)
+
+# Set global knitr chunk options
+knitr::opts_chunk$set(
+  fig.align = "center", 
+  cache = TRUE,
+  error = FALSE,
+  message = FALSE, 
+  warning = FALSE, 
+  collapse = TRUE 
+)
+
+library(tidyverse)
+# This is good for getting the ggplot background consistent with
+# the html background color
+library(ggplot2)
+thm <- theme_bw()
+theme_set(thm)
+```
+
+```{r, echo=FALSE}
+# Configurando reticulate
+library(reticulate)
+reticulate::use_python("/home/felipe/anaconda3/bin/python")
+```
+
+class: title-slide   
+<a href="https://github.com/koalaverse/AnalyticsSummit19"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+
+<br><br><br><br>
+# .font200[Introdução à análise de dados com Python] 
+<!-- `r anicon::faa("r-project", animate = 'pulse', speed = 'slow', color = 'steelblue')`] -->
+
+### Felipe Carvalho & Felipe Menino
+### Janeiro 2020
+
+---
+# Agenda
+
+<br><br><br>
+
+--
+### Introdução a linguagem Python `r anicon::faa("glass-martini", animate = "pulse", anitype="hover")`
+
+--
+### Pandas `r anicon::faa("smile", animate = "pulse", anitype="hover")`
+
+---
+### Material
+
+- `r anicon::faa("github", animate = "pulse", anitype="hover", rtext=" GitHub")`: [https://github.com/dataAt/introducao-analise-de-dados](https://github.com/dataAt/introducao-analise-de-dados)
+
+   - `r anicon::faa("slideshare", animate = "pulse", anitype="hover", rtext=" Slides")`
+
+   - `r anicon::faa("code", animate = "pulse", anitype="hover", rtext=" Exercícios")`
+
+   - `r anicon::faa("database", animate = "pulse", anitype="hover", rtext=" Dados")`
+   
+   - `r anicon::faa("slideshare", animate = "pulse", anitype="hover", rtext=" Material auxíliar")`
+
+---
+# Introdução a Python
+
+<br><br><br>
+.font130[
+Python é uma linguagem multiparadigma, com uma sintaxe muito simples que permite ao programador focar no problema e deixar de lado questões da linguagem. Esta é uma linguagem amplamente utilizada em diversos áreas, por conta principalmente das milhares de bibliotecas que a linguagem possui, todas elas distribuidas pela comunidade incrível que a linguagem possui `r anicon::faa("heart", "pulse")`
+]
+
+<br><br>
+
+---
+class: title-slide
+
+<br><br><br><br>
+# .font170[Comandos básicos da linguagem] 
+
+
+---
+# Comandos básicos da linguagem
+
+.pull-left[
+
+  ### Declarações e manipulações de variáveis
+
+  ```{python}
+  inteiro = 123
+  flutoante = 1.1234
+  booleano = True
+  lista = [1, 2, 3, 4, 5]
+  dicionario = {'chave': 'valor'}
+  string = 'Um texto legal'
+  ```
+]
+
+.pull-right[
+  ### Manipulação simples!
+
+  ```{python}
+  dicionario['chave']
+  lista[0:3] 
+  flutoante += 1 
+  # 1.1234
+  ```
+]
+
+---
+# Estrutura de controle de decisão
+
+As estruturas de controle de decisão, facilitam o controle do fluxo que nosso código está tomando, assim, representam parte importante para a utilização da linguagem.
+
+.pull-left[
+### if
+
+```{python}
+if (2 > 1):
+  print("Dois é maior que um!")
+```
+
+### else
+
+```{python}
+if (2 < 1):
+  print('Dois é menor que um')
+else:
+  print('Dois é maior que um')
+```
+
+]
+
+.pull-right[
+
+<br>
+
+### elif
+
+```{python}
+if (1 > 1):
+  print('Um é maior que um')
+elif(1 > 0.5):
+  print('Um é maior que meio')
+```
+]
+
+---
+# Estrutura de repetição
+
+Essas são estruturas que permitem a criaçaõ de loops, havendo facilmente repetição de um certo bloco de código diversas vezes, e ainda, permite iterações em estruturas de dados como as listas
+
+.pull-left[
+  ### while
+  
+  ```{python}
+  i = 0
+  while i < 5:
+    print(i)
+    i += 1
+  ```
+]
+
+.pull-right[
+  ### for-each
+  .pull-left[
+    ```{python}
+    for i in [1, 2, 3]:
+      print(i)
+    ```
+  ]
+  .pull-right[
+    ```{python}
+    for i in range(0, 3):
+      print(i)
+    ```
+  ]
+]
+
+---
+class: title-slide
+
+<br><br><br><br>
+# .center[.font170[Pandas] `r emo::ji("panda_face")`]
+
+---
+# Pandas `r emo::ji("panda_face")`
+
+<br><br><br>
+.font130[
+Pandas é uma biblioteca open source, licenciada pelo BSD, que fornece estruturas de dados de alto desempenho e fáceis de usar e ferramentas de análise de dados para a linguagem de programação Python.
+]
+
+<br>
+
+.bold[Para importar a biblioteca, utilize:]
+
+```{python}
+import pandas as pd
+```
+
+---
+class: title-slide
+
+<br><br><br><br>
+# .font170[Estruturas de dados básicas do Pandas] 
+
+---
+# Estruturas de dados básicas do Pandas
+
+.pull-left[
+  ### Series
+  
+  - Estruturas unidimensionais;
+    - Dados armazenados em linhas
+  - Índice nas linhas;
+  - Suporte a qualquer tipo de dados;
+  - Exemplo de aplicação: Séries Temporais
+] 
+
+.pull-right[
+  <div style = "position:relative; left:160px; top: 60px;">
+    <img src="images/python/pd_series12.png"></img>
+  </div>
+]
+
+---
+# Estruturas de dados básicas do Pandas
+
+.center[
+.content-box-gray[.bold[Exemplos de utilização das Series]]
+]
+
+.pull-left[
+  ### Criando uma Series simples
+  ```{python}
+  series = pd.Series([1, 2]) 
+  print(series)
+  ```
+  
+  ### Criando com índice
+  ```{python}
+  series = pd.Series([1, 2], [9, 'ultimo'])
+  print(series)
+  ```
+]
+
+.pull-right[
+  ### Recuperando valores
+
+  A recuperação dos dados é muito parecida com as encontradas em dicionários (chave-valor).
+  
+  ```{python}
+  print(series[9])
+  print(series["ultimo"])
+  ```
+  
+  ```{python}
+  dicionario = {"Nome": "Maria"}
+  print(dicionario["Nome"])
+  ```
+]
+
+---
+# Estruturas de dados básicas do Pandas
+
+.pull-left[
+  ### DataFrames
+  
+  - Estruturas multidimensionais;
+    - Dados armazenados em linhas e colunas.
+  - Índice nas linhas e colunas;
+  - Suporte a qualquer tipo de dados (Um diferente para cada coluna).
+] 
+
+.pull-right[
+  <div style = "position:relative; right:30px; top: -20px;">
+    <img src="images/python/pd_df13.png"></img>
+  </div>
+]
+
+---
+# Estruturas de dados básicas do Pandas
+
+.center[
+  .content-box-gray[.bold[Exemplos de utilização dos DataFrames]]
+]
+
+.pull-left[
+  Criando um DataFrame básico
+  
+  ```{python}
+  df = pd.DataFrame([[1, 2, 3, 4], [11, 12, 13, 14]])
+  print(df)
+  ```
+  
+  DataFrame com índice
+  ```{python}
+  df = pd.DataFrame([[1, 2, 3, 4], [11, 12, 13, 14]], 
+                      index = ['um', 'dois'])
+  print(df)
+  ```
+]
+
+.pull-right[
+  Índices e colunas
+  
+  ```{python}
+  df = pd.DataFrame([[1, 2, 3, 4], [11, 12, 13, 14]], 
+                    index = ['um', 'dois'], 
+                    columns = ['a', 'b', 'c', 'd'])
+  print(df)
+  ```
+  
+  Recuperando valores
+  
+  .pull-left[
+    ```{python}
+    print(df['b']['um'])
+    ```
+  ]
+  
+  .pull-right[
+    ```{python}
+    print(df['a']['dois'])
+    ```
+  ]
+]
+
+---
+class: title-slide
+
+<br><br><br><br>
+# .font140[Manipulação básica de dados com Pandas] 
+
+<!-- No slide após este, inserir uma figura mostrando o processo de manipulação dos dados. (Pegando de uma tabela completa e entendendo somente uma parte, filtro e etc...) -->
+
+---
+# Manipulação básica de dados com Pandas
+
+O pandas fornece uma infinidade de métodos para a seleção e filtro dos dados. Alguns podem ser bastante úteis durente o processo de análise de dados com Python.
+
+--
+## loc e iloc
+
+Para iniciar, os métodos `loc` e `iloc` podem ser bastante utilizados para tais processos.
+
+<br><br>
+.center[
+  | DataFrame                                  | Series                  |
+  |--------------------------------------------|-------------------------|
+  | \.loc[Nome da linha,  Nome da coluna]   | \.loc[Posição da linha] |
+  | \.iloc[posição da linha, posição da coluna] | \.iloc[Nome da linha] |
+]
+
+---
+# Manipulação básica de dados com Pandas
+
+.center[
+  .content-box-gray[.bold[Exemplo de utilização do loc e iloc]]
+]
+
+.pull-left[
+  ### DataFrame de exemplo
+  
+  ```{python}
+  df = pd.DataFrame({
+    'nome': ['Joana', 'Maria', 'Josefa'],
+    'idade': [15, 18, 21],
+    'nota': [8, 9, 10]
+  }, index = [7, 8, 9])
+  ```
+
+  Recuperando a linha de `nome` 9 e a coluna de nome `idade`.
+  
+  ```{python}
+  print(df.loc[9, 'idade'])
+  ```
+]
+
+.pull-right[
+  É possível também recuperar mais de uma coluna ao mesmo tempo
+  
+  ```{python}
+  print(df.loc[9, ['nome', 'idade']])
+  ```
+  
+  Para recuperar as posições, utilize o `iloc`.
+  
+  ```{python}
+  print(df.iloc[2][['nome', 'idade']])
+  ```
+]
+
+---
+# Filtro de dados
+
+.center[
+  .font135[Para muitas partes da análise de dados, realizar filtros e buscas é de extrema importância. No Pandas há diversos métodos que podem ser aplicados.]
+]
+
+.pull-left[
+  #### DataFrame de exemplo
+  
+  ```{python}
+  df = pd.DataFrame({
+    'nome': ['A1', 'A2', 'A3', 'A4'],
+    'valor': [5, 12, 8, 30]
+  })
+  ```
+  
+  #### filter
+
+  Filtra os dados pelo nome da coluna
+  
+  ```{python}
+  df.filter(items = ['A1', 'A4'])
+  ```
+]
+
+.pull-right[
+  Filtrando os dados por uma coluna que contenha no nome a palavra `lo`.
+  
+  ```{python}
+  df.filter(like='lo', axis = 1)
+  ```
+]
+
+---
+# Filtro de dados
+
+.pull-left[
+  #### Indexação booleana
+
+  É possível fazer o filtro de dados com um índice booleano
+
+  ```{python}
+  df[[False, True, False, True]]
+  ```
+  
+  A indexação pode ser feita de forma manual
+  ```{python}
+  df[df['valor'] > 10]
+  ```
+]
+  
+.pull-right[
+  
+  <br><br><br><br>
+  
+  Criando expressões mais `complexas`
+  ```{python}
+  df[(df['valor'] >= 5) & (df['valor'] < 12)]
+  ```
+]
+
+---
+# Filtro de dados
+
+.center[
+  .content-box-gray[.bold[Dica: Filtragem e substituição]]
+]
+
+<br>
+
+```{python}
+df_2 = df.copy()
+df_2[df_2['valor'] > 10] = -99; print(df_2)
+```
+
+Uma forma mais elegante, trabalhando com o `where`
+```{python}
+df.where(df['valor'] > 10, -99)
+```
+
+---
+# Agrupamento e agregação
+
+<br><br><br>
+.font130[
+Muitas vezes queremos agrupar nossos dados, seja para facilitar a manipulação, o entendimento das relações dos dados, ou mesmo para aplicar funções sobre cada um dos grupos e obter informações a partir disto. Para isto utilizamos os agrupamentos e agregações.
+]
+
+---
+# Agrupamento e agregação
+
+<br>
+.font130[
+As agregações apresentam diversas definição, a utiliza aqui será "São operações aplicadas sobre os dados que resultam em um conjunto de valores, ou mesmo um valor escalar"
+]
+
+<br>
+
+.content-box-gray[.bold[Algumas funções de agregação]]
+
+- sum();
+- max();
+- min();
+- mean().
+
+---
+# Agrupamento e agregação
+
+.pull-left[
+  ### Agregando `Series`
+
+  ```{python}
+  s = pd.Series([1, 2, 3])
+  ```
+
+  Calculando o somatório
+  ```{python}
+  s.sum()
+  ```
+
+  Valor mínimo
+  ```{python}
+  s.min()
+  ```
+
+]
+
+.pull-right[
+  ### Agregando `DataFrames`
+
+  ```{python}
+  df = pd.DataFrame([[1, 2, 3], [4, 5, 6]])
+  ```
+
+  Calculando o valor médio
+  ```{python}
+  df.mean()
+  ```
+
+  Valor máximo
+  ```{python}
+  df.max()
+  ```
+]
+
+---
+# Agrupamento e agregação
+
+.center[
+  No processo de agrupamento, os dados são agrupados com base em suas características. Para tal finalidade, o Pandas disponibiliza o método `groupby`.
+]
+
+.pull-left[
+  ### Agrupando dados
+  
+  ```{python}
+  df = pd.DataFrame({
+    'nome': ['Tel1', 'Tel2', 'Tel3'],
+    'tipo': ['antigo', 'novo', 'novo']
+  })
+  
+  agrupado = df.groupby('tipo')
+  ```
+]
+
+.pull-right[
+  Verificando o tipo de dado retornado
+  
+  ```{python}
+  print(agrupado)
+  ```
+  
+  Recuperando os grupos gerados
+  ```{python}
+  agrupado.groups
+  ```
+]
+
+---
+class: title-slide
+
+<br><br><br><br>
+# .center[.font170[Agrupamento + Agregação = ] `r  anicon::faa("trophy", animate="tada")`]
+
+---
+# Agrupamento + Agregação
+
+<br><br>
+
+.center[
+  ![](images/python/split-apply-combine.png)
+]
+
+---
+# Agrupamento + Agregação
+
+.center[
+  .content-box-gray[.bold[Exemplo de utilização de agrupamento com agregação]]
+]
+
+.pull-left[
+  ```{python}
+  df = pd.DataFrame({
+    'nome': ['ana', 'maria', 'felipe', 'joão'],
+    'idade': [19, 19, 20, 20],
+    'dinheiro': [150, 150, 100, 100]
+  })
+  ```
+  
+  Agrupando pela `idade` e contando os elementos
+  
+  ```{python}
+  # Esta é a etapa de divir, da definição do Hedley
+  agrupado = df.groupby('idade')
+  
+  ## Esta é a etapa de aplicação e junçaõ, definida pelo Hedley
+  print(agrupado.count())
+  ```
+]
+
+.pull-right[
+  Média de dinheiro por idade
+  
+  ```{python}
+  agrupado['dinheiro'].mean()
+  ```
+  
+  A idade que recebe mais dinheiro
+  
+  ```{python}
+  agrupado['dinheiro'].sum()
+  ```
+]
+
+---
+class: title-slide
+
+<br><br><br><br>
+# .center[.font170[Leitura de dados] `r  anicon::faa("book", animate="vertical")`]
+
+---
+# Leitura de dados
+
+.center[
+  Com o Pandas é possível não só realizar o processamento dos dados, como também todo seu processo de leitura e escrita. A biblioteca suporta diversos formatos, sendo alguns deles `CSV`, `JSON` e `Excel`.
+]
+
+.pull-left[
+  ### Carregando um dado CSV
+  ```{python}
+  data = pd.read_csv('data/titanic.csv', sep = ',')
+  ```
+  
+  Os dados carregados convergem para as `Series` e `DataFrames`.
+  
+  ```{python}
+  type(data)
+  ```
+]
+
+.pull-right[
+  ### Salvando os dados em CSV
+  
+  ```{python}
+  data.to_csv('data/resultados.csv')
+  ```
+]
