@@ -103,7 +103,7 @@ class: title-slide
 
 .pull-left[
 
-  ### Declarações e manipulações de variáveis
+  ### Declarações de variáveis
 
   ```{python}
   inteiro = 123
@@ -457,14 +457,13 @@ Para iniciar, os métodos `loc` e `iloc` podem ser bastante utilizados para tais
   df[[False, True, False, True]]
   ```
   
-  A indexação pode ser feita de forma manual
+  A indexação pode ser feita de forma automática, com uma comparação lógica
   ```{python}
   df[df['valor'] > 10]
   ```
 ]
   
 .pull-right[
-  
   <br><br><br><br>
   
   Criando expressões mais `complexas`
@@ -505,7 +504,7 @@ Agrupar dados ajuda na análise dos dados, é através deste processo que técni
 
 <br>
 .font130[
-As agregações apresentam diversas definição, a utiliza aqui será "São operações aplicadas sobre os dados que resultam em um conjunto de valores, ou mesmo um valor escalar"
+Agregações são operações aplicadas sobre os dados que resultam em um conjunto de valores
 ]
 
 <br>
@@ -599,7 +598,7 @@ class: title-slide
 ---
 # Agrupamento + Agregação
 
-<br><br>
+<br>
 
 .center[
   ![](images/python/split-apply-combine.png)
@@ -656,7 +655,7 @@ class: title-slide
 # Leitura de dados
 
 .center[
-  Com o Pandas é possível não só realizar o processamento dos dados, como também todo seu processo de leitura e escrita. A biblioteca suporta diversos formatos, sendo alguns deles `CSV`, `JSON` e `Excel`.
+  Com o Pandas é possível não só realizar o processamento dos dados, como também todo o processo de leitura e escrita. A biblioteca suporta diversos formatos, sendo alguns deles `CSV`, `JSON` e `Excel`.
 ]
 
 .pull-left[
@@ -665,7 +664,7 @@ class: title-slide
   data = pd.read_csv('data/titanic.csv', sep = ',')
   ```
   
-  Os dados carregados convergem para as `Series` e `DataFrames`.
+  Os dados carregados convergem para `Series` e `DataFrames`.
   
   ```{python}
   type(data)
