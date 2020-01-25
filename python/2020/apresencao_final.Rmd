@@ -53,6 +53,7 @@ class: title-slide
 <br><br><br><br>
 # .font200[Introdução à análise de dados] 
 
+<br><br>
 ### Felipe Carvalho & Felipe Menino
 ### Janeiro 2020
 
@@ -62,26 +63,34 @@ class: title-slide
 <br><br><br>
 
 
-- .font120[Revisão da linguagem R `r anicon::faa("r-project", animate = 'float', speed = 'slow', color = 'steelblue')`]
+- .font120[Introdução];
 
-- .font120[Pacote Tidyverse `r anicon::cia("./images/2_r_img/logo_tidyverse_menor.png", animate = 'float', speed = 'slow')`]
+- .font120[Introdução ao R `r anicon::faa("r-project", animate = 'float', speed = 'slow', color = 'steelblue')`]
 
-- .font120[Introdução à linguagem Python `r anicon::faa("python", animate = "pulse", anitype="hover")`]
+  - .font120[Tidyverse `r anicon::cia("./images/2_r_img/logo_tidyverse_menor.png", animate = 'float', speed = 'slow')`]
 
-  - .font120[Pandas `r anicon::faa("smile", animate = "pulse", anitype="hover")`]
+- .font120[Introdução ao Python `r anicon::faa("python", animate = 'float', speed = 'slow')`]
+
+  - .font120[Pandas `r anicon::cia("./images/python/pandas-logo-menor.png",  animate = 'float', speed = 'slow')`]
 
 - .font120[Visualização de dados `r anicon::cia("./images/2_r_img/ggplot2_logo_menor.jpeg", animate = 'float', speed = 'slow')`]
 
 <br>
 
-<!-- Inicio da parte do R-->
-
 ---
-
 class: title-slide
 
 <br><br><br>
-# .center.font170[Revisão da linguagem .bold[R]]
+# .center.font170[Introdução]
+<!-- Introdução falar sobre a motivação de aprender R e Python. Falar da questão R VS Python e este cenário passando para R e Python -->
+<!-- No mundo real, problemas precisam ser resolvidos! -->
+<!-- Crescimento do cenário de 'data science' (Rever o que o Rafael fala em seu curso de introdução) -->
+
+---
+class: title-slide
+
+<br><br><br>
+# .center.font170[Introdução ao .bold[R]]
 ---
 
 # História do R
@@ -285,6 +294,7 @@ R 4 Data Science - Hadley
 
 # Hierarquia de tipo primitivos
 
+<!-- ToDo: Verificar melhor tamanho para este texto -->
 .pull-left[
 #### Os tipos mais fortes são:
 .blue[
@@ -421,6 +431,7 @@ typeof(v2)
 ```
 ]
 
+<!-- ToDo: A palavra `Data Frame` não é tudo junto ? Tipo `DataFrame` ? -->
 ---
 # Data Frame
 
@@ -482,7 +493,7 @@ Matriz composta por linhas e colunas, cujas colunas representam as variáveis (a
 
 O .bold[.blue[if]] do .bold[R] é bem parecido com o do .bold[Java]
 
-
+<!-- ToDo: Adicionar mais um exemplo aqui ? Ao invés de um único código corrido -->
 ```{r, fig.height=5}
   valor_a <- 21
   valor_b <- 42
@@ -509,6 +520,7 @@ O .bold[.blue[if]] do .bold[R] é bem parecido com o do .bold[Java]
 
 # Estrutura de repetição
 
+<!-- ToDo: Achei a forma com que isto está escrito um pouco estranha -->
 Por outro lado, o .bold[.blue[for]] do .bold[R] com a sintaxe do .bold[Python]
 
 
@@ -523,7 +535,9 @@ Por outro lado, o .bold[.blue[for]] do .bold[R] com a sintaxe do .bold[Python]
 
 class: title-slide
 
-# .center.font170[Pacote Tidyverse `r knitr::include_graphics("./images/2_r_img/logo_tidyverse.png")`]
+<br><br><br><br>
+# .center.font170[Tidyverse `r anicon::cia("./images/2_r_img/logo_tidyverse.png", animate = 'float', speed = 'slow')`]
+
 ---
 
 # Tidyverse
@@ -644,7 +658,7 @@ knitr::include_graphics("./images/2_r_img/data-science-process_3.png")
   
   # Leitura dos dados
   star_wars <- 
-    readr::read_csv(file = "~/R/starwars.csv")
+    readr::read_csv(file = "data/starwars.csv")
 ```
 
 ]
@@ -655,7 +669,7 @@ knitr::include_graphics("./images/2_r_img/data-science-process_3.png")
 ```{r, fig.height=5}
   # escrita 
   readr::write_csv(x = star_wars,
-                   path = "/home/felipe/dado.csv")
+                   path = "data/dado.csv")
 ```
 
 ]
@@ -747,7 +761,7 @@ Para criar/transformar novos atributos, usa-se .bold[.blue[mutate()]]:
 ---
 
 # Aplicando os métodos
-
+<!-- ToDo: Acho que estes códigos todos juntos não estão limpos, podia criar uns bloquinhos separados para um conjunto de dois códigos para cada bloco, ou algo assim tlg -->
 ```{r}
   # Seleção
   selecao <- 
@@ -843,10 +857,13 @@ O .bold[.blue[pipe]] passa a resposta da primeira atribuição para o primeiro p
 ```
 ]
 
-
 ---
 
 # Exemplo de análise
+
+<!-- ToDo -->
+<!-- Acho legal colocar aqui, porém está meio fora de contexto, talvez deveria ir para o final -->
+<!-- Pode ate manter, dependendo da estratégia adotada para a apresentação, mas este gráfico é ok ficar aqui ? -->
 
 Dado de série temporal da [temperatura da superfície terrestre](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)
 
@@ -854,9 +871,7 @@ Dado de série temporal da [temperatura da superfície terrestre](https://www.ka
 knitr::include_graphics("./images/2_r_img/kaggle_img.png")
 ```
 
-
 ---
-
 # Exemplo de análise
 
 ```{r}
@@ -918,6 +933,8 @@ knitr::include_graphics("./images/2_r_img/kaggle_img.png")
   head(continent_temperature, 3)
 ```
 ]
+
+<!-- ToDo: Achei que estes textos ficaram muito grudados na parte de baixo da apresentação, o que acha ? -->
 --
 .center.font90[.bold[
 
@@ -1566,18 +1583,18 @@ class: title-slide
   ```
 ]
 
-<!-- ##### Fim da parte de Python #####   -->
 ---
-
 class: title-slide
-
-<!-- ##### Inicio da parte de visualização ##### -->
 
 <br><br>
 
-# .center.font170[Visualização de dados em .bold[R]]
+<!-- ToDo: Será que os exemplos desta seção estão simples de entender ? -->
+# .center[.font170[Visualização de dados]]
+
 ---
 # Pacote de visualização - .bold[ggplot2]
+
+<!-- ToDo: Nesta parte aqui pensei em colocar primeiro sobre o grammar of graphics e que suas descrições permitiram a implementação de vários pacotes, a citar o ggplot2 e o plotnine. Acho que isto deixa um gancho para falarmos dos pacotes e então fazer a apresentação da parte de visualização de dados  -->
 
 ## .bold[.blue[ggplot2]] é um pacote R criado pelo Hadley Wickham, a sintaxe se baseia na obra .bold[The Grammar of Graphics]. O mapeamento dos atributos é chamado de .bold[aesthetics]. O esqueleto pode ser escrito assim:
 
@@ -1682,6 +1699,7 @@ ggplot(data = diamonds) +
 
 ]
 
+<!-- ToDo: Falar de extensões é algo legal ? pq estamos utilizando o plotnine por conta da compatibilidade interessante que ele traz entre o ambiente R e Python, talvez as extensões quebrem um pouco esta ideia, o que acha ? -->
 ---
 # Exemplo - Gráfico de coordenadas paralelas
 

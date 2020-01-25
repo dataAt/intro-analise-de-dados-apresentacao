@@ -25,6 +25,7 @@ class: title-slide
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 # .font200[Introdução à análise de dados] 
 
+&lt;br&gt;&lt;br&gt;
 ### Felipe Carvalho &amp; Felipe Menino
 ### Janeiro 2020
 
@@ -34,22 +35,30 @@ class: title-slide
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 
-- .font120[Revisão da linguagem R <span>&lt;i class="fab  fa-r-project faa-float animated faa-slow " style=" color:steelblue;"&gt;&lt;/i&gt;</span>]
+- .font120[Introdução];
 
-- .font120[Pacote Tidyverse <span class=" faa-float animated faa-slow " style=" display: -moz-inline-stack; display: inline-block; transform: rotate(0deg);">&lt;img src="./images/2_r_img/logo_tidyverse_menor.png" style="height:1em; width:auto; "/&gt;</span>]
+- .font120[Introdução ao R <span>&lt;i class="fab  fa-r-project faa-float animated faa-slow " style=" color:steelblue;"&gt;&lt;/i&gt;</span>]
 
-- .font120[Introdução à linguagem Python <span>&lt;i class="fab  fa-python faa-pulse animated-hover "&gt;&lt;/i&gt;</span>]
+  - .font120[Tidyverse <span class=" faa-float animated faa-slow " style=" display: -moz-inline-stack; display: inline-block; transform: rotate(0deg);">&lt;img src="./images/2_r_img/logo_tidyverse_menor.png" style="height:1em; width:auto; "/&gt;</span>]
 
-  - .font120[Pandas <span>&lt;i class="fas  fa-smile faa-pulse animated-hover "&gt;&lt;/i&gt;</span>]
+- .font120[Introdução ao Python <span>&lt;i class="fab  fa-python faa-float animated faa-slow "&gt;&lt;/i&gt;</span>]
+
+  - .font120[Pandas <span class=" faa-float animated faa-slow " style=" display: -moz-inline-stack; display: inline-block; transform: rotate(0deg);">&lt;img src="./images/python/pandas-logo-menor.png" style="height:1em; width:auto; "/&gt;</span>]
 
 - .font120[Visualização de dados <span class=" faa-float animated faa-slow " style=" display: -moz-inline-stack; display: inline-block; transform: rotate(0deg);">&lt;img src="./images/2_r_img/ggplot2_logo_menor.jpeg" style="height:1em; width:auto; "/&gt;</span>]
 
 &lt;br&gt;
 
-&lt;!-- Inicio da parte do R--&gt;
+---
+class: title-slide
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+# .center.font170[Introdução]
+&lt;!-- Introdução falar sobre a motivação de aprender R e Python. Falar da questão R VS Python e este cenário passando para R e Python --&gt;
+&lt;!-- No mundo real, problemas precisam ser resolvidos! --&gt;
+&lt;!-- Crescimento do cenário de 'data science' (Rever o que o Rafael fala em seu curso de introdução) --&gt;
 
 ---
-
 class: title-slide
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
@@ -575,7 +584,9 @@ Por outro lado, o .bold[.blue[for]] do .bold[R] com a sintaxe do .bold[Python]
 
 class: title-slide
 
-# .center.font170[Pacote Tidyverse &lt;img src="./images/2_r_img/logo_tidyverse.png" width="373" style="display: block; margin: auto;" /&gt;]
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+# .center.font170[Tidyverse <span class=" faa-float animated faa-slow " style=" display: -moz-inline-stack; display: inline-block; transform: rotate(0deg);">&lt;img src="./images/2_r_img/logo_tidyverse.png" style="height:1em; width:auto; "/&gt;</span>]
+
 ---
 
 # Tidyverse
@@ -681,9 +692,10 @@ class: title-slide
   
   # Leitura dos dados
   star_wars &lt;- 
-    readr::read_csv(file = "~/R/starwars.csv")
+    readr::read_csv(file = "data/starwars.csv")
 ## Parsed with column specification:
 ## cols(
+##   X1 = col_double(),
 ##   name = col_character(),
 ##   height = col_double(),
 ##   mass = col_double(),
@@ -706,7 +718,7 @@ class: title-slide
 ```r
   # escrita 
   readr::write_csv(x = star_wars,
-                   path = "/home/felipe/dado.csv")
+                   path = "data/dado.csv")
 ```
 
 ]
@@ -759,11 +771,11 @@ Para filtrar por um valor específico, usamos .bold[.blue[filter()]]:
     dplyr::filter(star_wars, species == "Droid" &amp; skin_color == "gold")
   
   filtro
-## # A tibble: 1 x 10
-##   name  height  mass hair_color skin_color eye_color birth_year gender homeworld
-##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    
-## 1 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112 &lt;NA&gt;   Tatooine 
-## # … with 1 more variable: species &lt;chr&gt;
+## # A tibble: 1 x 11
+##      X1 name  height  mass hair_color skin_color eye_color birth_year gender
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+## 1     2 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112 &lt;NA&gt;  
+## # … with 2 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;
 ```
 ]
 
@@ -779,14 +791,14 @@ Para criar grupos usamos a função .bold[.blue[group_by()]]
     dplyr::group_by(star_wars, species)
   
   head(agrupamento, 3)
-## # A tibble: 3 x 10
+## # A tibble: 3 x 11
 ## # Groups:   species [2]
-##   name  height  mass hair_color skin_color eye_color birth_year gender homeworld
-##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    
-## 1 Luke…    172    77 blond      fair       blue              19 male   Tatooine 
-## 2 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112 &lt;NA&gt;   Tatooine 
-## 3 R2-D2     96    32 &lt;NA&gt;       white, bl… red               33 &lt;NA&gt;   Naboo    
-## # … with 1 more variable: species &lt;chr&gt;
+##      X1 name  height  mass hair_color skin_color eye_color birth_year gender
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+## 1     1 Luke…    172    77 blond      fair       blue              19 male  
+## 2     2 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112 &lt;NA&gt;  
+## 3     3 R2-D2     96    32 &lt;NA&gt;       white, bl… red               33 &lt;NA&gt;  
+## # … with 2 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;
 ```
 ]
 
@@ -822,13 +834,13 @@ Para criar/transformar novos atributos, usa-se .bold[.blue[mutate()]]:
   dplyr::mutate(star_wars, height = height/100)
   
   head(star_wars, 3)
-## # A tibble: 3 x 10
-##   name  height  mass hair_color skin_color eye_color birth_year gender homeworld
-##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    
-## 1 Luke…   1.72    77 blond      fair       blue              19 male   Tatooine 
-## 2 C-3PO   1.67    75 &lt;NA&gt;       gold       yellow           112 &lt;NA&gt;   Tatooine 
-## 3 R2-D2   0.96    32 &lt;NA&gt;       white, bl… red               33 &lt;NA&gt;   Naboo    
-## # … with 1 more variable: species &lt;chr&gt;
+## # A tibble: 3 x 11
+##      X1 name  height  mass hair_color skin_color eye_color birth_year gender
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+## 1     1 Luke…   1.72    77 blond      fair       blue              19 male  
+## 2     2 C-3PO   1.67    75 &lt;NA&gt;       gold       yellow           112 &lt;NA&gt;  
+## 3     3 R2-D2   0.96    32 &lt;NA&gt;       white, bl… red               33 &lt;NA&gt;  
+## # … with 2 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;
 ```
 ---
 
@@ -1733,7 +1745,7 @@ Agregações são operações aplicadas sobre os dados que resultam em um conjun
   
   ```python
   print(agrupado)
-  ## &lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7fe6082a3390&gt;
+  ## &lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f80dc0f7fd0&gt;
   ```
   
   Recuperando os grupos gerados
@@ -1854,16 +1866,13 @@ class: title-slide
   ```
 ]
 
-&lt;!-- ##### Fim da parte de Python #####   --&gt;
 ---
-
 class: title-slide
-
-&lt;!-- ##### Inicio da parte de visualização ##### --&gt;
 
 &lt;br&gt;&lt;br&gt;
 
-# .center.font170[Visualização de dados em .bold[R]]
+# .center[.font170[Visualização de dados]]
+
 ---
 # Pacote de visualização - .bold[ggplot2]
 
