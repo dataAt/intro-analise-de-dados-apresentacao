@@ -32,10 +32,8 @@ class: title-slide
 ---
 # Agenda
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;
 
-
-- .font120[Introdução];
 
 - .font120[Introdução ao R <span>&lt;i class="fab  fa-r-project faa-float animated faa-slow " style=" color:steelblue;"&gt;&lt;/i&gt;</span>]
 
@@ -53,16 +51,7 @@ class: title-slide
 class: title-slide
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
-# .center.font170[Introdução]
-&lt;!-- Introdução falar sobre a motivação de aprender R e Python. Falar da questão R VS Python e este cenário passando para R e Python --&gt;
-&lt;!-- No mundo real, problemas precisam ser resolvidos! --&gt;
-&lt;!-- Crescimento do cenário de 'data science' (Rever o que o Rafael fala em seu curso de introdução) --&gt;
-
----
-class: title-slide
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
-# .center.font170[Revisão da linguagem .bold[R]]
+# .center.font170[Introdução ao .bold[R]]
 ---
 
 # História do R
@@ -98,7 +87,7 @@ class: title-slide
 
 .pull-left[
 
-.center.font100[Declaração de variáveis]
+.bold.center.font100[Declaração de variáveis]
 
 
 ```r
@@ -117,7 +106,7 @@ class: title-slide
 
 --
 .pull-right[
-.center.font100[Acessando os valores]
+.bold.center.font100[Acessando os valores]
 
 
 ```r
@@ -138,7 +127,7 @@ class: title-slide
 
 .pull-left[
 
-.center.font100[Vetores]
+.bold.center.font100[Vetores]
 
 
 ```r
@@ -160,7 +149,7 @@ class: title-slide
 
 .pull-right[
 
-.center.font100[Listas]
+.bold.center.font100[Listas]
 
 
 ```r
@@ -270,7 +259,7 @@ Todos os tipos primitivos em R são tratados como vetores:
 
 .pull-right[
 
-.center.font100[Será lista?]
+.bold.center.font120[Será lista?]
 
 
 ```r
@@ -278,7 +267,7 @@ Todos os tipos primitivos em R são tratados como vetores:
 ## [1] TRUE
 ```
 
-.center.font100[Será vetor?]
+.bold.center.font100[Será vetor?]
 
 
 ```r
@@ -286,7 +275,7 @@ Todos os tipos primitivos em R são tratados como vetores:
 ## [1] TRUE
 ```
 
-.center.font100[Será vetor?]
+.bold.center.font100[Será vetor?]
 
 
 ```r
@@ -312,15 +301,14 @@ R 4 Data Science - Hadley
 # Hierarquia de tipo primitivos
 
 .pull-left[
-#### Os tipos mais fortes são:
+### Os tipos mais fortes são:
 .blue[
+.font120[
 1. character
 2. complex
 3. numeric
-4. logical]
-]
-
-
+4. logical
+]]]
 .pull-right[
 #### Conversão:
 
@@ -335,12 +323,13 @@ v1 &lt;- c(FALSE, "tipo", 5)
 # Hierarquia de tipo primitivos
 
 .pull-left[
-#### Os tipos mais fortes são:
+### Os tipos mais fortes são:
 .blue[
+.font120[
 1. character
 2. complex
 3. numeric
-4. logical]
+4. logical]]
 ]
 
 
@@ -361,12 +350,13 @@ v1
 # Hierarquia de tipo primitivos
 
 .pull-left[
-#### Os tipos mais fortes são:
+### Os tipos mais fortes são:
 .blue[
+.font120[
 1. character
 2. complex
 3. numeric
-4. logical]
+4. logical]]
 ]
 
 
@@ -392,12 +382,13 @@ v2 &lt;- c(32, 1, 5i)
 # Hierarquia de tipo primitivos
 
 .pull-left[
-#### Os tipos mais fortes são:
+### Os tipos mais fortes são:
 .blue[
+.font120[
 1. character
 2. complex
 3. numeric
-4. logical]
+4. logical]]
 ]
 
 
@@ -425,12 +416,13 @@ v2
 # Hierarquia de tipo primitivos
 
 .pull-left[
-#### Os tipos mais fortes são:
+### Os tipos mais fortes são:
 .blue[
+.font120[
 1. character
 2. complex
 3. numeric
-4. logical]
+4. logical]]
 ]
 
 
@@ -465,10 +457,11 @@ typeof(v2)
 ```
 ]
 
+&lt;!-- ToDo: A palavra `Data Frame` não é tudo junto ? Tipo `DataFrame` ? --&gt;
 ---
 # Data Frame
 
-Matriz composta por linhas e colunas, cujas colunas representam as variáveis (atributos) e as linhas representam observações
+.font120[Matriz composta por linhas e colunas, cujas colunas representam as variáveis (atributos) e as linhas representam observações]
 
 &lt;br&gt;
 
@@ -479,7 +472,7 @@ Matriz composta por linhas e colunas, cujas colunas representam as variáveis (a
 ---
 # Data Frame
 
-Matriz composta por linhas e colunas, cujas colunas representam as variáveis (atributos) e as linhas representam observações
+.font120[Matriz composta por linhas e colunas, cujas colunas representam as variáveis (atributos) e as linhas representam observações]
 
 .pull-left[
 .center.font100[Podemos criar um dataframe usando .bold[data.frame()]]
@@ -533,8 +526,9 @@ Matriz composta por linhas e colunas, cujas colunas representam as variáveis (a
 ---
 # Estrutura de decisão
 
-O .bold[.blue[if]] do .bold[R] é bem parecido com o do .bold[Java]
+.pull-left[
 
+.font120[O .bold[.blue[if]] do .bold[R] é bem parecido com o do .bold[Java]]
 
 
 ```r
@@ -550,24 +544,27 @@ O .bold[.blue[if]] do .bold[R] é bem parecido com o do .bold[Java]
   }
 ## [1] "Valor A menor do que o valor B"
 ```
-
+]
 
 --
 
-## Dica
+.pull-right[
+
+.font120[Dica]
 
 
 ```r
     ifelse(42 &gt; TRUE, "Verdade universal", "Fake news")
 ## [1] "Verdade universal"
 ```
+]
 
 ---
 
 # Estrutura de repetição
 
-Por outro lado, o .bold[.blue[for]] do .bold[R] com a sintaxe do .bold[Python]
 
+.font110[Por outro lado, o .bold[.blue[for]] do .bold[R] parece com a sintaxe do .bold[Python]]
 
 
 ```r
@@ -593,7 +590,7 @@ class: title-slide
 
 .pull-left[
 
-.center.font100[Conjunto de pacotes em R para ciência de dados]
+.center.font110[Conjunto de pacotes em R para ciência de dados]
 
 &lt;img src="./images/2_r_img/tidy_workflow.png" width="100%" height="100%" style="display: block; margin: auto;" /&gt;
 .center.font50[http://www.seec.uct.ac.za/r-tidyverse]
@@ -604,7 +601,7 @@ class: title-slide
 
 .pull-right[
 
-.center.font100[Processo de ciência de dados]
+.center.font110[Processo de ciência de dados]
 
 &lt;img src="./images/2_r_img/data-science-process.png" width="100%" height="100%" style="display: block; margin: auto;" /&gt;
 
@@ -619,7 +616,7 @@ class: title-slide
 
 .pull-left[
 
-.center.font100[Conjunto de pacotes em R para ciência de dados]
+.center.font110[Conjunto de pacotes em R para ciência de dados]
 
 &lt;img src="./images/2_r_img/tidy_workflow_1.png" width="100%" height="100%" style="display: block; margin: auto;" /&gt;
 .center.font50[http://www.seec.uct.ac.za/r-tidyverse]
@@ -628,7 +625,7 @@ class: title-slide
 
 .pull-right[
 
-.center.font100[Processo de ciência de dados]
+.center.font110[Processo de ciência de dados]
 
 &lt;img src="./images/2_r_img/data-science-process_1.png" width="100%" height="100%" style="display: block; margin: auto;" /&gt;
 
@@ -641,7 +638,7 @@ class: title-slide
 
 .pull-left[
 
-.center.font100[Conjunto de pacotes em R para ciência de dados]
+.center.font110[Conjunto de pacotes em R para ciência de dados]
 
 &lt;img src="./images/2_r_img/tidy_workflow_2.png" width="100%" height="100%" style="display: block; margin: auto;" /&gt;
 .center.font50[http://www.seec.uct.ac.za/r-tidyverse]
@@ -650,7 +647,7 @@ class: title-slide
 
 .pull-right[
 
-.center.font100[Processo de ciência de dados]
+.center.font110[Processo de ciência de dados]
 
 &lt;img src="./images/2_r_img/data-science-process_2.png" width="100%" height="100%" style="display: block; margin: auto;" /&gt;
 
@@ -663,7 +660,7 @@ class: title-slide
 
 .pull-left[
 
-.center.font100[Conjunto de pacotes em R para ciência de dados]
+.center.font110[Conjunto de pacotes em R para ciência de dados]
 
 &lt;img src="./images/2_r_img/tidy_workflow_3.png" width="100%" height="100%" style="display: block; margin: auto;" /&gt;
 .center.font50[http://www.seec.uct.ac.za/r-tidyverse]
@@ -672,7 +669,7 @@ class: title-slide
 
 .pull-right[
 
-.center.font100[Processo de ciência de dados]
+.center.font110[Processo de ciência de dados]
 
 &lt;img src="./images/2_r_img/data-science-process_3.png" width="100%" height="100%" style="display: block; margin: auto;" /&gt;
 
@@ -683,7 +680,7 @@ class: title-slide
 # Leitura e escrita de dados - .bold[readr]
 
 .pull-left[
-.center.font100[Leitura]
+.center.font120[Leitura]
 
 
 
@@ -712,7 +709,7 @@ class: title-slide
 ]
 
 .pull-right[
-.center.font100[Escrita]
+.center.font120[Escrita]
 
 
 ```r
@@ -741,7 +738,7 @@ Para manipular nosso dataframe, vamos usar o pacote .blue[dplyr]. Métodos bási
 
 .pull-left[
 
-Para facilitar a seleção dos atributos e tirar .bold[.blue[$]], vamos usar o .bold[.blue[select()]]:
+.font120[Para facilitar a seleção dos atributos e tirar .bold[.blue[$]], vamos usar o .bold[.blue[select()]]]:
 
 
 ```r
@@ -763,7 +760,7 @@ Para facilitar a seleção dos atributos e tirar .bold[.blue[$]], vamos usar o .
 
 .pull-right[
 
-Para filtrar por um valor específico, usamos .bold[.blue[filter()]]:
+.font120[Para filtrar por um valor específico, usamos .bold[.blue[filter()]]]:
 
 
 ```r
@@ -784,7 +781,7 @@ Para filtrar por um valor específico, usamos .bold[.blue[filter()]]:
 # Agrupamento e agregação
 
 .pull-left[
-Para criar grupos usamos a função .bold[.blue[group_by()]]
+.font120[Para criar grupos usamos a função .bold[.blue[group_by()]]]
 
 ```r
   agrupamento &lt;- 
@@ -803,7 +800,7 @@ Para criar grupos usamos a função .bold[.blue[group_by()]]
 ]
 
 .pull-right[
-Para criarmos uma agregação do nosso agrupamento, usamos .bold[.blue[summarise()]] e para ordenarmos .bold[.blue[arrange()]]:
+.font120[Para criarmos uma agregação do nosso agrupamento, usamos .bold[.blue[summarise()]] e para ordenarmos .bold[.blue[arrange()]]]:
 
 ```r
   media_grupo &lt;- 
@@ -825,7 +822,7 @@ Para criarmos uma agregação do nosso agrupamento, usamos .bold[.blue[summarise
 ---
 # Transformação de atributos
 
-Para criar/transformar novos atributos, usa-se .bold[.blue[mutate()]]:
+.font120[Para criar/transformar novos atributos, usa-se .bold[.blue[mutate()]]]:
 
 
 ```r
@@ -845,29 +842,55 @@ Para criar/transformar novos atributos, usa-se .bold[.blue[mutate()]]:
 ---
 
 # Aplicando os métodos
+&lt;!-- ToDo: Acho que estes códigos todos juntos não estão limpos, podia criar uns bloquinhos separados para um conjunto de dois códigos para cada bloco, ou algo assim tlg --&gt;
+
+
+.pull-left[
+
+.font120[Seleção]
+
+```r
+  selecao &lt;- 
+    dplyr::select(star_wars, -hair_color, -mass)
+```
+
+.font120[Filtro]
+
+```r
+  filtro &lt;- 
+    dplyr::filter(selecao, eye_color == "blue")
+```
+
+.font120[Agrupamento]
 
 
 ```r
-  # Seleção
-  selecao &lt;- 
-    dplyr::select(star_wars, -hair_color, -mass)
-
-  # Filtro 
-  filtro &lt;- 
-    dplyr::filter(selecao, eye_color == "blue")
-  
-  # Agrupamento
   agrupamento &lt;- 
     dplyr::group_by(filtro, species)
-  
-  # Agregação
-   media_grupo &lt;- 
+```
+
+
+]
+
+.pull-right[
+
+.font120[Agregação]
+
+
+```r
+  media_grupo &lt;- 
     dplyr::summarise(agrupamento, media = mean(height, na.rm = TRUE)) 
     
-  # Ordenação
-   media_grupo_order &lt;- 
+```
+
+.font120[Ordenação]
+
+
+```r
+  media_grupo_order &lt;- 
      dplyr::arrange(media_grupo, desc(media))
 ```
+
 
 
 ```
@@ -879,11 +902,15 @@ Para criar/transformar novos atributos, usa-se .bold[.blue[mutate()]]:
 ## 3 Tholothian  1.84
 ```
 
+]
+
+
+
 ---
 
 # Facilitando a vida com o operador .bold[pipe] (.bold[%&gt;%])
 
-O .bold[.blue[pipe]] passa a resposta da primeira atribuição para o primeiro parâmetro da função seguinte:
+.font120[O .bold[.blue[pipe]] passa a resposta da primeira atribuição para o primeiro parâmetro da função seguinte]:
 
 
 
@@ -914,7 +941,7 @@ O .bold[.blue[pipe]] passa a resposta da primeira atribuição para o primeiro p
 # Facilitando a vida com o operador .bold[pipe] (.bold[%&gt;%])
 
 .pull-left[
-.center.font100[Sem pipe]
+.center.font120[Sem pipe]
 
 
 ```r
@@ -942,7 +969,7 @@ O .bold[.blue[pipe]] passa a resposta da primeira atribuição para o primeiro p
 ]
 
 .pull-right[
-.center.font100[Com pipe]
+.center.font120[Com pipe]
 
 
 ```r
@@ -956,18 +983,23 @@ O .bold[.blue[pipe]] passa a resposta da primeira atribuição para o primeiro p
 ```
 ]
 
+---
+
+
+class: title-slide
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# .center.font170[Exemplo de análise de dados]
 
 ---
 
-# Exemplo de análise
+# Exemplo de análise de dados
 
 Dado de série temporal da [temperatura da superfície terrestre](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)
 
-&lt;img src="./images/2_r_img/kaggle_img.png" width="65%" height="65%" style="display: block; margin: auto;" /&gt;
-
-
+&lt;img src="./images/2_r_img/kaggle_img.png" width="60%" height="60%" style="display: block; margin: auto;" /&gt;
+.center.font70[Fonte: Berkeley Earth]
 ---
-
 # Exemplo de análise
 
 
@@ -1008,12 +1040,10 @@ Dado de série temporal da [temperatura da superfície terrestre](https://www.ka
 
 .pull-left[
 
-.center.font100[Filtro a partir do ano 2000 e extração da média anual]
-
+.center.font110[Filtro a partir do ano 2000 e extração da média anual]
 
 
 ```r
-  # Filtro a partir do ano 2000 e extração da média anual 
   year_temperature &lt;- temperature_countries %&gt;%
     dplyr::filter(dt &gt; "2000-01-01")  %&gt;% 
     dplyr::mutate(dt = lubridate::year(dt)) %&gt;% 
@@ -1037,7 +1067,7 @@ Dado de série temporal da [temperatura da superfície terrestre](https://www.ka
 
 .pull-right[
 
-.center.font100[Junção dos continentes com cada país]
+.center.font110[Junção dos continentes com cada país]
 
 
 ```r
@@ -1058,8 +1088,10 @@ Dado de série temporal da [temperatura da superfície terrestre](https://www.ka
 ## 3 Afghanistan  2002      15.5 Asia
 ```
 ]
+
+&lt;!-- ToDo: Achei que estes textos ficaram muito grudados na parte de baixo da apresentação, o que acha ? --&gt;
 --
-.center.font90[.bold[
+.center.font80[.bold[
 
 Qual o continente que registrou a maior temperatura anual?
 
@@ -1087,8 +1119,6 @@ Qual o ano com a maior média de temperatura registrada?]]
 ## 4 Europe          20.3
 ## 5 Oceania         27.9
 ```
-
-
 ]
 
 .pull-right[
@@ -1115,12 +1145,9 @@ Qual o ano com a maior média de temperatura registrada?]]
 
 ]
 
-
-
 &lt;!-- Fim da parte do R--&gt;
 
 &lt;!-- Inicio da parte de Python--&gt;
-
 ---
 
 class: title-slide
@@ -1745,7 +1772,7 @@ Agregações são operações aplicadas sobre os dados que resultam em um conjun
   
   ```python
   print(agrupado)
-  ## &lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f80dc0f7fd0&gt;
+  ## &lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7ff60b2bb7d0&gt;
   ```
   
   Recuperando os grupos gerados
@@ -1871,17 +1898,16 @@ class: title-slide
 
 &lt;br&gt;&lt;br&gt;
 
-# .center[.font170[Visualização de dados]]
+# .center[.font170[Visualização de dados] <span>&lt;i class="fas  fa-chart-bar faa-tada animated "&gt;&lt;/i&gt;</span>]
 
 ---
-# Pacote de visualização - .bold[ggplot2]
+# Pacotes de visualização
 
-## .bold[.blue[ggplot2]] é um pacote R criado pelo Hadley Wickham, a sintaxe se baseia na obra .bold[The Grammar of Graphics]. O mapeamento dos atributos é chamado de .bold[aesthetics]. O esqueleto pode ser escrito assim:
-
+## As bibliotecas de visualização de dados `ggplot2` e `plotnine` são baseadas na obra .bold[The Grammar of Graphics], a qual apresenta uma grámatica para elaboração de gráficos. Tal gramática é composta por camadas, as quais descrevem os componentes do gráfico.
 
 .pull-left[
 
-.center.font100[The Grammar of Graphics]
+.center.font110[Camadas de componentes gráficos]
 
 &lt;img src="./images/2_r_img/ggplot-2.png" width="70%" height="70%" style="display: block; margin: auto;" /&gt;
 
@@ -1891,8 +1917,7 @@ class: title-slide
 
 .pull-right[
 
-.center.font100[Sintaxe do ggplot2]
-
+.center.font110[Sintaxe do ggplot/plotnine]
 
 
 ```r
@@ -1909,7 +1934,9 @@ class: title-slide
 
 ---
 # Mapeamento estético
-&lt;br&gt;
+
+### A estética descreve cada aspecto de um dado elemento gráfico. Descrevemos as posições (`position`) por um valor x e y, mas outros sistemas de coordenadas são possíveis. É possível alterar a forma (`shape`), tamanho (`size`) e cor (`size`) dos elementos. 
+
 .center[
 &lt;img src="./images/2_r_img/aes_ggplot.png" width="80%" height="80%" style="display: block; margin: auto;" /&gt;
 .center.font80[Fundamentals of Data Visualization - Claus O. Wilke]
@@ -1921,9 +1948,9 @@ class: title-slide
 
 .center.font60[Fundamentals of Data Visualization - Claus O. Wilke]
 ]
----
-# Exemplo - Gráfico de dispersão
 
+---
+# Exemplo com R - Gráfico de dispersão
 
 .pull-left[
 
@@ -1936,7 +1963,7 @@ class: title-slide
   ggplot(iris, aes(x = Petal.Width, y = Petal.Length, color = Species))
 ```
 
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-102-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-106-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 --
@@ -1951,11 +1978,11 @@ class: title-slide
   geom_point() 
 ```
 
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-103-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-107-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
-# Exemplo - Gráfico de colunas
+# Exemplo com R - Gráfico de colunas
 
 .pull-left[
 
@@ -1967,7 +1994,7 @@ ggplot(data = diamonds) +
   stat_count(mapping = aes(x = cut))
 ```
 
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-104-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-108-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -1982,14 +2009,102 @@ ggplot(data = diamonds) +
   coord_flip()
 ```
 
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-105-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-109-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
+
 ---
+# Exemplo com Python - Gráfico de dispersão
+
+.pull-left[
+
+.center.font100[Mapeamento estético]
+
+
+```python
+from plotnine import *
+from plotnine.data import mtcars, diamonds
+
+ggplot(mtcars, aes(x = 'mpg', y = 'disp'))
+## &lt;ggplot: (8793411546121)&gt;
+```
+
+&lt;img src="/home/felipe/Documentos/5_curso-de-verao/organizacao_repo_apresentacao/intro-analise-de-dados-apresentacao/python/2020/apresencao_final_files/figure-html/unnamed-chunk-110-1.png" width="613" style="display: block; margin: auto;" /&gt;
+  
+&lt;img src="./images/python/ggplot_1.png" width="85%" height="85%" style="display: block; margin: auto;" /&gt;
+  
+]
+
+--
+
+.pull-right[
+
+.center.font100[Objeto geométrico]
+
+  
+  ```python
+  ggplot(mtcars, aes(x = 'mpg', y = 'disp', color = 'factor(am)')) + geom_point()
+  ## &lt;ggplot: (8793409501885)&gt;
+  ```
+  
+  &lt;img src="/home/felipe/Documentos/5_curso-de-verao/organizacao_repo_apresentacao/intro-analise-de-dados-apresentacao/python/2020/apresencao_final_files/figure-html/unnamed-chunk-111-1.png" width="613" style="display: block; margin: auto;" /&gt;
+  
+&lt;img src="./images/python/ggplot_2.png" width="100%" height="100%" style="display: block; margin: auto;" /&gt;
+  
+]
+
+---
+# Exemplo com Python - Gráfico de colunas
+
+.pull-left[
+
+.center.font100[Mapeamento estético e objeto geométrico]
+
+  
+  ```python
+  (ggplot(data = diamonds) + 
+    stat_count(mapping = aes(x = 'cut')))
+  ## &lt;ggplot: (8793409328981)&gt;
+  ```
+  
+  &lt;img src="/home/felipe/Documentos/5_curso-de-verao/organizacao_repo_apresentacao/intro-analise-de-dados-apresentacao/python/2020/apresencao_final_files/figure-html/unnamed-chunk-112-1.png" width="613" style="display: block; margin: auto;" /&gt;
+  
+&lt;img src="./images/python/ggplot_3.png" width="85%" height="85%" style="display: block; margin: auto;" /&gt;
+
+]
+
+--
+.pull-right[
+.center.font100[Sistema de coordenadas]
+
+  
+  ```python
+  (ggplot(data = diamonds) + 
+      stat_count(mapping = aes(x = 'cut')) + 
+      coord_flip())
+  ## &lt;ggplot: (8793409285033)&gt;
+  ```
+  
+  &lt;img src="/home/felipe/Documentos/5_curso-de-verao/organizacao_repo_apresentacao/intro-analise-de-dados-apresentacao/python/2020/apresencao_final_files/figure-html/unnamed-chunk-113-1.png" width="613" style="display: block; margin: auto;" /&gt;
+  
+&lt;img src="./images/python/ggplot_4.png" width="85%" height="85%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+class: title-slide
+
+&lt;br&gt;&lt;br&gt;
+
+# .center[.font170[Indo além]<span>&lt;i class="fas  fa-rocket faa-tada animated "&gt;&lt;/i&gt;</span>]
+
+---
+
 # Exemplo - Gráfico de coordenadas paralelas
 
 .pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 
 ```r
@@ -2007,16 +2122,18 @@ ggplot(data = diamonds) +
 
 ]
 
-
 .pull-right[
 
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-107-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-115-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 ---
 # Exemplo - Gráfico de coordenadas paralelas
 
 .pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
 
 ```r
   iris %&gt;% dplyr::mutate(id = 1:nrow(iris)) %&gt;%
@@ -2033,12 +2150,10 @@ ggplot(data = diamonds) +
 
 ]
 
-
 .pull-right[
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-109-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-117-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
-
 
 ---
 class: title-slide
@@ -2052,6 +2167,9 @@ class: title-slide
 
 
 .pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
 
 ```r
 amost_diam %&gt;%
@@ -2068,10 +2186,8 @@ amost_diam %&gt;%
 ]
 
 .pull-right[
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-112-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-120-1.png" style="display: block; margin: auto;" /&gt;
 ]
-
-
 
 ---
 

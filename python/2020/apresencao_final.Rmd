@@ -1609,7 +1609,7 @@ class: title-slide
 # .center[.font170[Visualização de dados] `r  anicon::faa("chart-bar", animate="tada")`]
 
 ---
-# Pacote de visualização - .bold[ggplot2]
+# Pacotes de visualização
 
 ## As bibliotecas de visualização de dados `ggplot2` e `plotnine` são baseadas na obra .bold[The Grammar of Graphics], a qual apresenta uma grámatica para elaboração de gráficos. Tal gramática é composta por camadas, as quais descrevem os componentes do gráfico.
 
@@ -1627,7 +1627,7 @@ knitr::include_graphics("./images/2_r_img/ggplot-2.png")
 
 .pull-right[
 
-.center.font110[Sintaxe do ggplot2]
+.center.font110[Sintaxe do ggplot/plotnine]
 
 ```{r, eval=FALSE}
    ggplot(data = <DATA>, aes(<MAPPINGS>)) + 
@@ -1661,9 +1661,9 @@ knitr::include_graphics("./images/2_r_img/ggplot.png")
 
 .center.font60[Fundamentals of Data Visualization - Claus O. Wilke]
 ]
----
-# Exemplo - Gráfico de dispersão
 
+---
+# Exemplo com R - Gráfico de dispersão
 
 .pull-left[
 
@@ -1689,7 +1689,7 @@ knitr::include_graphics("./images/2_r_img/ggplot.png")
 ]
 
 ---
-# Exemplo - Gráfico de colunas
+# Exemplo com R - Gráfico de colunas
 
 .pull-left[
 
@@ -1714,6 +1714,76 @@ ggplot(data = diamonds) +
 
 ]
 
+
+---
+# Exemplo com Python - Gráfico de dispersão
+
+.pull-left[
+
+.center.font100[Mapeamento estético]
+
+```{python}
+from plotnine import *
+from plotnine.data import mtcars, diamonds
+
+ggplot(mtcars, aes(x = 'mpg', y = 'disp'))
+```
+  
+```{r fig66, echo=FALSE, out.height="85%", out.width="85%"}
+knitr::include_graphics("./images/python/ggplot_1.png")
+```
+  
+]
+
+--
+
+.pull-right[
+
+.center.font100[Objeto geométrico]
+
+  ```{python}
+  ggplot(mtcars, aes(x = 'mpg', y = 'disp', color = 'factor(am)')) + geom_point()
+  ```
+  
+```{r fig67, echo=FALSE, out.height="100%", out.width="100%"}
+knitr::include_graphics("./images/python/ggplot_2.png")
+```
+  
+]
+
+---
+# Exemplo com Python - Gráfico de colunas
+
+.pull-left[
+
+.center.font100[Mapeamento estético e objeto geométrico]
+
+  ```{python, fig.height=5, fig.width=7}
+  (ggplot(data = diamonds) + 
+    stat_count(mapping = aes(x = 'cut')))
+  ```
+  
+```{r fig68, echo=FALSE, out.height="85%", out.width="85%"}
+knitr::include_graphics("./images/python/ggplot_3.png")
+```
+
+]
+
+--
+.pull-right[
+.center.font100[Sistema de coordenadas]
+
+  ```{python, fig.height=5, fig.width=7}
+  (ggplot(data = diamonds) + 
+      stat_count(mapping = aes(x = 'cut')) + 
+      coord_flip())
+  ```
+  
+```{r fig69, echo=FALSE, out.height="85%", out.width="85%"}
+knitr::include_graphics("./images/python/ggplot_4.png")
+```
+]
+
 ---
 class: title-slide
 
@@ -1726,6 +1796,8 @@ class: title-slide
 # Exemplo - Gráfico de coordenadas paralelas
 
 .pull-left[
+
+<br><br><br>
 
 ```{r, fig.height=4, fig.width=7, eval=FALSE}
   iris %>% dplyr::mutate(id = 1:nrow(iris)) %>% 
@@ -1762,6 +1834,9 @@ class: title-slide
 # Exemplo - Gráfico de coordenadas paralelas
 
 .pull-left[
+
+<br><br><br>
+
 ```{r, fig.height=6, fig.width=7, eval=FALSE}
   iris %>% dplyr::mutate(id = 1:nrow(iris)) %>%
     tidyr::gather(atributos, valores, -Species, -id) %>%
@@ -1814,6 +1889,9 @@ class: title-slide
 ```
 
 .pull-left[
+
+<br><br><br>
+
 ```{r, fig.height=4, fig.width=7, eval=FALSE}
 amost_diam %>%
   ggplot(., aes(x = as.factor(cut), y = price, color = clarity)) + 
