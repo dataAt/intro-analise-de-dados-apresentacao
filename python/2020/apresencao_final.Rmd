@@ -60,10 +60,8 @@ class: title-slide
 ---
 # Agenda
 
-<br><br><br>
+<br><br>
 
-
-- .font120[Introdução];
 
 - .font120[Introdução ao R `r anicon::faa("r-project", animate = 'float', speed = 'slow', color = 'steelblue')`]
 
@@ -76,15 +74,6 @@ class: title-slide
 - .font120[Visualização de dados `r anicon::cia("./images/2_r_img/ggplot2_logo_menor.jpeg", animate = 'float', speed = 'slow')`]
 
 <br>
-
----
-class: title-slide
-
-<br><br><br>
-# .center.font170[Introdução]
-<!-- Introdução falar sobre a motivação de aprender R e Python. Falar da questão R VS Python e este cenário passando para R e Python -->
-<!-- No mundo real, problemas precisam ser resolvidos! -->
-<!-- Crescimento do cenário de 'data science' (Rever o que o Rafael fala em seu curso de introdução) -->
 
 ---
 class: title-slide
@@ -130,7 +119,7 @@ knitr::include_graphics("./images/2_r_img/ross_lhaka.jpeg")
 
 .pull-left[
 
-.center.font100[Declaração de variáveis]
+.bold.center.font100[Declaração de variáveis]
 
 ```{r, fig.height=4}
   inteiro <- 321L
@@ -149,7 +138,7 @@ knitr::include_graphics("./images/2_r_img/ross_lhaka.jpeg")
 
 --
 .pull-right[
-.center.font100[Acessando os valores]
+.bold.center.font100[Acessando os valores]
 
 ```{r, fig.height=4}
   print(numerico)
@@ -167,7 +156,7 @@ knitr::include_graphics("./images/2_r_img/ross_lhaka.jpeg")
 
 .pull-left[
 
-.center.font100[Vetores]
+.bold.center.font100[Vetores]
 
 ```{r, fig.height=4}
   vetor_int <-   c(1, 3, 5)
@@ -186,7 +175,7 @@ knitr::include_graphics("./images/2_r_img/ross_lhaka.jpeg")
 
 .pull-right[
 
-.center.font100[Listas]
+.bold.center.font100[Listas]
 
 ```{r, fig.height=5}
   lista_int <-   list(1, 3, 5)
@@ -257,19 +246,19 @@ Todos os tipos primitivos em R são tratados como vetores:
 
 .pull-right[
 
-.center.font100[Será lista?]
+.bold.center.font120[Será lista?]
 
 ```{r, fig.height=5}
   is.list(lista)
 ```
 
-.center.font100[Será vetor?]
+.bold.center.font100[Será vetor?]
 
 ```{r, fig.height=5}
   is.vector(lista[[3]][[2]])
 ```
 
-.center.font100[Será vetor?]
+.bold.center.font100[Será vetor?]
 
 ```{r, fig.height=5}
   is.vector(42)
@@ -294,17 +283,15 @@ R 4 Data Science - Hadley
 
 # Hierarquia de tipo primitivos
 
-<!-- ToDo: Verificar melhor tamanho para este texto -->
 .pull-left[
-#### Os tipos mais fortes são:
+### Os tipos mais fortes são:
 .blue[
+.font120[
 1. character
 2. complex
 3. numeric
-4. logical]
-]
-
-
+4. logical
+]]]
 .pull-right[
 #### Conversão:
 
@@ -318,12 +305,13 @@ v1 <- c(FALSE, "tipo", 5)
 # Hierarquia de tipo primitivos
 
 .pull-left[
-#### Os tipos mais fortes são:
+### Os tipos mais fortes são:
 .blue[
+.font120[
 1. character
 2. complex
 3. numeric
-4. logical]
+4. logical]]
 ]
 
 
@@ -342,12 +330,13 @@ v1
 # Hierarquia de tipo primitivos
 
 .pull-left[
-#### Os tipos mais fortes são:
+### Os tipos mais fortes são:
 .blue[
+.font120[
 1. character
 2. complex
 3. numeric
-4. logical]
+4. logical]]
 ]
 
 
@@ -370,12 +359,13 @@ v2 <- c(32, 1, 5i)
 # Hierarquia de tipo primitivos
 
 .pull-left[
-#### Os tipos mais fortes são:
+### Os tipos mais fortes são:
 .blue[
+.font120[
 1. character
 2. complex
 3. numeric
-4. logical]
+4. logical]]
 ]
 
 
@@ -399,12 +389,13 @@ v2
 # Hierarquia de tipo primitivos
 
 .pull-left[
-#### Os tipos mais fortes são:
+### Os tipos mais fortes são:
 .blue[
+.font120[
 1. character
 2. complex
 3. numeric
-4. logical]
+4. logical]]
 ]
 
 
@@ -435,7 +426,7 @@ typeof(v2)
 ---
 # Data Frame
 
-Matriz composta por linhas e colunas, cujas colunas representam as variáveis (atributos) e as linhas representam observações
+.font120[Matriz composta por linhas e colunas, cujas colunas representam as variáveis (atributos) e as linhas representam observações]
 
 <br>
 
@@ -448,7 +439,7 @@ knitr::include_graphics("./images/2_r_img/df_definicao.png")
 ---
 # Data Frame
 
-Matriz composta por linhas e colunas, cujas colunas representam as variáveis (atributos) e as linhas representam observações
+.font120[Matriz composta por linhas e colunas, cujas colunas representam as variáveis (atributos) e as linhas representam observações]
 
 .pull-left[
 .center.font100[Podemos criar um dataframe usando .bold[data.frame()]]
@@ -491,10 +482,11 @@ Matriz composta por linhas e colunas, cujas colunas representam as variáveis (a
 ---
 # Estrutura de decisão
 
-O .bold[.blue[if]] do .bold[R] é bem parecido com o do .bold[Java]
+.pull-left[
 
-<!-- ToDo: Adicionar mais um exemplo aqui ? Ao invés de um único código corrido -->
-```{r, fig.height=5}
+.font120[O .bold[.blue[if]] do .bold[R] é bem parecido com o do .bold[Java]]
+
+```{r}
   valor_a <- 21
   valor_b <- 42
   
@@ -506,23 +498,25 @@ O .bold[.blue[if]] do .bold[R] é bem parecido com o do .bold[Java]
     print("Valor A é maior do que o valor B")
   }
 ```
-
+]
 
 --
 
-## Dica
+.pull-right[
+
+.font120[Dica]
 
 ```{r, fig.height=5}
     ifelse(42 > TRUE, "Verdade universal", "Fake news")
 ```
+]
 
 ---
 
 # Estrutura de repetição
 
-<!-- ToDo: Achei a forma com que isto está escrito um pouco estranha -->
-Por outro lado, o .bold[.blue[for]] do .bold[R] com a sintaxe do .bold[Python]
 
+.font110[Por outro lado, o .bold[.blue[for]] do .bold[R] parece com a sintaxe do .bold[Python]]
 
 ```{r, fig.height=5}
   meu_vetor <- c(1, 2, 3)
@@ -544,7 +538,7 @@ class: title-slide
 
 .pull-left[
 
-.center.font100[Conjunto de pacotes em R para ciência de dados]
+.center.font110[Conjunto de pacotes em R para ciência de dados]
 
 ```{r fig5, echo=FALSE, out.height="100%", out.width="100%"}
 knitr::include_graphics("./images/2_r_img/tidy_workflow.png")
@@ -557,7 +551,7 @@ knitr::include_graphics("./images/2_r_img/tidy_workflow.png")
 
 .pull-right[
 
-.center.font100[Processo de ciência de dados]
+.center.font110[Processo de ciência de dados]
 
 ```{r fig11, echo=FALSE, out.height="100%", out.width="100%"}
 knitr::include_graphics("./images/2_r_img/data-science-process.png")
@@ -574,7 +568,7 @@ knitr::include_graphics("./images/2_r_img/data-science-process.png")
 
 .pull-left[
 
-.center.font100[Conjunto de pacotes em R para ciência de dados]
+.center.font110[Conjunto de pacotes em R para ciência de dados]
 
 ```{r fig51, echo=FALSE, out.height="100%", out.width="100%"}
 knitr::include_graphics("./images/2_r_img/tidy_workflow_1.png")
@@ -585,7 +579,7 @@ knitr::include_graphics("./images/2_r_img/tidy_workflow_1.png")
 
 .pull-right[
 
-.center.font100[Processo de ciência de dados]
+.center.font110[Processo de ciência de dados]
 
 ```{r fig112, echo=FALSE, out.height="100%", out.width="100%"}
 knitr::include_graphics("./images/2_r_img/data-science-process_1.png")
@@ -600,7 +594,7 @@ knitr::include_graphics("./images/2_r_img/data-science-process_1.png")
 
 .pull-left[
 
-.center.font100[Conjunto de pacotes em R para ciência de dados]
+.center.font110[Conjunto de pacotes em R para ciência de dados]
 
 ```{r fig52, echo=FALSE, out.height="100%", out.width="100%"}
 knitr::include_graphics("./images/2_r_img/tidy_workflow_2.png")
@@ -611,7 +605,7 @@ knitr::include_graphics("./images/2_r_img/tidy_workflow_2.png")
 
 .pull-right[
 
-.center.font100[Processo de ciência de dados]
+.center.font110[Processo de ciência de dados]
 
 ```{r fig113, echo=FALSE, out.height="100%", out.width="100%"}
 knitr::include_graphics("./images/2_r_img/data-science-process_2.png")
@@ -626,7 +620,7 @@ knitr::include_graphics("./images/2_r_img/data-science-process_2.png")
 
 .pull-left[
 
-.center.font100[Conjunto de pacotes em R para ciência de dados]
+.center.font110[Conjunto de pacotes em R para ciência de dados]
 
 ```{r fig54, echo=FALSE, out.height="100%", out.width="100%"}
 knitr::include_graphics("./images/2_r_img/tidy_workflow_3.png")
@@ -637,7 +631,7 @@ knitr::include_graphics("./images/2_r_img/tidy_workflow_3.png")
 
 .pull-right[
 
-.center.font100[Processo de ciência de dados]
+.center.font110[Processo de ciência de dados]
 
 ```{r fig114, echo=FALSE, out.height="100%", out.width="100%"}
 knitr::include_graphics("./images/2_r_img/data-science-process_3.png")
@@ -650,7 +644,7 @@ knitr::include_graphics("./images/2_r_img/data-science-process_3.png")
 # Leitura e escrita de dados - .bold[readr]
 
 .pull-left[
-.center.font100[Leitura]
+.center.font120[Leitura]
 
 
 ```{r, fig.height=5, message=TRUE}
@@ -664,7 +658,7 @@ knitr::include_graphics("./images/2_r_img/data-science-process_3.png")
 ]
 
 .pull-right[
-.center.font100[Escrita]
+.center.font120[Escrita]
 
 ```{r, fig.height=5}
   # escrita 
@@ -694,7 +688,7 @@ knitr::include_graphics("./images/2_r_img/dplyr_verbs.jpg")
 
 .pull-left[
 
-Para facilitar a seleção dos atributos e tirar .bold[.blue[$]], vamos usar o .bold[.blue[select()]]:
+.font120[Para facilitar a seleção dos atributos e tirar .bold[.blue[$]], vamos usar o .bold[.blue[select()]]]:
 
 ```{r, message=FALSE}
   library(dplyr)
@@ -709,7 +703,7 @@ Para facilitar a seleção dos atributos e tirar .bold[.blue[$]], vamos usar o .
 
 .pull-right[
 
-Para filtrar por um valor específico, usamos .bold[.blue[filter()]]:
+.font120[Para filtrar por um valor específico, usamos .bold[.blue[filter()]]]:
 
 ```{r, cache=FALSE}
   filtro <- 
@@ -724,7 +718,7 @@ Para filtrar por um valor específico, usamos .bold[.blue[filter()]]:
 # Agrupamento e agregação
 
 .pull-left[
-Para criar grupos usamos a função .bold[.blue[group_by()]]
+.font120[Para criar grupos usamos a função .bold[.blue[group_by()]]]
 ```{r}
   agrupamento <- 
     dplyr::group_by(star_wars, species)
@@ -734,7 +728,7 @@ Para criar grupos usamos a função .bold[.blue[group_by()]]
 ]
 
 .pull-right[
-Para criarmos uma agregação do nosso agrupamento, usamos .bold[.blue[summarise()]] e para ordenarmos .bold[.blue[arrange()]]:
+.font120[Para criarmos uma agregação do nosso agrupamento, usamos .bold[.blue[summarise()]] e para ordenarmos .bold[.blue[arrange()]]]:
 ```{r}
   media_grupo <- 
     dplyr::summarise(agrupamento, 
@@ -749,7 +743,7 @@ Para criarmos uma agregação do nosso agrupamento, usamos .bold[.blue[summarise
 ---
 # Transformação de atributos
 
-Para criar/transformar novos atributos, usa-se .bold[.blue[mutate()]]:
+.font120[Para criar/transformar novos atributos, usa-se .bold[.blue[mutate()]]]:
 
 ```{r}
   # conversão de cm para metros
@@ -762,37 +756,64 @@ Para criar/transformar novos atributos, usa-se .bold[.blue[mutate()]]:
 
 # Aplicando os métodos
 <!-- ToDo: Acho que estes códigos todos juntos não estão limpos, podia criar uns bloquinhos separados para um conjunto de dois códigos para cada bloco, ou algo assim tlg -->
+
+
+.pull-left[
+
+.font120[Seleção]
 ```{r}
-  # Seleção
   selecao <- 
     dplyr::select(star_wars, -hair_color, -mass)
 
-  # Filtro 
+```
+
+.font120[Filtro]
+```{r}
   filtro <- 
     dplyr::filter(selecao, eye_color == "blue")
-  
-  # Agrupamento
+```
+
+.font120[Agrupamento]
+
+```{r}
   agrupamento <- 
     dplyr::group_by(filtro, species)
-  
-  # Agregação
-   media_grupo <- 
+```
+
+
+]
+
+.pull-right[
+
+.font120[Agregação]
+
+```{r}
+  media_grupo <- 
     dplyr::summarise(agrupamento, media = mean(height, na.rm = TRUE)) 
     
-  # Ordenação
-   media_grupo_order <- 
+```
+
+.font120[Ordenação]
+
+```{r}
+  media_grupo_order <- 
      dplyr::arrange(media_grupo, desc(media))
 ```
+
 
 ```{r, echo=FALSE}
    head(media_grupo_order, 3)
 ```
 
+]
+
+
+
 ---
 
 # Facilitando a vida com o operador .bold[pipe] (.bold[%>%])
 
-O .bold[.blue[pipe]] passa a resposta da primeira atribuição para o primeiro parâmetro da função seguinte:
+.font120[O .bold[.blue[pipe]] passa a resposta da primeira atribuição para o primeiro parâmetro da função seguinte]:
 
 
 ```{r}
@@ -816,7 +837,7 @@ O .bold[.blue[pipe]] passa a resposta da primeira atribuição para o primeiro p
 # Facilitando a vida com o operador .bold[pipe] (.bold[%>%])
 
 .pull-left[
-.center.font100[Sem pipe]
+.center.font120[Sem pipe]
 
 ```{r}
   # Seleção
@@ -844,7 +865,7 @@ O .bold[.blue[pipe]] passa a resposta da primeira atribuição para o primeiro p
 ]
 
 .pull-right[
-.center.font100[Com pipe]
+.center.font120[Com pipe]
 
 ```{r, message=FALSE}
    media_grupo <- star_wars %>%
@@ -859,18 +880,22 @@ O .bold[.blue[pipe]] passa a resposta da primeira atribuição para o primeiro p
 
 ---
 
-# Exemplo de análise
 
-<!-- ToDo -->
-<!-- Acho legal colocar aqui, porém está meio fora de contexto, talvez deveria ir para o final -->
-<!-- Pode ate manter, dependendo da estratégia adotada para a apresentação, mas este gráfico é ok ficar aqui ? -->
+class: title-slide
+<br><br><br>
+
+# .center.font170[Exemplo de análise de dados]
+
+---
+
+# Exemplo de análise de dados
 
 Dado de série temporal da [temperatura da superfície terrestre](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)
 
-```{r fig6, echo=FALSE, out.height="65%", out.width="65%"}
+```{r fig6, echo=FALSE, out.height="60%", out.width="60%"}
 knitr::include_graphics("./images/2_r_img/kaggle_img.png")
 ```
-
+.center.font70[Fonte: Berkeley Earth]
 ---
 # Exemplo de análise
 
@@ -899,11 +924,9 @@ knitr::include_graphics("./images/2_r_img/kaggle_img.png")
 
 .pull-left[
 
-.center.font100[Filtro a partir do ano 2000 e extração da média anual]
-
+.center.font110[Filtro a partir do ano 2000 e extração da média anual]
 
 ```{r}
-  # Filtro a partir do ano 2000 e extração da média anual 
   year_temperature <- temperature_countries %>%
     dplyr::filter(dt > "2000-01-01")  %>% 
     dplyr::mutate(dt = lubridate::year(dt)) %>% 
@@ -920,7 +943,7 @@ knitr::include_graphics("./images/2_r_img/kaggle_img.png")
 
 .pull-right[
 
-.center.font100[Junção dos continentes com cada país]
+.center.font110[Junção dos continentes com cada país]
 
 ```{r}
   continent_temperature <- year_temperature %>% 
@@ -936,7 +959,7 @@ knitr::include_graphics("./images/2_r_img/kaggle_img.png")
 
 <!-- ToDo: Achei que estes textos ficaram muito grudados na parte de baixo da apresentação, o que acha ? -->
 --
-.center.font90[.bold[
+.center.font80[.bold[
 
 Qual o continente que registrou a maior temperatura anual?
 
@@ -955,8 +978,6 @@ Qual o ano com a maior média de temperatura registrada?]]
   dplyr::group_by(continent) %>% 
   summarise(maior_temp = max(year_mean, na.rm = TRUE)) 
 ```
-
-
 ]
 
 .pull-right[
@@ -973,12 +994,9 @@ Qual o ano com a maior média de temperatura registrada?]]
 
 ]
 
-
-
 <!-- Fim da parte do R-->
 
 <!-- Inicio da parte de Python-->
-
 ---
 
 class: title-slide
@@ -1588,20 +1606,16 @@ class: title-slide
 
 <br><br>
 
-<!-- ToDo: Será que os exemplos desta seção estão simples de entender ? -->
-# .center[.font170[Visualização de dados]]
+# .center[.font170[Visualização de dados] `r  anicon::faa("chart-bar", animate="tada")`]
 
 ---
 # Pacote de visualização - .bold[ggplot2]
 
-<!-- ToDo: Nesta parte aqui pensei em colocar primeiro sobre o grammar of graphics e que suas descrições permitiram a implementação de vários pacotes, a citar o ggplot2 e o plotnine. Acho que isto deixa um gancho para falarmos dos pacotes e então fazer a apresentação da parte de visualização de dados  -->
-
-## .bold[.blue[ggplot2]] é um pacote R criado pelo Hadley Wickham, a sintaxe se baseia na obra .bold[The Grammar of Graphics]. O mapeamento dos atributos é chamado de .bold[aesthetics]. O esqueleto pode ser escrito assim:
-
+## As bibliotecas de visualização de dados `ggplot2` e `plotnine` são baseadas na obra .bold[The Grammar of Graphics], a qual apresenta uma grámatica para elaboração de gráficos. Tal gramática é composta por camadas, as quais descrevem os componentes do gráfico.
 
 .pull-left[
 
-.center.font100[The Grammar of Graphics]
+.center.font110[Camadas de componentes gráficos]
 
 ```{r fig612, echo=FALSE, out.height="70%", out.width="70%"}
 knitr::include_graphics("./images/2_r_img/ggplot-2.png")
@@ -1613,8 +1627,7 @@ knitr::include_graphics("./images/2_r_img/ggplot-2.png")
 
 .pull-right[
 
-.center.font100[Sintaxe do ggplot2]
-
+.center.font110[Sintaxe do ggplot2]
 
 ```{r, eval=FALSE}
    ggplot(data = <DATA>, aes(<MAPPINGS>)) + 
@@ -1630,7 +1643,9 @@ knitr::include_graphics("./images/2_r_img/ggplot-2.png")
 
 ---
 # Mapeamento estético
-<br>
+
+### A estética descreve cada aspecto de um dado elemento gráfico. Descrevemos as posições (`position`) por um valor x e y, mas outros sistemas de coordenadas são possíveis. É possível alterar a forma (`shape`), tamanho (`size`) e cor (`size`) dos elementos. 
+
 .center[
 ```{r fig63, echo=FALSE, out.height="80%", out.width="80%"}
 knitr::include_graphics("./images/2_r_img/aes_ggplot.png")
@@ -1699,8 +1714,15 @@ ggplot(data = diamonds) +
 
 ]
 
-<!-- ToDo: Falar de extensões é algo legal ? pq estamos utilizando o plotnine por conta da compatibilidade interessante que ele traz entre o ambiente R e Python, talvez as extensões quebrem um pouco esta ideia, o que acha ? -->
 ---
+class: title-slide
+
+<br><br>
+
+# .center[.font170[Indo além]`r  anicon::faa("rocket", animate="tada")`]
+
+---
+
 # Exemplo - Gráfico de coordenadas paralelas
 
 .pull-left[
@@ -1719,7 +1741,6 @@ ggplot(data = diamonds) +
 ```
 
 ]
-
 
 .pull-right[
 
@@ -1756,7 +1777,6 @@ ggplot(data = diamonds) +
 
 ]
 
-
 .pull-right[
 ```{r, fig.height=6, fig.width=8, echo=FALSE, eval=TRUE}
   iris %>% dplyr::mutate(id = 1:nrow(iris)) %>%
@@ -1772,7 +1792,6 @@ ggplot(data = diamonds) +
 ```
 
 ]
-
 
 ---
 class: title-slide
@@ -1823,8 +1842,6 @@ amost_diam %>%
          title = "Gráfico de bolhas - Diamonds")
 ```
 ]
-
-
 
 ---
 
