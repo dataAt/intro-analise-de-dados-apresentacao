@@ -985,7 +985,6 @@ Para manipular nosso dataframe, vamos usar o pacote .blue[dplyr]. Métodos bási
 
 ---
 
-
 class: title-slide
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
 
@@ -1146,6 +1145,12 @@ Qual o ano com a maior média de temperatura registrada?]]
 ]
 
 &lt;!-- Fim da parte do R--&gt;
+
+---
+class: title-slide
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+# .center.font170[[Hands-on](https://www.kaggle.com/oldlipe/atividades-curso-de-verao-r) <span>&lt;i class="fas  fa-hand-paper faa-float animated faa-slow "&gt;&lt;/i&gt;</span>]
 
 &lt;!-- Inicio da parte de Python--&gt;
 ---
@@ -1562,8 +1567,7 @@ Para iniciar, os métodos `loc` e `iloc` podem ser bastante utilizados para tais
   
   ```python
   df = pd.DataFrame({
-    'nome': ['A1', 'A2', 'A3', 'A4'],
-    'valor': [5, 12, 8, 30]
+    'nome': ['A1', 'A2', 'A3', 'A4'], 'valor': [5, 12, 8, 30]
   })
   ```
   
@@ -1573,14 +1577,17 @@ Para iniciar, os métodos `loc` e `iloc` podem ser bastante utilizados para tais
   
   
   ```python
-  df.filter(items = ['A1', 'A4'])
-  ## Empty DataFrame
-  ## Columns: []
-  ## Index: [0, 1, 2, 3]
+  df.filter(items = ['valor'])
+  ##    valor
+  ## 0      5
+  ## 1     12
+  ## 2      8
+  ## 3     30
   ```
 ]
 
 .pull-right[
+  &lt;br&gt;&lt;br&gt;
   Filtrando os dados por uma coluna que contenha no nome a palavra `lo`.
   
   
@@ -1621,12 +1628,20 @@ Para iniciar, os métodos `loc` e `iloc` podem ser bastante utilizados para tais
 ]
   
 .pull-right[
-  &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-  
+  &lt;br&gt;&lt;br&gt;
   Criando expressões mais `complexas`
   
   ```python
   df[(df['valor'] &gt;= 5) &amp; (df['valor'] &lt; 12)]
+  ##   nome  valor
+  ## 0   A1      5
+  ## 2   A3      8
+  ```
+  
+  As mesmas consultas podem ser realizadas com o método `query()`.
+  
+  ```python
+  df.query('valor &gt;= 5 &amp; valor &lt; 12')
   ##   nome  valor
   ## 0   A1      5
   ## 2   A3      8
@@ -1772,7 +1787,7 @@ Agregações são operações aplicadas sobre os dados que resultam em um conjun
   
   ```python
   print(agrupado)
-  ## &lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7ff60b2bb7d0&gt;
+  ## &lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f08b99f1c50&gt;
   ```
   
   Recuperando os grupos gerados
@@ -1895,6 +1910,105 @@ class: title-slide
 
 ---
 class: title-slide
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# .center.font170[Exemplo de análise de dados]
+
+---
+# Exemplo de análise de dados
+
+[Dados de 45 mil meteoritos](https://www.kaggle.com/nasa/meteorite-landings) que cairam na Terra, publicados pela NASA.
+
+.pull-left[
+  Carregando os dados
+  
+  ```python
+  import pandas as pd
+  
+  data = pd.read_csv("data/meteorite-landings.csv")
+  type(data)
+  ## &lt;class 'pandas.core.frame.DataFrame'&gt;
+  ```
+  
+  Verificando os atributos dos dados. A descrição de cada atributo está disponível na [página dos dados](https://www.kaggle.com/nasa/meteorite-landings)
+  
+  ```python
+  data.columns
+  ## Index(['name', 'id', 'nametype', 'recclass', 'mass', 'fall', 'year', 'reclat',
+  ##        'reclong', 'GeoLocation'],
+  ##       dtype='object')
+  ```
+]
+
+.pull-right[
+  &lt;br&gt;&lt;br&gt;
+  Separando os dados por tipo de meteorito
+  
+  ```python
+  df_valid = data[data['nametype'] == 'Valid']
+  df_relict = data[data['nametype'] == 'Relict']
+  ```
+  
+  Verificando as quantidades de cada tipo
+  
+  ```python
+  print("Valid: {} | Relict: {}".format(
+    df_valid.shape[0], df_relict.shape[0]
+  ))
+  ## Valid: 45641 | Relict: 75
+  ```
+]
+
+---
+# Exemplo de análise de dados
+
+.pull-left[
+  &lt;br&gt;&lt;br&gt;&lt;br&gt;
+  Verificando a massa média de cada tipo de meteorito
+  
+  ```python
+  df_groupby_nametype = data.groupby('nametype')
+  df_groupby_nametype['mass'].mean()
+  ## nametype
+  ## Relict        0.121269
+  ## Valid     13285.656127
+  ## Name: mass, dtype: float64
+  ```
+]
+
+.pull-right[
+  &lt;br&gt;
+  Façamos a contagem dos tipos de meteoritos
+  
+  ```python
+  df_groupedby_recclass = data.groupby('recclass')
+  df_groupedby_recclass['recclass'].count().head(n = 3)
+  ## recclass
+  ## Acapulcoite              54
+  ## Acapulcoite/Lodranite     6
+  ## Acapulcoite/lodranite     3
+  ## Name: recclass, dtype: int64
+  ```
+  
+  Por fim, façamos o filtro do conjunto de dados pela quantidade de massa
+  
+  
+  ```python
+  # Filtragem (Maior que 500 gramas)
+  df_gt_mass_500 = data[data['mass'] &gt; 500]
+  df_gt_mass_500.shape # Quantidade bem menor
+  ## (7036, 10)
+  ```
+]
+
+---
+class: title-slide
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+# .center.font170[[Hands-on](https://www.kaggle.com/phelpsmemo/atividades-curso-de-verao-python) <span>&lt;i class="fas  fa-hand-paper faa-float animated faa-slow "&gt;&lt;/i&gt;</span>]
+
+---
+class: title-slide
 
 &lt;br&gt;&lt;br&gt;
 
@@ -1963,7 +2077,7 @@ class: title-slide
   ggplot(iris, aes(x = Petal.Width, y = Petal.Length, color = Species))
 ```
 
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-106-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-114-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 --
@@ -1978,7 +2092,7 @@ class: title-slide
   geom_point() 
 ```
 
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-107-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-115-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1994,7 +2108,7 @@ ggplot(data = diamonds) +
   stat_count(mapping = aes(x = cut))
 ```
 
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-108-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-116-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -2009,7 +2123,7 @@ ggplot(data = diamonds) +
   coord_flip()
 ```
 
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-109-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-117-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -2027,10 +2141,10 @@ from plotnine import *
 from plotnine.data import mtcars, diamonds
 
 ggplot(mtcars, aes(x = 'mpg', y = 'disp'))
-## &lt;ggplot: (8793411546121)&gt;
+## &lt;ggplot: (8729706496985)&gt;
 ```
 
-&lt;img src="/home/felipe/Documentos/5_curso-de-verao/organizacao_repo_apresentacao/intro-analise-de-dados-apresentacao/python/2020/apresencao_final_files/figure-html/unnamed-chunk-110-1.png" width="613" style="display: block; margin: auto;" /&gt;
+&lt;img src="/home/felipe/Documentos/5_curso-de-verao/finalizacao/intro-analise-de-dados-apresentacao/python/2020/apresencao_final_files/figure-html/unnamed-chunk-118-1.png" width="613" style="display: block; margin: auto;" /&gt;
   
 &lt;img src="./images/python/ggplot_1.png" width="85%" height="85%" style="display: block; margin: auto;" /&gt;
   
@@ -2045,10 +2159,10 @@ ggplot(mtcars, aes(x = 'mpg', y = 'disp'))
   
   ```python
   ggplot(mtcars, aes(x = 'mpg', y = 'disp', color = 'factor(am)')) + geom_point()
-  ## &lt;ggplot: (8793409501885)&gt;
+  ## &lt;ggplot: (8729704516861)&gt;
   ```
   
-  &lt;img src="/home/felipe/Documentos/5_curso-de-verao/organizacao_repo_apresentacao/intro-analise-de-dados-apresentacao/python/2020/apresencao_final_files/figure-html/unnamed-chunk-111-1.png" width="613" style="display: block; margin: auto;" /&gt;
+  &lt;img src="/home/felipe/Documentos/5_curso-de-verao/finalizacao/intro-analise-de-dados-apresentacao/python/2020/apresencao_final_files/figure-html/unnamed-chunk-119-1.png" width="613" style="display: block; margin: auto;" /&gt;
   
 &lt;img src="./images/python/ggplot_2.png" width="100%" height="100%" style="display: block; margin: auto;" /&gt;
   
@@ -2065,10 +2179,10 @@ ggplot(mtcars, aes(x = 'mpg', y = 'disp'))
   ```python
   (ggplot(data = diamonds) + 
     stat_count(mapping = aes(x = 'cut')))
-  ## &lt;ggplot: (8793409328981)&gt;
+  ## &lt;ggplot: (8729704411017)&gt;
   ```
   
-  &lt;img src="/home/felipe/Documentos/5_curso-de-verao/organizacao_repo_apresentacao/intro-analise-de-dados-apresentacao/python/2020/apresencao_final_files/figure-html/unnamed-chunk-112-1.png" width="613" style="display: block; margin: auto;" /&gt;
+  &lt;img src="/home/felipe/Documentos/5_curso-de-verao/finalizacao/intro-analise-de-dados-apresentacao/python/2020/apresencao_final_files/figure-html/unnamed-chunk-120-1.png" width="613" style="display: block; margin: auto;" /&gt;
   
 &lt;img src="./images/python/ggplot_3.png" width="85%" height="85%" style="display: block; margin: auto;" /&gt;
 
@@ -2083,10 +2197,10 @@ ggplot(mtcars, aes(x = 'mpg', y = 'disp'))
   (ggplot(data = diamonds) + 
       stat_count(mapping = aes(x = 'cut')) + 
       coord_flip())
-  ## &lt;ggplot: (8793409285033)&gt;
+  ## &lt;ggplot: (8729704419165)&gt;
   ```
   
-  &lt;img src="/home/felipe/Documentos/5_curso-de-verao/organizacao_repo_apresentacao/intro-analise-de-dados-apresentacao/python/2020/apresencao_final_files/figure-html/unnamed-chunk-113-1.png" width="613" style="display: block; margin: auto;" /&gt;
+  &lt;img src="/home/felipe/Documentos/5_curso-de-verao/finalizacao/intro-analise-de-dados-apresentacao/python/2020/apresencao_final_files/figure-html/unnamed-chunk-121-1.png" width="613" style="display: block; margin: auto;" /&gt;
   
 &lt;img src="./images/python/ggplot_4.png" width="85%" height="85%" style="display: block; margin: auto;" /&gt;
 ]
@@ -2124,7 +2238,7 @@ class: title-slide
 
 .pull-right[
 
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-115-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-123-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 ---
@@ -2151,7 +2265,7 @@ class: title-slide
 ]
 
 .pull-right[
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-117-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-125-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -2186,7 +2300,7 @@ amost_diam %&gt;%
 ]
 
 .pull-right[
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-120-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-128-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---

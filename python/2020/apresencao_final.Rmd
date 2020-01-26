@@ -880,7 +880,6 @@ knitr::include_graphics("./images/2_r_img/dplyr_verbs.jpg")
 
 ---
 
-
 class: title-slide
 <br><br><br>
 
@@ -995,6 +994,12 @@ Qual o ano com a maior média de temperatura registrada?]]
 ]
 
 <!-- Fim da parte do R-->
+
+---
+class: title-slide
+
+<br><br><br><br>
+# .center.font170[[Hands-on](https://www.kaggle.com/oldlipe/atividades-curso-de-verao-r) `r anicon::faa("hand-paper", animate = 'float', speed = 'slow')`]
 
 <!-- Inicio da parte de Python-->
 ---
@@ -1345,8 +1350,7 @@ Para iniciar, os métodos `loc` e `iloc` podem ser bastante utilizados para tais
   
   ```{python}
   df = pd.DataFrame({
-    'nome': ['A1', 'A2', 'A3', 'A4'],
-    'valor': [5, 12, 8, 30]
+    'nome': ['A1', 'A2', 'A3', 'A4'], 'valor': [5, 12, 8, 30]
   })
   ```
   
@@ -1355,11 +1359,12 @@ Para iniciar, os métodos `loc` e `iloc` podem ser bastante utilizados para tais
   Filtra os dados pelo nome da coluna
   
   ```{python}
-  df.filter(items = ['A1', 'A4'])
+  df.filter(items = ['valor'])
   ```
 ]
 
 .pull-right[
+  <br><br>
   Filtrando os dados por uma coluna que contenha no nome a palavra `lo`.
   
   ```{python}
@@ -1386,11 +1391,15 @@ Para iniciar, os métodos `loc` e `iloc` podem ser bastante utilizados para tais
 ]
   
 .pull-right[
-  <br><br><br><br>
-  
+  <br><br>
   Criando expressões mais `complexas`
   ```{python}
   df[(df['valor'] >= 5) & (df['valor'] < 12)]
+  ```
+  
+  As mesmas consultas podem ser realizadas com o método `query()`.
+  ```{python}
+  df.query('valor >= 5 & valor < 12')
   ```
 ]
 
@@ -1600,6 +1609,83 @@ class: title-slide
   data.to_csv('data/resultados.csv')
   ```
 ]
+
+---
+class: title-slide
+<br><br><br>
+
+# .center.font170[Exemplo de análise de dados]
+
+---
+# Exemplo de análise de dados
+
+[Dados de 45 mil meteoritos](https://www.kaggle.com/nasa/meteorite-landings) que cairam na Terra, publicados pela NASA.
+
+.pull-left[
+  Carregando os dados
+  ```{python}
+  import pandas as pd
+  
+  data = pd.read_csv("data/meteorite-landings.csv")
+  type(data)
+  ```
+  
+  Verificando os atributos dos dados. A descrição de cada atributo está disponível na [página dos dados](https://www.kaggle.com/nasa/meteorite-landings)
+  ```{python}
+  data.columns
+  ```
+]
+
+.pull-right[
+  <br><br>
+  Separando os dados por tipo de meteorito
+  ```{python}
+  df_valid = data[data['nametype'] == 'Valid']
+  df_relict = data[data['nametype'] == 'Relict']
+  ```
+  
+  Verificando as quantidades de cada tipo
+  ```{python}
+  print("Valid: {} | Relict: {}".format(
+    df_valid.shape[0], df_relict.shape[0]
+  ))
+  ```
+]
+
+---
+# Exemplo de análise de dados
+
+.pull-left[
+  <br><br><br>
+  Verificando a massa média de cada tipo de meteorito
+  ```{python}
+  df_groupby_nametype = data.groupby('nametype')
+  df_groupby_nametype['mass'].mean()
+  ```
+]
+
+.pull-right[
+  <br>
+  Façamos a contagem dos tipos de meteoritos
+  ```{python}
+  df_groupedby_recclass = data.groupby('recclass')
+  df_groupedby_recclass['recclass'].count().head(n = 3)
+  ```
+  
+  Por fim, façamos o filtro do conjunto de dados pela quantidade de massa
+  
+  ```{python}
+  # Filtragem (Maior que 500 gramas)
+  df_gt_mass_500 = data[data['mass'] > 500]
+  df_gt_mass_500.shape # Quantidade bem menor
+  ```
+]
+
+---
+class: title-slide
+
+<br><br><br><br>
+# .center.font170[[Hands-on](https://www.kaggle.com/phelpsmemo/atividades-curso-de-verao-python) `r anicon::faa("hand-paper", animate = 'float', speed = 'slow')`]
 
 ---
 class: title-slide
