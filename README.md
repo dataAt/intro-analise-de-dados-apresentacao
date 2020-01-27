@@ -1,4 +1,4 @@
-## Apresentação | Introdução à análise de dados
+## Apresentação - Introdução à análise de dados
 
 Este repositório armazena as diferentes versões da apresentação do minicurso de introdução a análise de dados.
 
