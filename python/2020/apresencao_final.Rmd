@@ -1808,7 +1808,7 @@ ggplot(data = diamonds) +
 
 .center.font100[Mapeamento estético]
 
-```{python}
+```{python, eval=FALSE}
 from plotnine import *
 from plotnine.data import mtcars, diamonds
 
@@ -1827,8 +1827,9 @@ knitr::include_graphics("./images/python/ggplot_1.png")
 
 .center.font100[Objeto geométrico]
 
-  ```{python}
-  ggplot(mtcars, aes(x = 'mpg', y = 'disp', color = 'factor(am)')) + geom_point()
+  ```{python, eval = FALSE}
+  (ggplot(mtcars, aes(x = 'mpg', y = 'disp', color = 'factor(am)'))
+      + geom_point())
   ```
   
 ```{r fig67, echo=FALSE, out.height="100%", out.width="100%"}
@@ -1844,7 +1845,7 @@ knitr::include_graphics("./images/python/ggplot_2.png")
 
 .center.font100[Mapeamento estético e objeto geométrico]
 
-  ```{python, fig.height=5, fig.width=7}
+  ```{python, fig.height=5, fig.width=7, eval=FALSE}
   (ggplot(data = diamonds) + 
     stat_count(mapping = aes(x = 'cut')))
   ```
@@ -1859,7 +1860,7 @@ knitr::include_graphics("./images/python/ggplot_3.png")
 .pull-right[
 .center.font100[Sistema de coordenadas]
 
-  ```{python, fig.height=5, fig.width=7}
+  ```{python, fig.height=5, fig.width=7, eval=FALSE}
   (ggplot(data = diamonds) + 
       stat_count(mapping = aes(x = 'cut')) + 
       coord_flip())

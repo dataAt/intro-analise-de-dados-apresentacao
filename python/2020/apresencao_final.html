@@ -769,10 +769,10 @@ Para manipular nosso dataframe, vamos usar o pacote .blue[dplyr]. Métodos bási
   
   filtro
 ## # A tibble: 1 x 11
-##      X1 name  height  mass hair_color skin_color eye_color birth_year gender
-##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
-## 1     2 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112 &lt;NA&gt;  
-## # … with 2 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;
+##      X1 name  height  mass hair_color skin_color eye_color birth_year
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;
+## 1     2 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112
+## # … with 3 more variables: gender &lt;chr&gt;, homeworld &lt;chr&gt;, species &lt;chr&gt;
 ```
 ]
 
@@ -790,12 +790,12 @@ Para manipular nosso dataframe, vamos usar o pacote .blue[dplyr]. Métodos bási
   head(agrupamento, 3)
 ## # A tibble: 3 x 11
 ## # Groups:   species [2]
-##      X1 name  height  mass hair_color skin_color eye_color birth_year gender
-##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
-## 1     1 Luke…    172    77 blond      fair       blue              19 male  
-## 2     2 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112 &lt;NA&gt;  
-## 3     3 R2-D2     96    32 &lt;NA&gt;       white, bl… red               33 &lt;NA&gt;  
-## # … with 2 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;
+##      X1 name  height  mass hair_color skin_color eye_color birth_year
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;
+## 1     1 Luke…    172    77 blond      fair       blue              19
+## 2     2 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112
+## 3     3 R2-D2     96    32 &lt;NA&gt;       white, bl… red               33
+## # … with 3 more variables: gender &lt;chr&gt;, homeworld &lt;chr&gt;, species &lt;chr&gt;
 ```
 ]
 
@@ -832,12 +832,12 @@ Para manipular nosso dataframe, vamos usar o pacote .blue[dplyr]. Métodos bási
   
   head(star_wars, 3)
 ## # A tibble: 3 x 11
-##      X1 name  height  mass hair_color skin_color eye_color birth_year gender
-##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
-## 1     1 Luke…   1.72    77 blond      fair       blue              19 male  
-## 2     2 C-3PO   1.67    75 &lt;NA&gt;       gold       yellow           112 &lt;NA&gt;  
-## 3     3 R2-D2   0.96    32 &lt;NA&gt;       white, bl… red               33 &lt;NA&gt;  
-## # … with 2 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;
+##      X1 name  height  mass hair_color skin_color eye_color birth_year
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;
+## 1     1 Luke…   1.72    77 blond      fair       blue              19
+## 2     2 C-3PO   1.67    75 &lt;NA&gt;       gold       yellow           112
+## 3     3 R2-D2   0.96    32 &lt;NA&gt;       white, bl… red               33
+## # … with 3 more variables: gender &lt;chr&gt;, homeworld &lt;chr&gt;, species &lt;chr&gt;
 ```
 ---
 
@@ -1787,7 +1787,7 @@ Agregações são operações aplicadas sobre os dados que resultam em um conjun
   
   ```python
   print(agrupado)
-  ## &lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f08b99f1c50&gt;
+  ## &lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7fae8acae150&gt;
   ```
   
   Recuperando os grupos gerados
@@ -2141,10 +2141,7 @@ from plotnine import *
 from plotnine.data import mtcars, diamonds
 
 ggplot(mtcars, aes(x = 'mpg', y = 'disp'))
-## &lt;ggplot: (8729706496985)&gt;
 ```
-
-&lt;img src="/home/felipe/Documentos/5_curso-de-verao/finalizacao/intro-analise-de-dados-apresentacao/python/2020/apresencao_final_files/figure-html/unnamed-chunk-118-1.png" width="613" style="display: block; margin: auto;" /&gt;
   
 &lt;img src="./images/python/ggplot_1.png" width="85%" height="85%" style="display: block; margin: auto;" /&gt;
   
@@ -2158,11 +2155,9 @@ ggplot(mtcars, aes(x = 'mpg', y = 'disp'))
 
   
   ```python
-  ggplot(mtcars, aes(x = 'mpg', y = 'disp', color = 'factor(am)')) + geom_point()
-  ## &lt;ggplot: (8729704516861)&gt;
+  (ggplot(mtcars, aes(x = 'mpg', y = 'disp', color = 'factor(am)'))
+      + geom_point())
   ```
-  
-  &lt;img src="/home/felipe/Documentos/5_curso-de-verao/finalizacao/intro-analise-de-dados-apresentacao/python/2020/apresencao_final_files/figure-html/unnamed-chunk-119-1.png" width="613" style="display: block; margin: auto;" /&gt;
   
 &lt;img src="./images/python/ggplot_2.png" width="100%" height="100%" style="display: block; margin: auto;" /&gt;
   
@@ -2179,10 +2174,7 @@ ggplot(mtcars, aes(x = 'mpg', y = 'disp'))
   ```python
   (ggplot(data = diamonds) + 
     stat_count(mapping = aes(x = 'cut')))
-  ## &lt;ggplot: (8729704411017)&gt;
   ```
-  
-  &lt;img src="/home/felipe/Documentos/5_curso-de-verao/finalizacao/intro-analise-de-dados-apresentacao/python/2020/apresencao_final_files/figure-html/unnamed-chunk-120-1.png" width="613" style="display: block; margin: auto;" /&gt;
   
 &lt;img src="./images/python/ggplot_3.png" width="85%" height="85%" style="display: block; margin: auto;" /&gt;
 
@@ -2197,10 +2189,7 @@ ggplot(mtcars, aes(x = 'mpg', y = 'disp'))
   (ggplot(data = diamonds) + 
       stat_count(mapping = aes(x = 'cut')) + 
       coord_flip())
-  ## &lt;ggplot: (8729704419165)&gt;
   ```
-  
-  &lt;img src="/home/felipe/Documentos/5_curso-de-verao/finalizacao/intro-analise-de-dados-apresentacao/python/2020/apresencao_final_files/figure-html/unnamed-chunk-121-1.png" width="613" style="display: block; margin: auto;" /&gt;
   
 &lt;img src="./images/python/ggplot_4.png" width="85%" height="85%" style="display: block; margin: auto;" /&gt;
 ]
