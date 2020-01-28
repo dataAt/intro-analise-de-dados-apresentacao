@@ -1380,7 +1380,7 @@ df_2[df_2['valor'] > 10] = -99; print(df_2)
 
 Uma forma mais elegante, trabalhando com `where`
 ```{python}
-df.where(df['valor'] > 10, -99)
+df.where(df['valor'] < 10, -99)
 ```
 
 ---

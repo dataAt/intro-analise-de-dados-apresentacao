@@ -179,11 +179,10 @@ class: title-slide
 
 # Qual é a diferença?
 
---
 
 .pull-left[
 
-.bold[Vetores são atômicos, só aceitam um tipo]
+.bold[Vetores são atômicos, só aceitam um tipo:]
 
 
 ```r
@@ -226,64 +225,7 @@ class: title-slide
 ```
 ]
 
----
 
-# Pense em vetores!
-
-Todos os tipos primitivos em R são tratados como vetores:
-
-.pull-left[
-
-
-```r
-  lista &lt;- list(1, 2, list("ola", FALSE))
-
-  lista
-## [[1]]
-## [1] 1
-## 
-## [[2]]
-## [1] 2
-## 
-## [[3]]
-## [[3]][[1]]
-## [1] "ola"
-## 
-## [[3]][[2]]
-## [1] FALSE
-```
-
-]
-
---
-
-.pull-right[
-
-.bold.center.font120[Será lista?]
-
-
-```r
-  is.list(lista)
-## [1] TRUE
-```
-
-.bold.center.font100[Será vetor?]
-
-
-```r
-  is.vector(lista[[3]][[2]])
-## [1] TRUE
-```
-
-.bold.center.font100[Será vetor?]
-
-
-```r
-  is.vector(42)
-## [1] TRUE
-```
-
-]
 ---
 
 # Hierarquia de tipo primitivos
@@ -769,10 +711,10 @@ Para manipular nosso dataframe, vamos usar o pacote .blue[dplyr]. Métodos bási
   
   filtro
 ## # A tibble: 1 x 11
-##      X1 name  height  mass hair_color skin_color eye_color birth_year
-##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;
-## 1     2 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112
-## # … with 3 more variables: gender &lt;chr&gt;, homeworld &lt;chr&gt;, species &lt;chr&gt;
+##      X1 name  height  mass hair_color skin_color eye_color birth_year gender
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+## 1     2 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112 &lt;NA&gt;  
+## # … with 2 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;
 ```
 ]
 
@@ -790,12 +732,12 @@ Para manipular nosso dataframe, vamos usar o pacote .blue[dplyr]. Métodos bási
   head(agrupamento, 3)
 ## # A tibble: 3 x 11
 ## # Groups:   species [2]
-##      X1 name  height  mass hair_color skin_color eye_color birth_year
-##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;
-## 1     1 Luke…    172    77 blond      fair       blue              19
-## 2     2 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112
-## 3     3 R2-D2     96    32 &lt;NA&gt;       white, bl… red               33
-## # … with 3 more variables: gender &lt;chr&gt;, homeworld &lt;chr&gt;, species &lt;chr&gt;
+##      X1 name  height  mass hair_color skin_color eye_color birth_year gender
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+## 1     1 Luke…    172    77 blond      fair       blue              19 male  
+## 2     2 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112 &lt;NA&gt;  
+## 3     3 R2-D2     96    32 &lt;NA&gt;       white, bl… red               33 &lt;NA&gt;  
+## # … with 2 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;
 ```
 ]
 
@@ -832,12 +774,12 @@ Para manipular nosso dataframe, vamos usar o pacote .blue[dplyr]. Métodos bási
   
   head(star_wars, 3)
 ## # A tibble: 3 x 11
-##      X1 name  height  mass hair_color skin_color eye_color birth_year
-##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;
-## 1     1 Luke…   1.72    77 blond      fair       blue              19
-## 2     2 C-3PO   1.67    75 &lt;NA&gt;       gold       yellow           112
-## 3     3 R2-D2   0.96    32 &lt;NA&gt;       white, bl… red               33
-## # … with 3 more variables: gender &lt;chr&gt;, homeworld &lt;chr&gt;, species &lt;chr&gt;
+##      X1 name  height  mass hair_color skin_color eye_color birth_year gender
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+## 1     1 Luke…   1.72    77 blond      fair       blue              19 male  
+## 2     2 C-3PO   1.67    75 &lt;NA&gt;       gold       yellow           112 &lt;NA&gt;  
+## 3     3 R2-D2   0.96    32 &lt;NA&gt;       white, bl… red               33 &lt;NA&gt;  
+## # … with 2 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;
 ```
 ---
 
@@ -1671,12 +1613,12 @@ df_2[df_2['valor'] &gt; 10] = -99; print(df_2)
 Uma forma mais elegante, trabalhando com `where`
 
 ```python
-df.where(df['valor'] &gt; 10, -99)
+df.where(df['valor'] &lt; 10, -99)
 ##   nome  valor
-## 0  -99    -99
-## 1   A2     12
-## 2  -99    -99
-## 3   A4     30
+## 0   A1      5
+## 1  -99    -99
+## 2   A3      8
+## 3  -99    -99
 ```
 
 ---
@@ -1787,7 +1729,7 @@ Agregações são operações aplicadas sobre os dados que resultam em um conjun
   
   ```python
   print(agrupado)
-  ## &lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7fae8acae150&gt;
+  ## &lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f02ba759ad0&gt;
   ```
   
   Recuperando os grupos gerados
@@ -2077,7 +2019,7 @@ class: title-slide
   ggplot(iris, aes(x = Petal.Width, y = Petal.Length, color = Species))
 ```
 
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-114-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-110-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 --
@@ -2092,7 +2034,7 @@ class: title-slide
   geom_point() 
 ```
 
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-115-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-111-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -2108,7 +2050,7 @@ ggplot(data = diamonds) +
   stat_count(mapping = aes(x = cut))
 ```
 
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-116-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-112-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -2123,7 +2065,7 @@ ggplot(data = diamonds) +
   coord_flip()
 ```
 
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-117-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-113-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -2227,7 +2169,7 @@ class: title-slide
 
 .pull-right[
 
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-123-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-119-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 ---
@@ -2254,7 +2196,7 @@ class: title-slide
 ]
 
 .pull-right[
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-125-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-121-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -2289,7 +2231,7 @@ amost_diam %&gt;%
 ]
 
 .pull-right[
-&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-128-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="apresencao_final_files/figure-html/unnamed-chunk-124-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
