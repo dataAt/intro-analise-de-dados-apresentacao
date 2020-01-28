@@ -194,11 +194,10 @@ knitr::include_graphics("./images/2_r_img/ross_lhaka.jpeg")
 
 # Qual é a diferença?
 
---
 
 .pull-left[
 
-.bold[Vetores são atômicos, só aceitam um tipo]
+.bold[Vetores são atômicos, só aceitam um tipo:]
 
 ```{r, fig.height=5}
   vetor_diferente <- c(1, 2.5, TRUE, "ola")
@@ -226,45 +225,7 @@ knitr::include_graphics("./images/2_r_img/ross_lhaka.jpeg")
 ```
 ]
 
----
 
-# Pense em vetores!
-
-Todos os tipos primitivos em R são tratados como vetores:
-
-.pull-left[
-
-```{r, fig.height=5}
-  lista <- list(1, 2, list("ola", FALSE))
-
-  lista
-```
-
-]
-
---
-
-.pull-right[
-
-.bold.center.font120[Será lista?]
-
-```{r, fig.height=5}
-  is.list(lista)
-```
-
-.bold.center.font100[Será vetor?]
-
-```{r, fig.height=5}
-  is.vector(lista[[3]][[2]])
-```
-
-.bold.center.font100[Será vetor?]
-
-```{r, fig.height=5}
-  is.vector(42)
-```
-
-]
 ---
 
 # Hierarquia de tipo primitivos
