@@ -8,7 +8,7 @@ Este repositório armazena as diferentes versões da apresentação do minicurso
 Abaixo são listadas as versões antigas deste material, caso tenha interesse
 
 - Apresentação de Python e R:
- - [introducao-ds-inpe-2020.netlify.com](https://introducao-ds-inpe-2020.netlify.com/apresencao_final.html#1)
+  - [introducao-ds-inpe-2020.netlify.com](https://introducao-ds-inpe-2020.netlify.com/apresencao_final.html#1)
 
 - Apresentação de Python:
   - CIMATech (2018): [python-ds-2018.netlify.com](https://python-ds-2018.netlify.com/intro_python)
