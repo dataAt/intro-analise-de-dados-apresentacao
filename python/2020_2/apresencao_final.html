@@ -98,9 +98,11 @@ class: title-slide
 
 
 ```r
-  inteiro &lt;- 321L
-
   numerico &lt;- 123
+
+  double &lt;- 123.2
+
+  inteiro &lt;- 321L
   
   complexo &lt;- 321i
   
@@ -1102,12 +1104,6 @@ Qual o ano com a maior média de temperatura registrada?]]
 
 &lt;!-- Fim da parte do R--&gt;
 
----
-class: title-slide
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-# .center.font170[[Hands-on](https://www.kaggle.com/oldlipe/intro-ds-r-worcap2020) <span>&lt;i class="fas  fa-hand-paper faa-float animated faa-slow "&gt;&lt;/i&gt;</span>]
-
 &lt;!-- Inicio da parte de Python--&gt;
 ---
 
@@ -1142,7 +1138,7 @@ class: title-slide
   
   ```python
   inteiro = 123
-  flutoante = 1.1234
+  flutuante = 1.1234
   booleano = True
   lista = [1, 2, 3, 4, 5]
   dicionario = {'chave': 'valor'}
@@ -1159,7 +1155,7 @@ class: title-slide
   ## 'valor'
   lista[0:3] 
   ## [1, 2, 3]
-  flutoante += 1 
+  flutuante += 1 
   # 1.1234
   ```
 ]
@@ -1456,8 +1452,8 @@ Para iniciar, os métodos `loc` e `iloc` podem ser bastante utilizados para tais
 .center[
   | DataFrame                                  | Series                  |
   |--------------------------------------------|-------------------------|
-  | \.loc[Nome da linha,  Nome da coluna]   | \.loc[Posição da linha] |
-  | \.iloc[posição da linha, posição da coluna] | \.iloc[Nome da linha] |
+  | \.loc[Nome da linha,  Nome da coluna]   | \.loc[Nome da linha] |
+  | \.iloc[posição da linha, posição da coluna] | \.iloc[Posição da linha] |
 ]
 
 ---
@@ -1640,7 +1636,7 @@ df.where(df['valor'] &lt; 10, -99)
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
 .font130[
-Agrupar dados ajuda na análise dos dados, é através deste processo que técnicas de análise exploratória de dados e estatística descritiva podem ser feitos. Para tais atividades, utilizam-se os agrupamentos e agregações.
+Agrupar e agregar dados ajuda na análise dos dados. É através deste processo que técnicas de análise exploratória de dados e estatística descritiva podem ser aplicadas em diferentes grupos de dados.
 ]
 
 ---
@@ -1956,12 +1952,6 @@ class: title-slide
   ## (7036, 10)
   ```
 ]
-
----
-class: title-slide
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-# .center.font170[[Hands-on](https://www.kaggle.com/phelpsmemo/intro-ds-python-worcap2020) <span>&lt;i class="fas  fa-hand-paper faa-float animated faa-slow "&gt;&lt;/i&gt;</span>]
 
 ---
 class: title-slide

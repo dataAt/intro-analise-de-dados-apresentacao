@@ -129,16 +129,17 @@ class: title-slide
 .bold.center.font100[Declaração de variáveis]
 
 ```{r, fig.height=4}
-  inteiro <- 321L
-
   numerico <- 123
+
+  double <- 123.2
+
+  inteiro <- 321L
   
   complexo <- 321i
   
   booleano <- TRUE 
   
   caractere <- "Bem-vindos"
-
 ``` 
 
 ]
@@ -970,12 +971,6 @@ Qual o ano com a maior média de temperatura registrada?]]
 
 <!-- Fim da parte do R-->
 
----
-class: title-slide
-
-<br><br><br><br>
-# .center.font170[[Hands-on](https://www.kaggle.com/oldlipe/intro-ds-r-worcap2020) `r anicon::faa("hand-paper", animate = 'float', speed = 'slow')`]
-
 <!-- Inicio da parte de Python-->
 ---
 
@@ -1009,7 +1004,7 @@ class: title-slide
 
   ```{python}
   inteiro = 123
-  flutoante = 1.1234
+  flutuante = 1.1234
   booleano = True
   lista = [1, 2, 3, 4, 5]
   dicionario = {'chave': 'valor'}
@@ -1023,7 +1018,7 @@ class: title-slide
   ```{python}
   dicionario['chave']
   lista[0:3] 
-  flutoante += 1 
+  flutuante += 1 
   # 1.1234
   ```
 ]
@@ -1270,8 +1265,8 @@ Para iniciar, os métodos `loc` e `iloc` podem ser bastante utilizados para tais
 .center[
   | DataFrame                                  | Series                  |
   |--------------------------------------------|-------------------------|
-  | \.loc[Nome da linha,  Nome da coluna]   | \.loc[Posição da linha] |
-  | \.iloc[posição da linha, posição da coluna] | \.iloc[Nome da linha] |
+  | \.loc[Nome da linha,  Nome da coluna]   | \.loc[Nome da linha] |
+  | \.iloc[posição da linha, posição da coluna] | \.iloc[Posição da linha] |
 ]
 
 ---
@@ -1402,7 +1397,7 @@ df.where(df['valor'] < 10, -99)
 
 <br><br><br>
 .font130[
-Agrupar dados ajuda na análise dos dados, é através deste processo que técnicas de análise exploratória de dados e estatística descritiva podem ser feitos. Para tais atividades, utilizam-se os agrupamentos e agregações.
+Agrupar e agregar dados ajuda na análise dos dados. É através deste processo que técnicas de análise exploratória de dados e estatística descritiva podem ser aplicadas em diferentes grupos de dados.
 ]
 
 ---
@@ -1655,12 +1650,6 @@ class: title-slide
   df_gt_mass_500.shape # Quantidade bem menor
   ```
 ]
-
----
-class: title-slide
-
-<br><br><br><br>
-# .center.font170[[Hands-on](https://www.kaggle.com/phelpsmemo/intro-ds-python-worcap2020) `r anicon::faa("hand-paper", animate = 'float', speed = 'slow')`]
 
 ---
 class: title-slide
